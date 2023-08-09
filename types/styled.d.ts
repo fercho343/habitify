@@ -9,6 +9,16 @@ declare module "styled-components/native" {
 			secondary: string;
 			tertiary: string;
 		};
+		fonts: {
+			MacPaw: string;
+			MacPawExtraLight: string;
+			MacPawThing: string;
+			MacPawLight: string;
+			MacPawMedium: string;
+			MacPawSemiBold: string;
+			MacPawBold: string;
+			MacPawExtraBold: string;
+		};
 	}
 }
 

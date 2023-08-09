@@ -18,7 +18,14 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
 	const [loaded, error] = useFonts({
-		SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+		MacPawExtraLight: require("../assets/fonts/MacPaw/MacPaw-ExtraLight.ttf"),
+		MacPawThing: require("../assets/fonts/MacPaw/MacPaw-Thin.ttf"),
+		MacPawLight: require("../assets/fonts/MacPaw/MacPaw-Light.ttf"),
+		MacPawMedium: require("../assets/fonts/MacPaw/MacPaw-Medium.ttf"),
+		MacPaw: require("../assets/fonts/MacPaw/MacPaw-Regular.ttf"),
+		MacPawSemiBold: require("../assets/fonts/MacPaw/MacPaw-SemiBold.ttf"),
+		MacPawBold: require("../assets/fonts/MacPaw/MacPaw-Bold.ttf"),
+		MacPawExtraBold: require("../assets/fonts/MacPaw/MacPaw-ExtraBold.ttf"),
 		...FontAwesome.font,
 	});
 

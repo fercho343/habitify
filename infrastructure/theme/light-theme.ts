@@ -8,6 +8,16 @@ const lightTheme: DefaultTheme = {
 		secondary: "#B286FD",
 		tertiary: "#E55733",
 	},
+	fonts: {
+		MacPaw: "MacPaw",
+		MacPawExtraLight: "MacPawExtraLight",
+		MacPawThing: "MacPawThing",
+		MacPawLight: "MacPawLight",
+		MacPawMedium: "MacPawMedium",
+		MacPawSemiBold: "MacPawSemiBold",
+		MacPawBold: "MacPawBold",
+		MacPawExtraBold: "MacPawExtraBold",
+	},
 };
 
 export { lightTheme };

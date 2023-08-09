@@ -33,4 +33,5 @@ export const Label = styled.Text<ItemTabBarType>`
   color: ${({ theme }) => theme.colors.background};
   margin-left: 5px;
   display: ${({ $isActive }) => ($isActive ? "flex" : "none")};
+  font-family: ${({ theme }) => theme.fonts.MacPawSemiBold};
 `;

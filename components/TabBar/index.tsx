@@ -57,7 +57,7 @@ export const TabBar = ({ state, descriptors, navigation }) => {
 
 			<Item $isActive={true}>
 				<Ionicons name="home" color={theme.colors.background} size={30} />
-				<Label $isActive={true}>Home</Label>
+				<Label $isActive={true}>Hgme</Label>
 			</Item>
 
 			<Item $isActive={false}>
