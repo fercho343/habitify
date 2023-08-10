@@ -35,7 +35,7 @@ export const Separation = styled.View`
 export const Controls = styled.View`
   width: 90px;
   padding: 5px;
-  background-color: #2e2e2e;
+  background-color: ${({ theme }) => theme.colors.box};
   border-radius: 50px;
   flex-direction: row;
   justify-content: space-between;

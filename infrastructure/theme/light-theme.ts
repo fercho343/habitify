@@ -4,6 +4,7 @@ const lightTheme: DefaultTheme = {
 	colors: {
 		background: "#0e0e0e",
 		card: "#191919",
+		box: "#2e2e2e",
 		text: "#FFFFFF",
 		primary: "#82F042",
 		secondary: "#B286FD",

@@ -1,9 +1,14 @@
+import { Text } from "@/components/Text";
 import { TextInput } from "@/components/TextInput";
 import { Habit } from "@/types/habits";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { t } from "i18next";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { Button, ScrollView } from "react-native";
-import { Form } from "./styled";
+import { Controller, useForm } from "react-hook-form";
+import { ScrollView } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { IconBox } from "./IconBox";
+import { Form, Row } from "./styled";
 
 export const FormAddHabit = () => {
 	const { control, handleSubmit } = useForm<Habit>({
@@ -23,21 +28,62 @@ export const FormAddHabit = () => {
 	const onSubmit = (data: Habit) => console.log(data);
 
 	return (
-		<Form>
-			<ScrollView>
-				<TextInput
-					name="name"
-					control={control}
-					rules={{
-						required: {
-							value: true,
-							message: "Name is required",
-						},
-					}}
-				/>
+		<BottomSheetModalProvider>
+			<Form>
+				<ScrollView>
+					<Row>
+						<Text variant="subtitle_medium">{t("name")}</Text>
+						<TextInput
+							name="name"
+							placeholder={t("placeholder.habit_name")}
+							control={control}
+							rules={{
+								required: {
+									value: true,
+									message: t("error.name"),
+								},
+							}}
+						/>
+					</Row>
 
-				<Button title="Send" onPress={handleSubmit(onSubmit)} />
-			</ScrollView>
-		</Form>
+					<Row>
+						<Text variant="subtitle_medium">{t("description")}</Text>
+						<TextInput
+							name="description"
+							placeholder={t("placeholder.description")}
+							control={control}
+							multiline={true}
+							numberOfLines={5}
+							style={{ height: 50 }}
+						/>
+					</Row>
+
+					<Controller
+						name="icon"
+						control={control}
+						rules={{
+							required: {
+								value: true,
+								message: t("error.icon"),
+							},
+						}}
+						render={({ field: { onChange, value }, fieldState: { error } }) => (
+							<IconBox
+								value={value}
+								onChange={onChange}
+								error={error ? true : false}
+							/>
+						)}
+					/>
+
+					<TouchableOpacity
+						style={{ marginTop: 100 }}
+						onPress={handleSubmit(onSubmit)}
+					>
+						<Text>send</Text>
+					</TouchableOpacity>
+				</ScrollView>
+			</Form>
+		</BottomSheetModalProvider>
 	);
 };

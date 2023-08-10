@@ -11,5 +11,15 @@
   "sunday": "Domingo",
   "welcome": "Buenos días",
   "today": "Hoy",
-  "add-habit": "Anadir habito"
+  "add-habit": "Anadir habito",
+  "name": "Nombre",
+  "error": {
+    "name": "El nombre es requerido",
+    "icon": "Escoje un icono"
+  },
+  "description": "Descripcion",
+  "placeholder": {
+    "habit_name": "Ejem. Beber agua",
+    "description": "Por que quieres desarollar este habito?"
+  }
 }

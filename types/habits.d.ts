@@ -5,7 +5,7 @@ type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday";
 export interface Habit {
 	readonly id?: ID;
 	name: string;
-	description: string;
+	description?: string;
 	icon: string;
 	color: string;
 	requires_goal: boolean;

@@ -8,7 +8,10 @@ import { StatusBar } from "expo-status-bar";
 import { t } from "i18next";
 import { useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+	GestureHandlerRootView,
+	TouchableOpacity,
+} from "react-native-gesture-handler";
 import { ThemeProvider } from "styled-components/native";
 
 export { ErrorBoundary } from "expo-router";
@@ -58,7 +61,7 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
 	return (
-		<>
+		<GestureHandlerRootView style={{ flex: 1 }}>
 			<ThemeProvider theme={lightTheme}>
 				<Stack>
 					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -84,6 +87,6 @@ function RootLayoutNav() {
 				</Stack>
 			</ThemeProvider>
 			<StatusBar style="light" />
-		</>
+		</GestureHandlerRootView>
 	);
 }
