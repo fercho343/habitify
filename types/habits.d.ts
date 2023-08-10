@@ -1,6 +1,13 @@
 type ID = `${string}-${string}-${string}-${string}-${string}`;
 type Color = `#${string}`;
-type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday";
+export type Day =
+	| "monday"
+	| "tuesday"
+	| "wednesday"
+	| "thursday"
+	| "friday"
+	| "saturday"
+	| "sunday";
 
 export interface Habit {
 	readonly id?: ID;

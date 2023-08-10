@@ -1,6 +1,6 @@
 import { Text } from "@/components/Text";
 import { TextInput } from "@/components/TextInput";
-import { Habit } from "@/types/habits";
+import { Day, Habit } from "@/types/habits";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { t } from "i18next";
@@ -10,12 +10,13 @@ import { ScrollView, Switch } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useTheme } from "styled-components/native";
 import { ColorButton } from "./ColorButton";
+import { DayField } from "./DayInput";
 import { IconBox } from "./IconBox";
 import { Colum, Divider, Form, Row } from "./styled";
 
 export const FormAddHabit = () => {
 	const theme = useTheme();
-	const { control, watch, handleSubmit } = useForm<Habit>({
+	const { control, watch, setValue, handleSubmit } = useForm<Habit>({
 		defaultValues: {
 			name: "",
 			description: "",
@@ -24,14 +25,38 @@ export const FormAddHabit = () => {
 			requires_goal: false,
 			goal: 0,
 			measure: "",
-			frequencies: [],
+			frequencies: [
+				"monday",
+				"tuesday",
+				"wednesday",
+				"thursday",
+				"friday",
+				"saturday",
+				"sunday",
+			],
 			reminders: true,
 			start_time: "00:00",
 		},
 	});
+
+	const updateFrequencies = (day: Day) => {
+		const frequencies = watch("frequencies");
+
+		if (frequencies.includes(day)) {
+			// Si el día ya está en la lista, eliminarlo
+			const updatedFrequencies = frequencies.filter((d) => d !== day);
+			setValue("frequencies", updatedFrequencies);
+		} else {
+			// Si el día no está en la lista, agregarlo
+			const updatedFrequencies = [...frequencies, day];
+			setValue("frequencies", updatedFrequencies);
+		}
+	};
+
 	const onSubmit = (data: Habit) => console.log(data);
 
 	const [time, setTime] = useState(new Date());
+	console.log(watch("frequencies"));
 
 	return (
 		<BottomSheetModalProvider>
@@ -151,6 +176,10 @@ export const FormAddHabit = () => {
 							mode="time"
 						/>
 					</Colum>
+					<Divider />
+
+					<DayField control={control} updateFrequencies={updateFrequencies} />
+
 					<Divider />
 
 					<Colum style={{ justifyContent: "space-between" }}>
