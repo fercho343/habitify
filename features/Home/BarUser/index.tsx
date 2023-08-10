@@ -1,5 +1,6 @@
 import { Text } from "@/components/Text";
 import { AntDesign } from "@expo/vector-icons";
+import { Link } from "expo-router";
 import { t } from "i18next";
 import { capitalize } from "lodash";
 //@ts-ignore
@@ -28,10 +29,11 @@ export const BarUser = () => {
 					</Text>
 				</View>
 			</UserBox>
-
-			<IconButton>
-				<AntDesign name="plus" color={theme.colors.background} size={25} />
-			</IconButton>
+			<Link href="/add-habit" asChild>
+				<IconButton>
+					<AntDesign name="plus" color={theme.colors.background} size={25} />
+				</IconButton>
+			</Link>
 		</Bar>
 	);
 };

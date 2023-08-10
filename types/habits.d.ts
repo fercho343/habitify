@@ -10,6 +10,7 @@ export interface Habit {
 	color: string;
 	requires_goal: boolean;
 	goal?: number | null;
+	measure?: string;
 	frequencies: Array<Day>;
 	reminders: boolean;
 	start_time?: string | null;

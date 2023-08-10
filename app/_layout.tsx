@@ -59,6 +59,7 @@ function RootLayoutNav() {
 			<ThemeProvider theme={lightTheme}>
 				<Stack>
 					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+					<Stack.Screen name="add-habit" options={{ presentation: "modal" }} />
 				</Stack>
 			</ThemeProvider>
 			<StatusBar style="light" />
