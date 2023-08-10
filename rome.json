@@ -9,6 +9,9 @@
 			"recommended": true,
 			"complexity": {
 				"noUselessFragments":"off"
+			},
+			"suspicious": {
+				"noExplicitAny": "off"
 			}
 		}
 	}

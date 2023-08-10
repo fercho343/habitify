@@ -3,7 +3,7 @@ type Color = `#${string}`;
 type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday";
 
 export interface Habit {
-	readonly id: ID;
+	readonly id?: ID;
 	name: string;
 	description: string;
 	icon: string;

@@ -10,6 +10,7 @@ declare module "styled-components/native" {
 			secondary: string;
 			tertiary: string;
 			disabled: string;
+			error: string;
 		};
 		fonts: {
 			MacPaw: string;
