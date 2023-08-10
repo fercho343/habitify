@@ -143,13 +143,42 @@ export const FormAddHabit = () => {
 
 					<Divider />
 
-					<RNDateTimePicker
-						value={time}
-						onChange={(event, date) => console.log(date)}
-						mode="time"
-						// themeVariant="light"
-						// display="spinner"
-					/>
+					<Colum style={{ justifyContent: "space-between" }}>
+						<Text variant="subtitle_medium">Define una hora</Text>
+						<RNDateTimePicker
+							value={time}
+							onChange={(event, date) => console.log(date)}
+							mode="time"
+						/>
+					</Colum>
+					<Divider />
+
+					<Colum style={{ justifyContent: "space-between" }}>
+						<Text variant="subtitle_medium">Notificar</Text>
+						<Controller
+							name="reminders"
+							control={control}
+							rules={{
+								required: {
+									value: true,
+									message: t("error.icon"),
+								},
+							}}
+							render={({
+								field: { onChange, value },
+								fieldState: { error },
+							}) => (
+								<Switch
+									trackColor={{ false: "#767577", true: theme.colors.primary }}
+									thumbColor="#f4f3f4"
+									ios_backgroundColor="#3e3e3e"
+									onValueChange={(value) => onChange(value)}
+									value={value}
+									style={{ marginLeft: 15 }}
+								/>
+							)}
+						/>
+					</Colum>
 
 					<TouchableOpacity
 						style={{ marginTop: 100 }}

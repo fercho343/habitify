@@ -1,7 +1,11 @@
 import { Text } from "@/components/Text";
-import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
+import {
+	BottomSheetBackdrop,
+	BottomSheetModal,
+	BottomSheetScrollView,
+} from "@gorhom/bottom-sheet";
 import React, { useCallback, useMemo, useRef } from "react";
-import { ScrollView, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useTheme } from "styled-components/native";
 import { Button } from "./Button";
 import { Body, Head, IconButton } from "./styled";
@@ -63,7 +67,7 @@ export const IconBox = ({ value, onChange, error }: Props) => {
 			>
 				<Header onPress={handleCloseModalPress} />
 				<Body>
-					<ScrollView
+					<BottomSheetScrollView
 						style={{ marginBottom: 10 }}
 						showsVerticalScrollIndicator={false}
 						contentContainerStyle={{
@@ -76,7 +80,7 @@ export const IconBox = ({ value, onChange, error }: Props) => {
 						{emojis.map((emoji, index) => (
 							<Button key={emoji.text} onChange={onChange} {...emoji} />
 						))}
-					</ScrollView>
+					</BottomSheetScrollView>
 				</Body>
 			</BottomSheetModal>
 		</>
