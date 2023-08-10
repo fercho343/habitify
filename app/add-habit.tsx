@@ -1,10 +1,6 @@
-import { Text } from "@/components/Text";
+import { FormAddHabit } from "@/features/Home/FormAddHabit";
 import React from "react";
 
-export default function ModalScreen() {
-	return (
-		<>
-			<Text>Add Habits</Text>
-		</>
-	);
+export default function AddHabitScreen() {
+	return <FormAddHabit />;
 }

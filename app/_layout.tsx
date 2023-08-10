@@ -1,11 +1,14 @@
 import { lightTheme } from "@/infrastructure/theme/light-theme";
 import i18n from "@/services/i18n";
+import { AntDesign } from "@expo/vector-icons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack } from "expo-router";
+import { SplashScreen, Stack, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { t } from "i18next";
 import { useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { ThemeProvider } from "styled-components/native";
 
 export { ErrorBoundary } from "expo-router";
@@ -59,7 +62,25 @@ function RootLayoutNav() {
 			<ThemeProvider theme={lightTheme}>
 				<Stack>
 					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-					<Stack.Screen name="add-habit" options={{ presentation: "modal" }} />
+					<Stack.Screen
+						name="add-habit"
+						options={{
+							presentation: "modal",
+							title: t("add-habit"),
+							headerStyle: {
+								backgroundColor: lightTheme.colors.background,
+							},
+							headerTitleStyle: {
+								color: lightTheme.colors.text,
+								fontFamily: lightTheme.fonts.MacPaw,
+							},
+							headerLeft: () => (
+								<TouchableOpacity onPress={() => router.back()}>
+									<AntDesign name="down" size={25} color="#fff" />
+								</TouchableOpacity>
+							),
+						}}
+					/>
 				</Stack>
 			</ThemeProvider>
 			<StatusBar style="light" />
