@@ -5,6 +5,7 @@ declare module "styled-components/native" {
 		colors: {
 			background: string;
 			card: string;
+			text: string;
 			primary: string;
 			secondary: string;
 			tertiary: string;
@@ -19,6 +20,12 @@ declare module "styled-components/native" {
 			MacPawSemiBold: string;
 			MacPawBold: string;
 			MacPawExtraBold: string;
+		};
+		fontSize: {
+			headlineLarge: number;
+			headlineMedium: number;
+			subtitle: number;
+			body: number;
 		};
 	}
 }
