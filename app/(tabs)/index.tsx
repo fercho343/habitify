@@ -1,10 +1,10 @@
-import { Text } from "@/components/Themed";
+import { BarUser } from "@/features/Home/BarUser";
 import { Layout } from "@/infrastructure/layout";
 
 export default function TabOneScreen() {
 	return (
 		<Layout>
-			<Text>Home</Text>
+			<BarUser />
 		</Layout>
 	);
 }
