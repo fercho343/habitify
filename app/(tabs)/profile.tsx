@@ -1,4 +1,4 @@
-import { Text } from "@/components/Themed";
+import { Text } from "@/components/Text";
 import { Layout } from "@/infrastructure/layout";
 import React from "react";
 

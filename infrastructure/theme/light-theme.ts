@@ -2,8 +2,8 @@ import { DefaultTheme } from "styled-components/native";
 
 const lightTheme: DefaultTheme = {
 	colors: {
-		background: "#101010",
-		card: "#232323",
+		background: "#0e0e0e",
+		card: "#191919",
 		text: "#FFFFFF",
 		primary: "#82F042",
 		secondary: "#B286FD",
@@ -23,7 +23,7 @@ const lightTheme: DefaultTheme = {
 	fontSize: {
 		headlineLarge: 48,
 		headlineMedium: 32,
-		subtitle: 24,
+		subtitle: 18,
 		body: 14,
 	},
 };
