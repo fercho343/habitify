@@ -7,8 +7,9 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { ColorButton } from "./ColorButton";
 import { IconBox } from "./IconBox";
-import { Form, Row } from "./styled";
+import { Colum, Form, Row } from "./styled";
 
 export const FormAddHabit = () => {
 	const { control, handleSubmit } = useForm<Habit>({
@@ -16,7 +17,7 @@ export const FormAddHabit = () => {
 			name: "",
 			description: "",
 			icon: "",
-			color: "",
+			color: "#ffffff",
 			requires_goal: false,
 			goal: 0,
 			measure: "",
@@ -58,23 +59,49 @@ export const FormAddHabit = () => {
 						/>
 					</Row>
 
-					<Controller
-						name="icon"
-						control={control}
-						rules={{
-							required: {
-								value: true,
-								message: t("error.icon"),
-							},
-						}}
-						render={({ field: { onChange, value }, fieldState: { error } }) => (
-							<IconBox
-								value={value}
-								onChange={onChange}
-								error={error ? true : false}
-							/>
-						)}
-					/>
+					<Colum>
+						<Controller
+							name="icon"
+							control={control}
+							rules={{
+								required: {
+									value: true,
+									message: t("error.icon"),
+								},
+							}}
+							render={({
+								field: { onChange, value },
+								fieldState: { error },
+							}) => (
+								<IconBox
+									value={value}
+									onChange={onChange}
+									error={error ? true : false}
+								/>
+							)}
+						/>
+
+						<Controller
+							name="color"
+							control={control}
+							rules={{
+								required: {
+									value: true,
+									message: t("error.icon"),
+								},
+							}}
+							render={({
+								field: { onChange, value },
+								fieldState: { error },
+							}) => (
+								<ColorButton
+									value={value}
+									onChange={onChange}
+									error={error ? true : false}
+								/>
+							)}
+						/>
+					</Colum>
 
 					<TouchableOpacity
 						style={{ marginTop: 100 }}

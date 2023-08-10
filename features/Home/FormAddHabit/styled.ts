@@ -36,9 +36,28 @@ interface IconButtonProps {
 export const IconButton = styled.TouchableOpacity<IconButtonProps>`
   width: 45px;
   height: 45px;
-  background-color: ${({ theme, $error }) =>
-		$error ? theme.colors.error : theme.colors.box};
+  background-color: ${({ theme }) => theme.colors.box};
   justify-content: center;
   align-items: center;
   border-radius: 50px;
+  border: 1px ${({ $error, theme }) =>
+		$error ? theme.colors.error : "transparent"};
+`;
+
+interface ColorButtonProps {
+	$value: string;
+}
+
+export const ColorBtn = styled.TouchableOpacity<ColorButtonProps>`
+  width: 45px;
+  height: 45px;
+  background-color: ${({ $value }) => $value};
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+`;
+
+export const Colum = styled.View`
+  width: 100%;
+  flex-direction: row;
 `;
