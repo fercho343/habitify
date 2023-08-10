@@ -8,6 +8,7 @@ declare module "styled-components/native" {
 			primary: string;
 			secondary: string;
 			tertiary: string;
+			disabled: string;
 		};
 		fonts: {
 			MacPaw: string;

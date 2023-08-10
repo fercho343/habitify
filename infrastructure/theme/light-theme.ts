@@ -7,6 +7,7 @@ const lightTheme: DefaultTheme = {
 		primary: "#82F042",
 		secondary: "#B286FD",
 		tertiary: "#E55733",
+		disabled: "#5f5e5e",
 	},
 	fonts: {
 		MacPaw: "MacPaw",

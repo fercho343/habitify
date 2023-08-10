@@ -1,10 +1,11 @@
 import { Text } from "@/components/Themed";
 import { Layout } from "@/infrastructure/layout";
+import React from "react";
 
-export default function TabOneScreen() {
+export default function ProfileScreen() {
 	return (
 		<Layout>
-			<Text>Home</Text>
+			<Text>profile</Text>
 		</Layout>
 	);
 }

@@ -1,4 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import { t } from "i18next";
 import React from "react";
 import { useTheme } from "styled-components/native";
 import { Bar, Item, Label } from "./styled";
@@ -6,68 +8,49 @@ import { Bar, Item, Label } from "./styled";
 //@ts-ignore
 export const TabBar = ({ state, descriptors, navigation }) => {
 	const theme = useTheme();
+
 	return (
 		<Bar>
-			{/* {state.routes.map((route, index) => {
-				const { options } = descriptors[route.key];
-				const label =
-					options.tabBarLabel !== undefined
-						? options.tabBarLabel
-						: options.title !== undefined
-						? options.title
-						: route.name;
-
-				const isFocused = state.index === index;
-
-				const onPress = () => {
-					const event = navigation.emit({
-						type: "tabPress",
-						target: route.key,
-						canPreventDefault: true,
-					});
-
-					if (!isFocused && !event.defaultPrevented) {
-						// The `merge: true` option makes sure that the params inside the tab screen are preserved
-						navigation.navigate({ name: route.name, merge: true });
+			<Item
+				$isActive={state.index === 0}
+				onPress={() => router.replace("/(tabs)")}
+			>
+				<Ionicons
+					name="home"
+					color={
+						state.index === 0 ? theme.colors.background : theme.colors.disabled
 					}
-				};
-				const onLongPress = () => {
-					navigation.emit({
-						type: "tabLongPress",
-						target: route.key,
-					});
-				};
-
-				return (
-					<TouchableOpacity
-						accessibilityRole="button"
-						accessibilityState={isFocused ? { selected: true } : {}}
-						accessibilityLabel={options.tabBarAccessibilityLabel}
-						testID={options.tabBarTestID}
-						onPress={onPress}
-						onLongPress={onLongPress}
-						style={{ flex: 1 }}
-					>
-						<Text style={{ color: isFocused ? "#673ab7" : "#222" }}>
-							{label}
-						</Text>
-					</TouchableOpacity>
-				);
-			})} */}
-
-			<Item $isActive={true}>
-				<Ionicons name="home" color={theme.colors.background} size={30} />
-				<Label $isActive={true}>Hgme</Label>
+					size={25}
+				/>
+				<Label $isActive={state.index === 0}>{t("home")}</Label>
 			</Item>
 
-			<Item $isActive={false}>
-				<Ionicons name="bar-chart" color={"#5f5e5e"} size={30} />
-				<Label $isActive={false}>Analytics</Label>
+			<Item
+				$isActive={state.index === 1}
+				onPress={() => router.replace("/progress")}
+			>
+				<Ionicons
+					name="bar-chart"
+					color={
+						state.index === 1 ? theme.colors.background : theme.colors.disabled
+					}
+					size={25}
+				/>
+				<Label $isActive={state.index === 1}>{t("progress")}</Label>
 			</Item>
 
-			<Item $isActive={false}>
-				<Ionicons name="home" color={"#5f5e5e"} size={30} />
-				<Label $isActive={false}>Home</Label>
+			<Item
+				$isActive={state.index === 2}
+				onPress={() => router.replace("/profile")}
+			>
+				<Ionicons
+					name="person"
+					color={
+						state.index === 2 ? theme.colors.background : theme.colors.disabled
+					}
+					size={25}
+				/>
+				<Label $isActive={state.index === 2}>{t("profile")}</Label>
 			</Item>
 		</Bar>
 	);

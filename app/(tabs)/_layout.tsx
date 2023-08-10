@@ -30,8 +30,21 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name="index"
 				options={{
-					title: "Tab One",
-					tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+					title: "Home",
+				}}
+			/>
+
+			<Tabs.Screen
+				name="progress"
+				options={{
+					title: "Progress",
+				}}
+			/>
+
+			<Tabs.Screen
+				name="profile"
+				options={{
+					title: "Profile",
 				}}
 			/>
 		</Tabs>
