@@ -9,7 +9,6 @@ export const Form = styled.View`
 
 export const Row = styled.View`
   width: 100%;
-  margin-bottom: 10px;
 `;
 
 export const Head = styled.View`
@@ -60,4 +59,12 @@ export const ColorBtn = styled.TouchableOpacity<ColorButtonProps>`
 export const Colum = styled.View`
   width: 100%;
   flex-direction: row;
+  align-items: center;
+`;
+
+export const Divider = styled.View`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.disabled};
+  margin: 20px 0;
 `;
