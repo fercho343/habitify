@@ -1,4 +1,5 @@
 import { lightTheme } from "@/infrastructure/theme/light-theme";
+import { HabitProvider } from "@/services/context/HabitsContext";
 import i18n from "@/services/i18n";
 import { AntDesign } from "@expo/vector-icons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -63,28 +64,30 @@ function RootLayoutNav() {
 	return (
 		<GestureHandlerRootView style={{ flex: 1 }}>
 			<ThemeProvider theme={lightTheme}>
-				<Stack>
-					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-					<Stack.Screen
-						name="add-habit"
-						options={{
-							presentation: "modal",
-							title: t("add-habit"),
-							headerStyle: {
-								backgroundColor: lightTheme.colors.background,
-							},
-							headerTitleStyle: {
-								color: lightTheme.colors.text,
-								fontFamily: lightTheme.fonts.MacPaw,
-							},
-							headerLeft: () => (
-								<TouchableOpacity onPress={() => router.back()}>
-									<AntDesign name="down" size={25} color="#fff" />
-								</TouchableOpacity>
-							),
-						}}
-					/>
-				</Stack>
+				<HabitProvider>
+					<Stack>
+						<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+						<Stack.Screen
+							name="add-habit"
+							options={{
+								presentation: "modal",
+								title: t("add-habit"),
+								headerStyle: {
+									backgroundColor: lightTheme.colors.background,
+								},
+								headerTitleStyle: {
+									color: lightTheme.colors.text,
+									fontFamily: lightTheme.fonts.MacPaw,
+								},
+								headerLeft: () => (
+									<TouchableOpacity onPress={() => router.back()}>
+										<AntDesign name="down" size={25} color="#fff" />
+									</TouchableOpacity>
+								),
+							}}
+						/>
+					</Stack>
+				</HabitProvider>
 			</ThemeProvider>
 			<StatusBar style="light" />
 		</GestureHandlerRootView>

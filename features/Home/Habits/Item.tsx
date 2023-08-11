@@ -25,18 +25,22 @@ export const Item = ({
 
 	return (
 		<Body>
-			<Icon>
-				<TextNative style={{ fontSize: 30 }}>💧</TextNative>
+			<Icon $color={color}>
+				<TextNative style={{ fontSize: 30 }}>{icon}</TextNative>
 			</Icon>
 			<Content>
 				<View>
 					<Text variant="body_medium">{name}</Text>
-					<Text variant="body_medium">
-						0{" "}
-						<Text style={{ color: theme.colors.disabled }}>
-							{`${t("of")} ${goal} ${measure}`}{" "}
+					{requires_goal ? (
+						<Text variant="body_medium">
+							0{" "}
+							<Text style={{ color: theme.colors.disabled }}>
+								{`${t("of")} ${goal} ${measure}`}{" "}
+							</Text>
 						</Text>
-					</Text>
+					) : (
+						<Text variant="body_medium">A las {start_time}</Text>
+					)}
 				</View>
 
 				{requires_goal && (

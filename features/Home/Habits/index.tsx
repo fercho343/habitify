@@ -1,4 +1,4 @@
-import { HabitContext } from "@/infrastructure/context/HabitsContext";
+import { HabitContext } from "@/services/context/HabitsContext";
 import React, { useContext } from "react";
 import { ScrollView } from "react-native";
 import { Item } from "./Item";

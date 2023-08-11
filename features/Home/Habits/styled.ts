@@ -9,12 +9,16 @@ export const Body = styled.View`
   margin-bottom: 16px;
 `;
 
-export const Icon = styled.View`
+interface IconProps {
+	$color: string;
+}
+
+export const Icon = styled.View<IconProps>`
   width: 50px;
   height: 50px;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ $color }) => $color};
   border-radius: 50px;
   margin-right: 10px;
 `;
