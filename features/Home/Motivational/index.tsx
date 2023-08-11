@@ -8,6 +8,8 @@ export const Motivational = () => {
 	const theme = useTheme();
 	const isWhatMoment = getHourToday(moment());
 
+	console.log(isWhatMoment);
+
 	return (
 		<Box style={{ elevation: 4 }}>
 			<Background
@@ -38,15 +40,13 @@ export const Motivational = () => {
 
 const getHourToday = (date: any) => {
 	const hour = date.hour();
+	console.log(hour >= 12 && hour <= 18);
 
-	switch (hour) {
-		case hour < 12:
-			return "morning";
-
-		case hour >= 12 && hour < 18:
-			return "afternoon";
-
-		default:
-			return "night";
+	if (hour < 12) {
+		return "morning";
+	} else if (hour >= 12 && hour <= 18) {
+		return "afternoon";
+	} else {
+		return "night";
 	}
 };
