@@ -4,26 +4,33 @@ import { Day, Habit } from "@/types/habits";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { t } from "i18next";
+import moment from "moment";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { ScrollView, Switch } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { Platform, ScrollView, Switch } from "react-native";
 import { useTheme } from "styled-components/native";
 import { ColorButton } from "./ColorButton";
 import { DayField } from "./DayInput";
+import { GoalField } from "./GoalField";
 import { IconBox } from "./IconBox";
-import { Colum, Divider, Form, Row } from "./styled";
+import { Colum, Divider, Form, Row, SendButton } from "./styled";
 
 export const FormAddHabit = () => {
 	const theme = useTheme();
-	const { control, watch, setValue, handleSubmit } = useForm<Habit>({
+	const {
+		control,
+		watch,
+		setValue,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<Habit>({
 		defaultValues: {
 			name: "",
 			description: "",
 			icon: "",
 			color: "#ffffff",
 			requires_goal: false,
-			goal: 0,
+			goal: 1,
 			measure: "",
 			frequencies: [
 				"monday",
@@ -56,7 +63,6 @@ export const FormAddHabit = () => {
 	const onSubmit = (data: Habit) => console.log(data);
 
 	const [time, setTime] = useState(new Date());
-	console.log(watch("frequencies"));
 
 	return (
 		<BottomSheetModalProvider>
@@ -119,7 +125,7 @@ export const FormAddHabit = () => {
 							rules={{
 								required: {
 									value: true,
-									message: t("error.icon"),
+									message: t("error.color"),
 								},
 							}}
 							render={({
@@ -142,12 +148,6 @@ export const FormAddHabit = () => {
 						<Controller
 							name="requires_goal"
 							control={control}
-							rules={{
-								required: {
-									value: true,
-									message: t("error.icon"),
-								},
-							}}
 							render={({
 								field: { onChange, value },
 								fieldState: { error },
@@ -164,16 +164,50 @@ export const FormAddHabit = () => {
 						/>
 					</Colum>
 
-					{watch("requires_goal") && <Text>Valor de medida</Text>}
+					{watch("requires_goal") && (
+						//@ts-ignore
+						<GoalField
+							control={control}
+							requires_goal={watch("requires_goal")}
+						/>
+					)}
 
 					<Divider />
 
 					<Colum style={{ justifyContent: "space-between" }}>
 						<Text variant="subtitle_medium">Define una hora</Text>
-						<RNDateTimePicker
-							value={time}
-							onChange={(event, date) => console.log(date)}
-							mode="time"
+						<Controller
+							name="start_time"
+							control={control}
+							rules={{
+								required: {
+									value: true,
+									message: t("error.start_time"),
+								},
+							}}
+							render={({
+								field: { onChange, value },
+								fieldState: { error },
+							}) => {
+								const date = moment(
+									`${moment().format("YYYY-MM-DD")} ${value}`,
+									"YYYY-MM-DD HH:mm",
+								);
+
+								return (
+									<>
+										{Platform.OS === "ios" && (
+											<RNDateTimePicker
+												value={date.toDate()}
+												onChange={(event, date) =>
+													onChange(moment(date).format("HH:mm"))
+												}
+												mode="time"
+											/>
+										)}
+									</>
+								);
+							}}
 						/>
 					</Colum>
 					<Divider />
@@ -209,12 +243,14 @@ export const FormAddHabit = () => {
 						/>
 					</Colum>
 
-					<TouchableOpacity
-						style={{ marginTop: 100 }}
-						onPress={handleSubmit(onSubmit)}
-					>
-						<Text>send</Text>
-					</TouchableOpacity>
+					<SendButton onPress={handleSubmit(onSubmit)}>
+						<Text
+							variant="body_large"
+							style={{ color: theme.colors.background }}
+						>
+							{t("add-habit")}
+						</Text>
+					</SendButton>
 				</ScrollView>
 			</Form>
 		</BottomSheetModalProvider>

@@ -15,7 +15,9 @@
   "name": "Nombre",
   "error": {
     "name": "El nombre es requerido",
-    "icon": "Escoje un icono"
+    "icon": "Escoje un icono",
+    "color": "Escoge un color",
+    "start_time": "Se requiere la fecha"
   },
   "description": "Descripcion",
   "placeholder": {

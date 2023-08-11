@@ -11,7 +11,8 @@
 				"noUselessFragments":"off"
 			},
 			"suspicious": {
-				"noExplicitAny": "off"
+				"noExplicitAny": "off",
+				"noShadowRestrictedNames":"off"
 			}
 		}
 	}

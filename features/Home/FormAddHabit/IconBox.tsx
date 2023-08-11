@@ -18,13 +18,10 @@ interface Props {
 
 export const IconBox = ({ value, onChange, error }: Props) => {
 	const theme = useTheme();
-	// ref
+
+	//BottomSheet
 	const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-
-	// variables
 	const snapPoints = useMemo(() => ["50%", "50%"], []);
-
-	// callbacks
 	const handlePresentModalPress = useCallback(() => {
 		bottomSheetModalRef.current?.present();
 	}, []);
