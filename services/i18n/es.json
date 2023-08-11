@@ -23,5 +23,6 @@
   "placeholder": {
     "habit_name": "Ejem. Beber agua",
     "description": "Por que quieres desarollar este habito?"
-  }
+  },
+  "of": "de"
 }
