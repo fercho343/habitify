@@ -1,8 +1,9 @@
 import { Text } from "@/components/Text";
+import { HabitContext } from "@/services/context/HabitsContext";
 import { Habit } from "@/types/habits";
 import { AntDesign, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { t } from "i18next";
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Text as TextNative, View } from "react-native";
 import { Swipeable, TouchableOpacity } from "react-native-gesture-handler";
 import { useTheme } from "styled-components/native";
@@ -29,6 +30,7 @@ export const Item = ({
 	reminders,
 	start_time,
 }: Habit) => {
+	const { removeHabit } = useContext(HabitContext);
 	const theme = useTheme();
 
 	// Swippeable
@@ -36,6 +38,8 @@ export const Item = ({
 	const handlePress = () => {
 		swipeableRef.current?.close();
 		//Remove
+		const habitId = id ? id : "";
+		removeHabit(habitId);
 	};
 
 	const renderLeftActions = () => {
