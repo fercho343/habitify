@@ -1,4 +1,3 @@
-type ID = `${string}-${string}-${string}-${string}-${string}`;
 type Color = `#${string}`;
 export type Day =
 	| "monday"
@@ -10,7 +9,7 @@ export type Day =
 	| "sunday";
 
 export interface Habit {
-	readonly id?: ID;
+	readonly id?: string;
 	name: string;
 	description?: string;
 	icon: string;

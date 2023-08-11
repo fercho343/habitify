@@ -2,7 +2,10 @@ import { Text } from "@/components/Text";
 import { TextInput } from "@/components/TextInput";
 import { Day, Habit } from "@/types/habits";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
+import { randomUUID } from "expo-crypto";
+import { router } from "expo-router";
 import { t } from "i18next";
 import moment from "moment";
 import React, { useState } from "react";
@@ -60,7 +63,14 @@ export const FormAddHabit = () => {
 		}
 	};
 
-	const onSubmit = (data: Habit) => console.log(data);
+	const onSubmit = async (data: Habit) => {
+		const habit = {
+			id: randomUUID(),
+			...data,
+		};
+
+		saveHabit(habit);
+	};
 
 	const [time, setTime] = useState(new Date());
 
@@ -255,4 +265,20 @@ export const FormAddHabit = () => {
 			</Form>
 		</BottomSheetModalProvider>
 	);
+};
+
+const saveHabit = async (habit: Habit) => {
+	try {
+		const storedHabits = await AsyncStorage.getItem("habits");
+		const storedHabitsArray = storedHabits ? JSON.parse(storedHabits) : [];
+
+		storedHabitsArray.push(habit);
+
+		await AsyncStorage.setItem("habits", JSON.stringify(storedHabitsArray));
+
+		console.log("Hábito guardado en AsyncStorage.");
+		router.back();
+	} catch (error) {
+		console.error("Error al guardar el hábito:", error);
+	}
 };

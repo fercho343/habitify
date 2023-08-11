@@ -19,7 +19,6 @@ interface Props {
 
 export const GoalField = ({ control, requires_goal }: Props) => {
 	const theme = useTheme();
-	console.log(requires_goal);
 
 	//BottomSheet
 	const bottomSheetModalRef = useRef<BottomSheetModal>(null);
