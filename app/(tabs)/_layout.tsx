@@ -1,11 +1,29 @@
 import { TabBar } from "@/components/TabBar";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import * as Device from "expo-device";
+import {
+	AndroidImportance,
+	Subscription,
+	addNotificationReceivedListener,
+	addNotificationResponseReceivedListener,
+	getExpoPushTokenAsync,
+	getPermissionsAsync,
+	removeNotificationSubscription,
+	requestPermissionsAsync,
+	setNotificationChannelAsync,
+	setNotificationHandler,
+} from "expo-notifications";
 import { Tabs } from "expo-router";
-import { useTheme } from "styled-components/native";
+import { useEffect, useRef, useState } from "react";
+import { Platform } from "react-native";
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
+setNotificationHandler({
+	handleNotification: async () => ({
+		shouldShowAlert: true,
+		shouldPlaySound: true,
+		shouldSetBadge: true,
+	}),
+});
 function TabBarIcon(props: {
 	name: React.ComponentProps<typeof FontAwesome>["name"];
 	color: string;
@@ -14,7 +32,36 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
-	const theme = useTheme();
+	const [expoPushToken, setExpoPushToken] = useState<string | undefined>("");
+	const notificationListener = useRef<Subscription>();
+	const responseListener = useRef<Subscription>();
+
+	useEffect(() => {
+		registerForPushNotificationsAsync().then((token) =>
+			setExpoPushToken(token),
+		);
+
+		notificationListener.current = addNotificationReceivedListener(
+			(notification) => {
+				console.log(notification);
+			},
+		);
+
+		responseListener.current = addNotificationResponseReceivedListener(
+			(response) => {
+				console.log(response);
+			},
+		);
+
+		return () => {
+			if (notificationListener.current) {
+				removeNotificationSubscription(notificationListener.current);
+			}
+			if (responseListener.current) {
+				removeNotificationSubscription(responseListener.current);
+			}
+		};
+	}, []);
 
 	return (
 		<Tabs
@@ -46,4 +93,41 @@ export default function TabLayout() {
 			/>
 		</Tabs>
 	);
+}
+
+async function registerForPushNotificationsAsync() {
+	let token;
+
+	if (Device.isDevice) {
+		const { status: existingStatus } = await getPermissionsAsync();
+		let finalStatus = existingStatus;
+
+		if (existingStatus !== "granted") {
+			const { status } = await requestPermissionsAsync();
+			finalStatus = status;
+			console.log("existingStatus", existingStatus);
+		}
+
+		if (finalStatus !== "granted") {
+			alert("Failed to get push token for push notification!");
+			console.log("finalStatus", finalStatus);
+			return;
+		}
+
+		token = (await getExpoPushTokenAsync()).data;
+		console.log(token);
+	} else {
+		console.log("Required fisical device not present");
+	}
+
+	if (Platform.OS === "android") {
+		await setNotificationChannelAsync("habits", {
+			name: "default",
+			showBadge: true,
+			importance: AndroidImportance.MAX,
+			vibrationPattern: [0, 250, 250, 250],
+			lightColor: "#FE9018",
+		});
+	}
+	return token;
 }

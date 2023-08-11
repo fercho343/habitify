@@ -1,6 +1,8 @@
 import { Habit } from "@/types/habits";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native"; // Assuming you're using React Navigation
+import { scheduleNotificationAsync } from "expo-notifications";
+import moment from "moment";
 import React, { ReactNode, createContext, useEffect, useState } from "react";
 
 interface HabitContextType {
@@ -38,6 +40,7 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		})();
 	}, []);
 
+	//Save habits
 	const saveHabit = async (habit: Habit) => {
 		try {
 			const storedHabits = await AsyncStorage.getItem("habits");
@@ -55,6 +58,7 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		}
 	};
 
+	//Remove habits
 	const removeHabit = async (habitId: string) => {
 		try {
 			const storedHabits = await AsyncStorage.getItem("habits");
@@ -84,9 +88,32 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		removeHabit,
 	};
 
+	useEffect(() => {
+		// Schedule notifications when habits change
+		habits.forEach((habit) => {
+			if (habit.reminders && habit.start_time) {
+				schedulePushNotification(habit);
+			}
+		});
+	}, [habits]);
+
 	return (
 		<HabitContext.Provider value={habitContextValue}>
 			{children}
 		</HabitContext.Provider>
 	);
 };
+
+async function schedulePushNotification(habit: Habit) {
+	const hour = parseInt(moment(habit.start_time, "HH:mm").format("HH"));
+	const minute = parseInt(moment(habit.start_time, "HH:mm").format("mm"));
+
+	await scheduleNotificationAsync({
+		content: {
+			title: "Recordatorio",
+			body: `¡Es hora de "${habit.name}"!`,
+			data: { data: "goes here" },
+		},
+		trigger: { hour: hour, minute: minute },
+	});
+}
