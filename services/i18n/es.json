@@ -24,5 +24,8 @@
     "habit_name": "Ejem. Beber agua",
     "description": "Por que quieres desarollar este habito?"
   },
-  "of": "de"
+  "of": "de",
+  "delete": {
+    "delete": "Eliminar"
+  }
 }

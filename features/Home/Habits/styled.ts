@@ -2,11 +2,15 @@ import { styled } from "styled-components/native";
 
 export const Body = styled.View`
   width: 100%;
+  margin-bottom: 16px;
+`;
+
+export const Box = styled.View`
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.card};
   border-radius: 10px;
   padding: 10px;
   flex-direction: row;
-  margin-bottom: 16px;
   align-items: center;
 `;
 
@@ -44,4 +48,13 @@ export const Controls = styled.View`
   border-radius: 50px;
   flex-direction: row;
   justify-content: space-between;
+`;
+
+export const SwipContent = styled.TouchableOpacity`
+    aspect-ratio: 1;
+    background-color: ${({ theme }) => theme.colors.error};
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 `;
