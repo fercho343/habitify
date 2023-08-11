@@ -1,9 +1,10 @@
 import { Text } from "@/components/Text";
 import { Habit } from "@/types/habits";
-import { Entypo } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { t } from "i18next";
 import React from "react";
 import { Text as TextNative, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { useTheme } from "styled-components/native";
 import { Body, Content, Controls, Icon, Separation } from "./styled";
 
@@ -21,7 +22,6 @@ export const Item = ({
 	start_time,
 }: Habit) => {
 	const theme = useTheme();
-	console.log(measure);
 
 	return (
 		<Body>
@@ -30,7 +30,9 @@ export const Item = ({
 			</Icon>
 			<Content>
 				<View>
-					<Text variant="body_medium">{name}</Text>
+					<Text variant="subtitle_medium" style={{ marginBottom: 5 }}>
+						{name}
+					</Text>
 					{requires_goal ? (
 						<Text variant="body_medium">
 							0{" "}
@@ -39,16 +41,28 @@ export const Item = ({
 							</Text>
 						</Text>
 					) : (
-						<Text variant="body_medium">A las {start_time}</Text>
+						<Text variant="body_small">A las {start_time}</Text>
 					)}
 				</View>
 
-				{requires_goal && (
+				{requires_goal ? (
 					<Controls>
-						<Entypo name="plus" color="#fff" size={30} />
+						<TouchableOpacity>
+							<Entypo name="plus" color="#fff" size={30} />
+						</TouchableOpacity>
 						<Separation />
-						<Entypo name="minus" color="#fff" size={30} />
+						<TouchableOpacity>
+							<Entypo name="minus" color="#fff" size={30} />
+						</TouchableOpacity>
 					</Controls>
+				) : (
+					<TouchableOpacity>
+						<AntDesign
+							name="checkcircle"
+							size={40}
+							color={theme.colors.primary}
+						/>
+					</TouchableOpacity>
 				)}
 			</Content>
 		</Body>

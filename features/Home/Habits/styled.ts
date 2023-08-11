@@ -7,6 +7,7 @@ export const Body = styled.View`
   padding: 10px;
   flex-direction: row;
   margin-bottom: 16px;
+  align-items: center;
 `;
 
 interface IconProps {
