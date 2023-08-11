@@ -30,5 +30,7 @@
   },
   "empty": {
     "habits": "Aun no has agregado ningun habito"
-  }
+  },
+  "reminder": "Recordatorio",
+  "is-time": "Es tiempo de"
 }

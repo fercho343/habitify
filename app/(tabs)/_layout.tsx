@@ -42,15 +42,11 @@ export default function TabLayout() {
 		);
 
 		notificationListener.current = addNotificationReceivedListener(
-			(notification) => {
-				console.log(notification);
-			},
+			(notification) => {},
 		);
 
 		responseListener.current = addNotificationResponseReceivedListener(
-			(response) => {
-				console.log(response);
-			},
+			(response) => {},
 		);
 
 		return () => {
@@ -105,19 +101,15 @@ async function registerForPushNotificationsAsync() {
 		if (existingStatus !== "granted") {
 			const { status } = await requestPermissionsAsync();
 			finalStatus = status;
-			console.log("existingStatus", existingStatus);
 		}
 
 		if (finalStatus !== "granted") {
 			alert("Failed to get push token for push notification!");
-			console.log("finalStatus", finalStatus);
 			return;
 		}
 
 		token = (await getExpoPushTokenAsync()).data;
-		console.log(token);
 	} else {
-		console.log("Required fisical device not present");
 	}
 
 	if (Platform.OS === "android") {

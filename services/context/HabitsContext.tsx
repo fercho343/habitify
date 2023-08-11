@@ -2,6 +2,7 @@ import { Habit } from "@/types/habits";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native"; // Assuming you're using React Navigation
 import { scheduleNotificationAsync } from "expo-notifications";
+import { t } from "i18next";
 import moment from "moment";
 import React, { ReactNode, createContext, useEffect, useState } from "react";
 
@@ -110,9 +111,9 @@ async function schedulePushNotification(habit: Habit) {
 
 	await scheduleNotificationAsync({
 		content: {
-			title: "Recordatorio",
-			body: `¡Es hora de "${habit.name}"!`,
-			data: { data: "goes here" },
+			title: t("reminder"),
+			body: `¡${t("is-time")} "${habit.name}"!`,
+			data: { habitId: habit.id },
 		},
 		trigger: { hour: hour, minute: minute },
 	});
