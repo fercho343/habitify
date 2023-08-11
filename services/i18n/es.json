@@ -27,5 +27,8 @@
   "of": "de",
   "delete": {
     "delete": "Eliminar"
+  },
+  "empty": {
+    "habits": "Aun no has agregado ningun habito"
   }
 }

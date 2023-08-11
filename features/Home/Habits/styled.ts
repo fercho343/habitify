@@ -1,3 +1,4 @@
+import { Text } from "@/components/Text";
 import { styled } from "styled-components/native";
 
 export const Body = styled.View`
@@ -57,4 +58,15 @@ export const SwipContent = styled.TouchableOpacity`
     align-items: center;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+`;
+
+export const EmptyHabit = styled.View`
+  width: 100%;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const LinkText = styled(Text)`
+  color: ${({ theme }) => theme.colors.primary};
 `;
