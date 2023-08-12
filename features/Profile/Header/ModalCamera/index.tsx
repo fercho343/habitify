@@ -1,8 +1,9 @@
 import { Text } from "@/components/Text";
 import { Layout } from "@/infrastructure/layout";
+import { ProfileContext } from "@/services/context/ProfileContext";
 import { Camera, CameraType } from "expo-camera";
 import { t } from "i18next";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Modal, TouchableOpacity, View } from "react-native";
 import { useTheme } from "styled-components/native";
 import { Bar, Body, Button, CameraContent, Icon, TitleContext } from "./styled";
@@ -24,9 +25,7 @@ export const ModalCamera = ({
 	const [permission, requestPermission] = Camera.useCameraPermissions();
 	const [cameraRef, setCameraRef] = useState<Camera | null>(null);
 
-	if (!permission) {
-		return <View />;
-	}
+	const { saveProfile } = useContext(ProfileContext);
 
 	const takePicture = async () => {
 		if (isReadyCamera) {
@@ -35,11 +34,15 @@ export const ModalCamera = ({
 				quality: 1,
 			});
 
-			const pic = data ? data.uri : null;
-			setPicture(pic);
+			setPicture(data ? data.uri : null);
 			setModalVisible(false);
+			saveProfile({ name: "", picture: data ? data.uri : "" });
 		}
 	};
+
+	if (!permission) {
+		return <View />;
+	}
 
 	return (
 		<Modal

@@ -1,7 +1,9 @@
 import { Text } from "@/components/Text";
+import { ProfileContext } from "@/services/context/ProfileContext";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
+import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
 import { t } from "i18next";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useContext, useMemo, useRef, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { useTheme } from "styled-components/native";
 import { ModalCamera } from "./ModalCamera";
@@ -29,13 +31,32 @@ export const Header = () => {
 		[],
 	);
 
+	const { profile, saveProfile } = useContext(ProfileContext);
+
 	//Take picture
-	const [picture, setPicture] = useState<string | null>(null);
+	const [picture, setPicture] = useState<string | null>(profile.picture);
 	const [modalVisible, setModalVisible] = useState(false);
 
 	const handleOpenCamera = () => {
 		setModalVisible(true);
 		bottomSheetModalRef.current?.close();
+	};
+
+	//Picker image
+	const pickImage = async () => {
+		// No permissions request is necessary for launching the image library
+		const result = await launchImageLibraryAsync({
+			mediaTypes: MediaTypeOptions.Images,
+			allowsEditing: true,
+			aspect: [1, 1],
+			quality: 1,
+		});
+
+		if (!result.canceled) {
+			setPicture(result.assets[0].uri);
+			saveProfile({ picture: result.assets[0].uri, name: "" });
+			bottomSheetModalRef.current?.close();
+		}
 	};
 
 	return (
@@ -51,7 +72,7 @@ export const Header = () => {
 						transition={0}
 					/>
 				</TouchableOpacity>
-				<NameInput name="Samantha" />
+				<NameInput />
 			</Head>
 
 			<BottomSheetModal
@@ -63,7 +84,7 @@ export const Header = () => {
 				handleComponent={null}
 			>
 				<BodySheet>
-					<ItemMenu>
+					<ItemMenu onPress={pickImage}>
 						<Text variant="subtitle_medium">{t("image-galery")}</Text>
 					</ItemMenu>
 

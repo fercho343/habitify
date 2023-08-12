@@ -1,29 +1,28 @@
+import { ProfileContext } from "@/services/context/ProfileContext";
 import { AntDesign } from "@expo/vector-icons";
 import { t } from "i18next";
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { TextInput } from "react-native";
 import { useTheme } from "styled-components/native";
 import { Row } from "./styled";
 
-interface Props {
-	name: string;
-}
-
 interface Input {
 	name: string;
 }
 
-export const NameInput = ({ name }: Props) => {
+export const NameInput = () => {
 	const theme = useTheme();
-	const { control, handleSubmit } = useForm<Input>({
-		defaultValues: {
-			name: name,
-		},
-	});
 
 	const [isEditable, setIsEditable] = useState(false);
 	const inputRef = useRef<TextInput>(null);
+	const { profile, saveProfile } = useContext(ProfileContext);
+
+	const { control, handleSubmit } = useForm<Input>({
+		defaultValues: {
+			name: profile.name,
+		},
+	});
 
 	const handleOnFocus = () => {
 		setIsEditable(true);
@@ -42,7 +41,7 @@ export const NameInput = ({ name }: Props) => {
 
 	const onSubmit = (data: Input) => {
 		if (data.name !== "") {
-			console.log(data);
+			saveProfile({ name: data.name, picture: "" });
 			setIsEditable(false);
 		}
 	};
