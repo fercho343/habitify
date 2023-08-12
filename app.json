@@ -22,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#0e0e0e"
-      }
+      },
+      "package": "com.habitcoach"
     },
     "web": {
       "bundler": "metro",
