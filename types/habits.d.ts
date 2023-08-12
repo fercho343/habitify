@@ -21,3 +21,10 @@ export interface Habit {
 	reminders: boolean;
 	start_time?: string | null;
 }
+
+export interface HabitCompletion {
+	id: string;
+	habitId: string;
+	date: Date;
+	progress?: number;
+}

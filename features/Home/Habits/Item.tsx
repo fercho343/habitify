@@ -3,19 +3,12 @@ import { HabitContext } from "@/services/context/HabitsContext";
 import { Habit } from "@/types/habits";
 import { AntDesign, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { t } from "i18next";
+import moment from "moment";
 import React, { useContext, useRef } from "react";
 import { Text as TextNative, View } from "react-native";
 import { Swipeable, TouchableOpacity } from "react-native-gesture-handler";
 import { useTheme } from "styled-components/native";
-import {
-	Body,
-	Box,
-	Content,
-	Controls,
-	Icon,
-	Separation,
-	SwipContent,
-} from "./styled";
+import { Body, Box, Content, Controls, Icon, SwipContent } from "./styled";
 
 export const Item = ({
 	id,
@@ -30,7 +23,8 @@ export const Item = ({
 	reminders,
 	start_time,
 }: Habit) => {
-	const { removeHabit } = useContext(HabitContext);
+	const { removeHabit, completedHabits, completeHabit } =
+		useContext(HabitContext);
 	const theme = useTheme();
 
 	// Swippeable
@@ -40,6 +34,11 @@ export const Item = ({
 		//Remove
 		const habitId = id ? id : "";
 		removeHabit(habitId);
+	};
+
+	const handleCompleteHabit = () => {
+		const habitId = id ? id : "";
+		completeHabit(habitId);
 	};
 
 	const renderLeftActions = () => {
@@ -52,6 +51,16 @@ export const Item = ({
 			</SwipContent>
 		);
 	};
+
+	//Without progress
+	const today = moment().startOf("day");
+	const idHabit = completedHabits.find((item) => item.habitId === id);
+	const isCompleted = idHabit
+		? today.isSame(moment(idHabit?.date).startOf("day"))
+		: false;
+
+	//with progress
+	const progressHabit = requires_goal ? idHabit?.progress : 0;
 
 	return (
 		<Body>
@@ -71,7 +80,7 @@ export const Item = ({
 							</Text>
 							{requires_goal ? (
 								<Text variant="body_medium">
-									0{" "}
+									{`${progressHabit} `}
 									<Text style={{ color: theme.colors.disabled }}>
 										{`${t("of")} ${goal} ${measure}`}{" "}
 									</Text>
@@ -82,17 +91,24 @@ export const Item = ({
 						</View>
 
 						{requires_goal ? (
-							<Controls>
-								<TouchableOpacity>
-									<Entypo name="plus" color="#fff" size={30} />
-								</TouchableOpacity>
-								<Separation />
-								<TouchableOpacity>
-									<Entypo name="minus" color="#fff" size={30} />
-								</TouchableOpacity>
-							</Controls>
+							//@ts-ignore
+							progressHabit >= goal ? (
+								<AntDesign
+									name="check"
+									size={40}
+									color={theme.colors.primary}
+								/>
+							) : (
+								<Controls>
+									<TouchableOpacity onPress={handleCompleteHabit}>
+										<Entypo name="plus" color="#fff" size={30} />
+									</TouchableOpacity>
+								</Controls>
+							)
+						) : isCompleted ? (
+							<AntDesign name="check" size={40} color={theme.colors.primary} />
 						) : (
-							<TouchableOpacity>
+							<TouchableOpacity onPress={handleCompleteHabit}>
 								<AntDesign
 									name="checkcircle"
 									size={40}

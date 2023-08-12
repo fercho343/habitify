@@ -1,6 +1,7 @@
-import { Habit } from "@/types/habits";
+import { Habit, HabitCompletion } from "@/types/habits";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native"; // Assuming you're using React Navigation
+import { randomUUID } from "expo-crypto";
 import { scheduleNotificationAsync } from "expo-notifications";
 import { t } from "i18next";
 import moment from "moment";
@@ -11,6 +12,8 @@ interface HabitContextType {
 	setHabits: React.Dispatch<React.SetStateAction<Habit[]>>;
 	saveHabit: (habit: Habit) => void;
 	removeHabit: (id: string) => void;
+	completedHabits: HabitCompletion[];
+	completeHabit: (id: string) => void;
 }
 
 export const HabitContext = createContext<HabitContextType>({
@@ -18,6 +21,8 @@ export const HabitContext = createContext<HabitContextType>({
 	setHabits: () => {},
 	saveHabit: (habit: Habit) => {},
 	removeHabit: (id: string) => {},
+	completedHabits: [],
+	completeHabit: (id: string) => {},
 });
 
 interface HabitProviderProps {
@@ -26,14 +31,21 @@ interface HabitProviderProps {
 
 export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 	const [habits, setHabits] = useState<Habit[]>([]);
+	const [completedHabits, setCompletedHabits] = useState<HabitCompletion[]>([]);
 	const navigation = useNavigation(); // Hook from React Navigation
 
 	useEffect(() => {
 		(async () => {
 			try {
-				const value = await AsyncStorage.getItem("habits");
-				if (value !== null) {
-					setHabits(JSON.parse(value));
+				const getHabits = await AsyncStorage.getItem("habits");
+				if (getHabits !== null) {
+					setHabits(JSON.parse(getHabits));
+				}
+				const getCompletedHabits = await AsyncStorage.getItem(
+					"completedHabits",
+				);
+				if (getCompletedHabits !== null) {
+					setCompletedHabits(JSON.parse(getCompletedHabits));
 				}
 			} catch (e) {
 				console.error("Error reading habits from AsyncStorage:", e);
@@ -82,11 +94,67 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		}
 	};
 
+	const completeHabit = async (habitId: string) => {
+		try {
+			const habitToComplete = habits.find((habit) => habit.id === habitId);
+			if (habitToComplete) {
+				if (habitToComplete.requires_goal) {
+					const updatedCompletedHabits = [...completedHabits];
+					const existingCompletion = completedHabits.find(
+						(completion) => completion.habitId === habitId,
+					);
+
+					if (existingCompletion) {
+						existingCompletion.progress =
+							(existingCompletion.progress || 0) + 1;
+					} else {
+						const completion: HabitCompletion = {
+							id: randomUUID(),
+							habitId: habitId,
+							date: new Date(),
+							progress: 1,
+						};
+						updatedCompletedHabits.push(completion);
+					}
+
+					setCompletedHabits(updatedCompletedHabits);
+
+					await AsyncStorage.setItem(
+						"completedHabits",
+						JSON.stringify(updatedCompletedHabits),
+					);
+
+					console.log("Hábito completado registrado con progreso.");
+				} else {
+					// Completa el hábito sin progreso
+					const completion: HabitCompletion = {
+						id: randomUUID(),
+						habitId: habitId,
+						date: new Date(),
+					};
+					const updatedCompletedHabits = [...completedHabits, completion];
+
+					setCompletedHabits(updatedCompletedHabits);
+					await AsyncStorage.setItem(
+						"completedHabits",
+						JSON.stringify(updatedCompletedHabits),
+					);
+
+					console.log("Hábito completado registrado.");
+				}
+			}
+		} catch (error) {
+			console.error("Error al guardar la completación del hábito:", error);
+		}
+	};
+
 	const habitContextValue: HabitContextType = {
 		habits,
 		setHabits,
 		saveHabit,
 		removeHabit,
+		completedHabits,
+		completeHabit,
 	};
 
 	useEffect(() => {

@@ -43,12 +43,14 @@ export const Separation = styled.View`
 `;
 
 export const Controls = styled.View`
-  width: 90px;
+  width: 50px;
+  height: 50px;
   padding: 5px;
   background-color: ${({ theme }) => theme.colors.box};
   border-radius: 50px;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const SwipContent = styled.TouchableOpacity`
