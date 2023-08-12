@@ -1,49 +1,49 @@
 {
-  "home": "Inicio",
-  "progress": "Progreso",
-  "profile": "Perfil",
-  "monday": "Lunes",
-  "tuesday": "Martes",
-  "wednesday": "Miércoles",
-  "thursday": "Jueves",
-  "friday": "Viernes",
-  "saturday": "Sábado",
-  "sunday": "Domingo",
-  "welcome": "Buenos días",
-  "today": "Hoy",
-  "add-habit": "Anadir habito",
-  "name": "Nombre",
-  "error": {
-    "name": "El nombre es requerido",
-    "icon": "Escoje un icono",
-    "color": "Escoge un color",
-    "start_time": "Se requiere la fecha",
-    "goal": "requieres un objetivo",
-    "measure": "Seleciona la unidad de medida pra tu meta"
-  },
-  "description": "Descripcion",
-  "placeholder": {
-    "habit_name": "Ejem. Beber agua",
-    "description": "Por que quieres desarollar este habito?"
-  },
-  "of": "de",
+  "add-habit": "Agregar hábito",
+  "camera": "Cámara",
+  "coming-soon": "Próximamente",
+  "define-time": "Definir una hora",
   "delete": {
     "delete": "Eliminar"
   },
+  "description": "Descripción",
   "empty": {
-    "habits": "Aun no has agregado ningun habito"
+    "habits": "Aún no has agregado ningún hábito"
   },
-  "reminder": "Recordatorio",
-  "is-time": "Es tiempo de",
-  "image-galery": "Subir de la galeria",
-  "image-camera": "Tomar foto con la camara",
-  "camera": "Camara",
-  "take-picture": "Tomar foto",
+  "error": {
+    "color": "Selecciona un color",
+    "goal": "El objetivo es requerido",
+    "icon": "Selecciona un icono",
+    "measure": "Selecciona la unidad de medida para tu meta",
+    "name": "El nombre es obligatorio",
+    "start_time": "La fecha es requerida"
+  },
+  "friday": "Viernes",
+  "home": "Inicio",
+  "image-camera": "Tomar foto con la cámara",
+  "image-gallery": "Seleccionar de la galería",
+  "is-time": "Es hora de",
+  "monday": "Lunes",
+  "name": "Nombre",
+  "need-goal": "¿Necesitas establecer una meta?",
+  "notify": "Notificar",
+  "of": "de",
   "permissions": {
-    "camera": "Permitir usar la camara"
+    "camera": "Permitir uso de la cámara"
   },
-  "comming-soon": "Proximamente",
-  "need-goal": "Necesitar assignar una meta?",
-  "define-time": "Define una hora",
-  "notify": "Notificar"
+  "placeholder": {
+    "description": "¿Por qué deseas desarrollar este hábito?",
+    "habit_name": "Ej. Beber agua"
+  },
+  "profile": "Perfil",
+  "progress": "Progreso",
+  "reminder": "Recordatorio",
+  "saturday": "Sábado",
+  "sunday": "Domingo",
+  "take-picture": "Tomar foto",
+  "thursday": "Jueves",
+  "today": "Hoy",
+  "tuesday": "Martes",
+  "wednesday": "Miércoles",
+  "welcome": "Buenos días"
 }
