@@ -28,7 +28,7 @@ export const CameraContent = styled.View`
   width: 80%;
   aspect-ratio: 1;
   border-radius: 10000px;
-  background-color: yellow;
+  overflow: hidden;
 `;
 
 export const Button = styled.TouchableOpacity`
