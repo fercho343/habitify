@@ -1,5 +1,6 @@
 import { TabBar } from "@/components/TabBar";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import * as Device from "expo-device";
 import {
 	AndroidImportance,
@@ -60,34 +61,36 @@ export default function TabLayout() {
 	}, []);
 
 	return (
-		<Tabs
-			//@ts-ignore
-			tabBar={(props) => <TabBar {...props} />}
-			screenOptions={{
-				headerShown: false,
-			}}
-		>
-			<Tabs.Screen
-				name="index"
-				options={{
-					title: "Home",
+		<BottomSheetModalProvider>
+			<Tabs
+				//@ts-ignore
+				tabBar={(props) => <TabBar {...props} />}
+				screenOptions={{
+					headerShown: false,
 				}}
-			/>
+			>
+				<Tabs.Screen
+					name="index"
+					options={{
+						title: "Home",
+					}}
+				/>
 
-			<Tabs.Screen
-				name="progress"
-				options={{
-					title: "Progress",
-				}}
-			/>
+				<Tabs.Screen
+					name="progress"
+					options={{
+						title: "Progress",
+					}}
+				/>
 
-			<Tabs.Screen
-				name="profile"
-				options={{
-					title: "Profile",
-				}}
-			/>
-		</Tabs>
+				<Tabs.Screen
+					name="profile"
+					options={{
+						title: "Profile",
+					}}
+				/>
+			</Tabs>
+		</BottomSheetModalProvider>
 	);
 }
 

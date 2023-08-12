@@ -18,3 +18,16 @@ export const Row = styled.View`
   justify-content: center;
   margin-top: 15px;
 `;
+
+export const BodySheet = styled.View`
+  width: 100%;
+  padding: 16px;
+`;
+
+export const ItemMenu = styled.TouchableOpacity`
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.box};
+  padding: 15px 10px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+`;

@@ -32,5 +32,12 @@
     "habits": "Aun no has agregado ningun habito"
   },
   "reminder": "Recordatorio",
-  "is-time": "Es tiempo de"
+  "is-time": "Es tiempo de",
+  "image-galery": "Subir de la galeria",
+  "image-camera": "Tomar foto con la camara",
+  "camera": "Camara",
+  "take-picture": "Tomar foto",
+  "permissions": {
+    "camera": "Permitir usar la camara"
+  }
 }
