@@ -3,13 +3,15 @@ import { TextInput } from "@/components/TextInput";
 import { HabitContext } from "@/services/context/HabitsContext";
 import { Day, Habit } from "@/types/habits";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
-import RNDateTimePicker from "@react-native-community/datetimepicker";
+import RNDateTimePicker, {
+	DateTimePickerAndroid,
+} from "@react-native-community/datetimepicker";
 import { randomUUID } from "expo-crypto";
 import { t } from "i18next";
 import moment from "moment";
 import React, { useContext } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Platform, ScrollView, Switch } from "react-native";
+import { Platform, ScrollView, Switch, TouchableOpacity } from "react-native";
 import { useTheme } from "styled-components/native";
 import { ColorButton } from "./ColorButton";
 import { DayField } from "./DayInput";
@@ -50,6 +52,27 @@ export const FormAddHabit = () => {
 			start_time: "00:00",
 		},
 	});
+
+	const showTimePicker = () => {
+		const date = moment(
+			`${moment().format("YYYY-MM-DD")} ${watch("start_time")}`,
+			"YYYY-MM-DD HH:mm",
+		);
+		DateTimePickerAndroid.open({
+			value: date.toDate(),
+			onChange: (event, date) =>
+				setValue("start_time", moment(date).format("HH:mm")),
+			mode: "time",
+			maximumDate: new Date(),
+			positiveButton: {
+				label: t("accept"),
+			},
+			negativeButton: {
+				label: t("cancel"),
+				textColor: theme.colors.error,
+			},
+		});
+	};
 
 	const updateFrequencies = (day: Day) => {
 		const frequencies = watch("frequencies");
@@ -206,7 +229,7 @@ export const FormAddHabit = () => {
 
 								return (
 									<>
-										{Platform.OS === "ios" && (
+										{Platform.OS === "ios" ? (
 											<RNDateTimePicker
 												value={date.toDate()}
 												onChange={(event, date) =>
@@ -214,6 +237,10 @@ export const FormAddHabit = () => {
 												}
 												mode="time"
 											/>
+										) : (
+											<TouchableOpacity onPress={showTimePicker}>
+												<Text>{watch("start_time")}</Text>
+											</TouchableOpacity>
 										)}
 									</>
 								);

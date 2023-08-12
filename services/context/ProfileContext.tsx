@@ -28,7 +28,6 @@ export const ProfileProvider = ({ children }: ProviderProps) => {
 			if (getProfile !== null) {
 				setProfile(JSON.parse(getProfile));
 			} else {
-				console.log("no existe");
 			}
 		})();
 	}, []);

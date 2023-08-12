@@ -8,7 +8,6 @@ export const Motivational = () => {
 	const theme = useTheme();
 	const isWhatMoment = getHourToday(moment());
 
-	console.log(phrases.length);
 	const randomNumber = Math.floor(Math.random() * 78);
 
 	return (
