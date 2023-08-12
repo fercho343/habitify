@@ -154,7 +154,7 @@ export const FormAddHabit = () => {
 					<Divider />
 
 					<Colum style={{ justifyContent: "space-between" }}>
-						<Text variant="subtitle_medium">Necesitas asinar una meta?</Text>
+						<Text variant="subtitle_medium">{t("need-goal")}</Text>
 						<Controller
 							name="requires_goal"
 							control={control}
@@ -185,7 +185,7 @@ export const FormAddHabit = () => {
 					<Divider />
 
 					<Colum style={{ justifyContent: "space-between" }}>
-						<Text variant="subtitle_medium">Define una hora</Text>
+						<Text variant="subtitle_medium">{t("define-time")}</Text>
 						<Controller
 							name="start_time"
 							control={control}
@@ -227,7 +227,7 @@ export const FormAddHabit = () => {
 					<Divider />
 
 					<Colum style={{ justifyContent: "space-between" }}>
-						<Text variant="subtitle_medium">Notificar</Text>
+						<Text variant="subtitle_medium">{t("notify")}</Text>
 						<Controller
 							name="reminders"
 							control={control}

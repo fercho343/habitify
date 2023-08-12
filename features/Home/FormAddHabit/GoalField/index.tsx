@@ -4,6 +4,7 @@ import {
 	BottomSheetModal,
 	BottomSheetScrollView,
 } from "@gorhom/bottom-sheet";
+import { t } from "i18next";
 import { toString } from "lodash";
 import React, { useCallback, useMemo, useRef } from "react";
 import { Controller } from "react-hook-form";
@@ -51,7 +52,7 @@ export const GoalField = ({ control, requires_goal }: Props) => {
 					name="goal"
 					control={control}
 					rules={{
-						required: requires_goal ? "requieres un objetivo" : false,
+						required: requires_goal ? t("error.goal") : false,
 					}}
 					render={({ field: { onChange, value }, fieldState: { error } }) => (
 						<GoalInput
@@ -68,7 +69,7 @@ export const GoalField = ({ control, requires_goal }: Props) => {
 					name="measure"
 					control={control}
 					rules={{
-						required: requires_goal ? "requieres una medida" : false,
+						required: requires_goal ? t("error.measure") : false,
 					}}
 					render={({ field: { onChange, value }, fieldState: { error } }) => (
 						<>

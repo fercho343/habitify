@@ -30,7 +30,7 @@ export const Habits = () => {
 						{t("empty.habits")}
 					</Text>
 					<Link href="/add-habit" style={{ marginTop: 10 }}>
-						<LinkText>Agregar</LinkText>
+						<LinkText>{t("add-habit")}</LinkText>
 					</Link>
 				</EmptyHabit>
 			)}

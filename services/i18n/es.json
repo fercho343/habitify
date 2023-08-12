@@ -17,7 +17,9 @@
     "name": "El nombre es requerido",
     "icon": "Escoje un icono",
     "color": "Escoge un color",
-    "start_time": "Se requiere la fecha"
+    "start_time": "Se requiere la fecha",
+    "goal": "requieres un objetivo",
+    "measure": "Seleciona la unidad de medida pra tu meta"
   },
   "description": "Descripcion",
   "placeholder": {
@@ -39,5 +41,9 @@
   "take-picture": "Tomar foto",
   "permissions": {
     "camera": "Permitir usar la camara"
-  }
+  },
+  "comming-soon": "Proximamente",
+  "need-goal": "Necesitar assignar una meta?",
+  "define-time": "Define una hora",
+  "notify": "Notificar"
 }
