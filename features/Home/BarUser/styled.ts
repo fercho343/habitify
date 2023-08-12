@@ -1,14 +1,15 @@
 import { Image } from "expo-image";
+import { TouchableOpacity, View } from "react-native";
 import { styled } from "styled-components/native";
 
-export const Bar = styled.View`
+export const Bar = styled(View)`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
 
-export const UserBox = styled.View`
+export const UserBox = styled(View)`
   flex-direction: row;
   align-items: center;
 `;
@@ -21,7 +22,7 @@ export const Avatar = styled(Image)`
   margin-right: 16px;
 `;
 
-export const IconButton = styled.TouchableOpacity`
+export const IconButton = styled(TouchableOpacity)`
   width: 30px;
   height: 30px;
   background-color: ${({ theme }) => theme.colors.primary};
