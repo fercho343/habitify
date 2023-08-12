@@ -1,8 +1,9 @@
 import { Text as StyledText } from "@/components/Text";
+import { HabitContext } from "@/services/context/HabitsContext";
 import { t } from "i18next";
 import { toUpper } from "lodash";
-import moment from "moment";
-import React, { useEffect, useState } from "react";
+import moment, { Moment } from "moment";
+import React, { useContext, useEffect, useState } from "react";
 import Animated, {
 	Easing,
 	useAnimatedProps,
@@ -15,7 +16,7 @@ import { ItemBody } from "./styled";
 
 interface Props {
 	text: string;
-	day: string;
+	day: Moment;
 	progress: number;
 }
 
@@ -23,6 +24,8 @@ export const Item: React.FC<Props> = ({ text, day, progress }) => {
 	const theme = useTheme();
 	const radius = 15;
 	const strokeWidth = 2;
+
+	const { habits, completedHabits } = useContext(HabitContext);
 
 	const [circumference, setCircumference] = useState(0);
 
@@ -47,6 +50,9 @@ export const Item: React.FC<Props> = ({ text, day, progress }) => {
 
 	const today = moment().format("DD");
 
+	console.log(habits.length);
+	console.log(completedHabits.length);
+
 	return (
 		<>
 			<ItemBody>
@@ -66,7 +72,9 @@ export const Item: React.FC<Props> = ({ text, day, progress }) => {
 						cy={radius}
 						r={radius - strokeWidth / 2}
 						stroke={
-							day === today ? theme.colors.secondary : theme.colors.primary
+							day.format("DD") === today
+								? theme.colors.secondary
+								: theme.colors.primary
 						}
 						strokeWidth={strokeWidth}
 						strokeDasharray={circumference}
@@ -81,7 +89,7 @@ export const Item: React.FC<Props> = ({ text, day, progress }) => {
 						fontSize={12}
 						fill="#ffffff"
 					>
-						{day}
+						{day.format("DD")}
 					</Text>
 				</Svg>
 			</ItemBody>

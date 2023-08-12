@@ -4,15 +4,10 @@ import { Item } from "./Item";
 import { Bar } from "./styled";
 
 export const Week = () => {
-	// Obtén el primer día de la semana (lunes) actual
 	const startOfWeek = moment().startOf("isoWeek");
-
-	// Crea un array para almacenar las fechas de la semana
 	const weekDates = [];
-
-	// Agrega las fechas desde el lunes hasta el domingo
 	for (let i = 0; i < 7; i++) {
-		weekDates.push(startOfWeek.clone().add(i, "days").format("DD"));
+		weekDates.push(startOfWeek.clone().add(i, "days"));
 	}
 
 	const progress = 0.75;

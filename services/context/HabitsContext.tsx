@@ -50,6 +50,8 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 			} catch (e) {
 				console.error("Error reading habits from AsyncStorage:", e);
 			}
+
+			// await AsyncStorage.removeItem("completedHabits");
 		})();
 	}, []);
 
@@ -88,6 +90,17 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 
 				console.log("Hábito eliminado de AsyncStorage.");
 				setHabits(storedHabitsArray);
+
+				// Remove the corresponding completed habit
+				const updatedCompletedHabits = completedHabits.filter(
+					(completion) => completion.habitId !== habitId,
+				);
+
+				await AsyncStorage.setItem(
+					"completedHabits",
+					JSON.stringify(updatedCompletedHabits),
+				);
+				setCompletedHabits(updatedCompletedHabits);
 			}
 		} catch (error) {
 			console.error("Error al eliminar el hábito:", error);
