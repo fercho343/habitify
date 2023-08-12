@@ -60,7 +60,11 @@ export const Item = ({
 		: false;
 
 	//with progress
-	const progressHabit = requires_goal ? idHabit?.progress : 0;
+	const progressHabit = isCompleted
+		? requires_goal
+			? idHabit?.progress
+			: 0
+		: 0;
 
 	return (
 		<Body>
