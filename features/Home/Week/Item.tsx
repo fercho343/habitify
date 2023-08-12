@@ -16,16 +16,21 @@ import { ItemBody } from "./styled";
 
 interface Props {
 	text: string;
-	day: Moment;
-	progress: number;
+	dayWeek: Moment;
 }
 
-export const Item: React.FC<Props> = ({ text, day, progress }) => {
+export const Item: React.FC<Props> = ({ text, dayWeek }) => {
 	const theme = useTheme();
 	const radius = 15;
 	const strokeWidth = 2;
-
 	const { habits, completedHabits } = useContext(HabitContext);
+
+	const totalHabits = habits.length;
+	const habitsCompleted = completedHabits.filter((habit) =>
+		dayWeek.isSame(moment(habit.date).startOf("day")),
+	).length;
+
+	const progress = totalHabits > 0 ? habitsCompleted / totalHabits : 0;
 
 	const [circumference, setCircumference] = useState(0);
 
@@ -48,10 +53,7 @@ export const Item: React.FC<Props> = ({ text, day, progress }) => {
 		};
 	});
 
-	const today = moment().format("DD");
-
-	console.log(habits.length);
-	console.log(completedHabits.length);
+	const today = moment().startOf("day");
 
 	return (
 		<>
@@ -72,7 +74,7 @@ export const Item: React.FC<Props> = ({ text, day, progress }) => {
 						cy={radius}
 						r={radius - strokeWidth / 2}
 						stroke={
-							day.format("DD") === today
+							dayWeek.format("DD") === today.format("DD")
 								? theme.colors.secondary
 								: theme.colors.primary
 						}
@@ -89,7 +91,7 @@ export const Item: React.FC<Props> = ({ text, day, progress }) => {
 						fontSize={12}
 						fill="#ffffff"
 					>
-						{day.format("DD")}
+						{dayWeek.format("DD")}
 					</Text>
 				</Svg>
 			</ItemBody>
