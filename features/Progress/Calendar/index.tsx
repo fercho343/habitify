@@ -1,5 +1,6 @@
 import { Text } from "@/components/Text";
 import { t } from "i18next";
+import { toLower } from "lodash";
 import moment from "moment";
 import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
@@ -62,7 +63,11 @@ export const Calendar = () => {
 				<TouchableOpacity onPress={goToPreviousMonth}>
 					<Icon name="left" />
 				</TouchableOpacity>
-				<Text>{currentDate.format("MMMM YYYY")}</Text>
+				<Text>
+					{`${t(`${toLower(currentDate.format("MMMM"))}`)} ${currentDate.format(
+						"YYYY",
+					)}`}
+				</Text>
 				<TouchableOpacity onPress={goToNextMonth}>
 					<Icon name="right" />
 				</TouchableOpacity>
