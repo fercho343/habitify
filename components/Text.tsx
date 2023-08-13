@@ -71,8 +71,9 @@ interface TextProps {
 }
 
 export const Text = styled.Text<TextProps>`
-  ${({ theme }) => defaultTextStyles(theme)}
-  ${({ variant, theme }) => variants[variant as keyof typeof variants](theme)}
+  ${({ theme }: DefaultTheme) => defaultTextStyles(theme)}
+  ${({ variant, theme }: TextProps) =>
+		variants[variant as keyof typeof variants](theme)}
 `;
 
 Text.defaultProps = {
