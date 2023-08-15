@@ -25,11 +25,6 @@
       },
       "package": "com.habitcoach"
     },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
     "plugins": [
       "expo-router"
     ],
@@ -37,19 +32,19 @@
       "tsconfigPaths": true,
       "typedRoutes": true
     },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "4ddbcda3-74fb-42c7-bf38-83695382bcd3"
-      }
-    },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
       "url": "https://u.expo.dev/4ddbcda3-74fb-42c7-bf38-83695382bcd3"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7f3b7b15-b492-4657-834e-26517bf05923"
+      }
     }
   }
 }
