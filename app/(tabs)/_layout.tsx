@@ -43,11 +43,11 @@ export default function TabLayout() {
 		);
 
 		notificationListener.current = addNotificationReceivedListener(
-			(notification) => {},
+			(notification) => { },
 		);
 
 		responseListener.current = addNotificationResponseReceivedListener(
-			(response) => {},
+			(response) => { },
 		);
 
 		return () => {
@@ -117,7 +117,7 @@ async function registerForPushNotificationsAsync() {
 
 	if (Platform.OS === "android") {
 		await setNotificationChannelAsync("habits", {
-			name: "default",
+			name: "habits",
 			showBadge: true,
 			importance: AndroidImportance.MAX,
 			vibrationPattern: [0, 250, 250, 250],
