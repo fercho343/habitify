@@ -2,7 +2,7 @@ import { Habit, HabitCompletion } from "@/types/habits";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native"; // Assuming you're using React Navigation
 import { randomUUID } from "expo-crypto";
-import { scheduleNotificationAsync } from "expo-notifications";
+import { cancelScheduledNotificationAsync, getAllScheduledNotificationsAsync, scheduleNotificationAsync } from "expo-notifications";
 import { t } from "i18next";
 import moment from "moment";
 import React, { ReactNode, createContext, useEffect, useState } from "react";
@@ -18,11 +18,11 @@ interface HabitContextType {
 
 export const HabitContext = createContext<HabitContextType>({
 	habits: [],
-	setHabits: () => {},
-	saveHabit: (habit: Habit) => {},
-	removeHabit: (id: string) => {},
+	setHabits: () => { },
+	saveHabit: (habit: Habit) => { },
+	removeHabit: (id: string) => { },
 	completedHabits: [],
-	completeHabit: (id: string) => {},
+	completeHabit: (id: string) => { },
 });
 
 interface HabitProviderProps {
@@ -63,6 +63,12 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 
 			storedHabitsArray.push(habit);
 
+			//Make notification
+			if (habit.reminders && habit.start_time) {
+				schedulePushNotification(habit);
+			}
+
+
 			await AsyncStorage.setItem("habits", JSON.stringify(storedHabitsArray));
 
 			console.log("Hábito guardado en AsyncStorage.");
@@ -76,12 +82,20 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 	//Remove habits
 	const removeHabit = async (habitId: string) => {
 		try {
+			const allNotifications = await getAllScheduledNotificationsAsync()
 			const storedHabits = await AsyncStorage.getItem("habits");
 			const storedHabitsArray = storedHabits ? JSON.parse(storedHabits) : [];
 
 			const indexToRemove = storedHabitsArray.findIndex(
 				(habit: Habit) => habit.id === habitId,
 			);
+
+			const existNotification = allNotifications.findIndex((notification) => notification.content.data.habitId === habitId)
+			if (existNotification !== -1) {
+				const notificationIdentifier = allNotifications[existNotification].identifier
+				cancelScheduledNotificationAsync(notificationIdentifier)
+			}
+
 
 			if (indexToRemove !== -1) {
 				storedHabitsArray.splice(indexToRemove, 1);
@@ -170,14 +184,23 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		completeHabit,
 	};
 
-	useEffect(() => {
-		// Schedule notifications when habits change
-		habits.forEach((habit) => {
-			if (habit.reminders && habit.start_time) {
-				schedulePushNotification(habit);
-			}
-		});
-	}, [habits]);
+	// useEffect(() => {
+	// 	(async () => {
+	// 		const allNotifications = (await getAllScheduledNotificationsAsync())
+	// 		console.log(allNotifications.length);
+
+	// 		await habits.forEach((habit) => {
+	// 			const existNotification = allNotifications.findIndex((notification) => notification.content.data.habitId === habit.id)
+
+	// 			if (habit.reminders && habit.start_time) {
+	// 				if (existNotification === -1) {
+	// 					schedulePushNotification(habit);
+	// 				}
+	// 			}
+	// 		});
+
+	// 	})()
+	// }, [habits]);
 
 	return (
 		<HabitContext.Provider value={habitContextValue}>
@@ -196,6 +219,6 @@ async function schedulePushNotification(habit: Habit) {
 			body: `¡${t("is-time")} "${habit.name}"!`,
 			data: { habitId: habit.id },
 		},
-		trigger: { hour: hour, minute: minute },
+		trigger: { hour: hour, minute: minute, repeats: true },
 	});
 }

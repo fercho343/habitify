@@ -5,6 +5,15 @@ import { Week } from "@/features/Home/Week";
 import { Layout } from "@/infrastructure/layout";
 
 export default function TabOneScreen() {
+
+	// useEffect(() => {
+	// 	(async () => {
+	// 		cancelAllScheduledNotificationsAsync()
+	// 		const notifications = await getAllScheduledNotificationsAsync()
+	// 		console.log(notifications);
+	// 	})()
+	// })
+
 	return (
 		<Layout>
 			<BarUser />
