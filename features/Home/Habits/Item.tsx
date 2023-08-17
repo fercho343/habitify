@@ -54,10 +54,9 @@ export const Item = ({
 
 	//Without progress
 	const today = moment().startOf("day");
-	const idHabit = completedHabits.find((item) => item.habitId === id);
-	const isCompleted = idHabit
-		? today.isSame(moment(idHabit?.date).startOf("day"))
-		: false;
+
+	const idHabit = completedHabits.find((habit) => habit.habitId === id && moment(habit.date).startOf('day').isSame(today));
+	const isCompleted = idHabit ? true : false;
 
 	//with progress
 	const progressHabit = isCompleted
