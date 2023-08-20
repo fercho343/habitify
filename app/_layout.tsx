@@ -88,6 +88,26 @@ function RootLayoutNav() {
 									),
 								}}
 							/>
+
+							<Stack.Screen
+								name="edit-habit"
+								options={{
+									presentation: "modal",
+									title: t("edit-habit"),
+									headerStyle: {
+										backgroundColor: lightTheme.colors.background,
+									},
+									headerTitleStyle: {
+										color: lightTheme.colors.text,
+										fontFamily: lightTheme.fonts.MacPaw,
+									},
+									headerLeft: () => (
+										<TouchableOpacity onPress={() => router.back()}>
+											<AntDesign name="down" size={25} color="#fff" />
+										</TouchableOpacity>
+									),
+								}}
+							/>
 						</Stack>
 					</HabitProvider>
 				</ProfileProvider>

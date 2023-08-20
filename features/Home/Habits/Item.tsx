@@ -2,30 +2,24 @@ import { Text } from "@/components/Text";
 import { HabitContext } from "@/services/context/HabitsContext";
 import { Habit } from "@/types/habits";
 import { AntDesign, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 import { t } from "i18next";
 import moment from "moment";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Text as TextNative, View } from "react-native";
 import { Swipeable, TouchableOpacity } from "react-native-gesture-handler";
 import { useTheme } from "styled-components/native";
-import { Body, Box, Content, Controls, Icon, SwipContent } from "./styled";
+import { Body, Box, Content, Controls, Icon, SwipDelete, SwipEdit } from "./styled";
 
-export const Item = ({
-	id,
-	name,
-	description,
-	icon,
-	color,
-	requires_goal,
-	goal,
-	measure,
-	frequencies,
-	reminders,
-	start_time,
-}: Habit) => {
-	const { removeHabit, completedHabits, completeHabit } =
-		useContext(HabitContext);
+export const Item: React.FC<Habit> = (item) => {
+	const { id, name, description, icon, color, requires_goal, goal, measure, frequencies, reminders, start_time } = item
+
+	const { removeHabit, completedHabits, completeHabit } = useContext(HabitContext);
 	const theme = useTheme();
+
+
+
+	const [isSwipeableOpen, setIsSwipeableOpen] = useState(false);
 
 	// Swippeable
 	const swipeableRef = useRef<Swipeable>(null);
@@ -43,12 +37,26 @@ export const Item = ({
 
 	const renderLeftActions = () => {
 		return (
-			<SwipContent onPress={handlePress}>
-				<MaterialCommunityIcons name="delete" size={25} color="#fff" />
-				<Text variant="body_small" style={{ color: "#fff" }}>
-					{t("delete.delete")}
-				</Text>
-			</SwipContent>
+			<>
+				<SwipDelete onPress={handlePress}>
+					<MaterialCommunityIcons name="delete" size={25} color="#fff" />
+					<Text variant="body_small" style={{ color: "#fff" }}>
+						{t("delete.delete")}
+					</Text>
+				</SwipDelete>
+
+				<Link href={{
+					pathname: "/edit-habit",
+					params: { habit: JSON.stringify(item) }
+				}} asChild>
+					<SwipEdit onPress={() => swipeableRef.current?.close()}>
+						<MaterialCommunityIcons name="pen" size={25} color="#fff" />
+						<Text variant="body_small" style={{ color: "#fff" }}>
+							{t("edit.edit")}
+						</Text>
+					</SwipEdit>
+				</Link >
+			</>
 		);
 	};
 
@@ -71,8 +79,11 @@ export const Item = ({
 				renderRightActions={renderLeftActions}
 				overshootRight={false}
 				ref={swipeableRef}
+				onSwipeableWillOpen={() => setIsSwipeableOpen(true)}
+				onSwipeableWillClose={() => setIsSwipeableOpen(false)}
+
 			>
-				<Box>
+				<Box $isOpen={isSwipeableOpen}>
 					<Icon $color={color}>
 						<TextNative style={{ fontSize: 30 }}>{icon}</TextNative>
 					</Icon>

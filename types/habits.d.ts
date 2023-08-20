@@ -9,7 +9,7 @@ export type Day =
 	| "sunday";
 
 export interface Habit {
-	readonly id?: string;
+	id?: string;
 	name: string;
 	description?: string;
 	icon: string;

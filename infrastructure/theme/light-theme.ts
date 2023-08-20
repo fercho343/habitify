@@ -11,6 +11,7 @@ const lightTheme: DefaultTheme = {
 		tertiary: "#E55733",
 		disabled: "#5f5e5e",
 		error: "#f44336",
+		info: "#29b6f6",
 	},
 	fonts: {
 		MacPaw: "MacPaw",

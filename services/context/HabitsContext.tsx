@@ -11,6 +11,7 @@ interface HabitContextType {
 	habits: Habit[];
 	setHabits: React.Dispatch<React.SetStateAction<Habit[]>>;
 	saveHabit: (habit: Habit) => void;
+	editHabit: (habitId: string, updatedHabit: Habit) => void;
 	removeHabit: (id: string) => void;
 	completedHabits: HabitCompletion[];
 	completeHabit: (id: string) => void;
@@ -20,6 +21,7 @@ export const HabitContext = createContext<HabitContextType>({
 	habits: [],
 	setHabits: () => { },
 	saveHabit: (habit: Habit) => { },
+	editHabit: (habitId: string, updatedHabit: Habit) => { },
 	removeHabit: (id: string) => { },
 	completedHabits: [],
 	completeHabit: (id: string) => { },
@@ -51,9 +53,10 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 				console.error("Error reading habits from AsyncStorage:", e);
 			}
 
-			// await AsyncStorage.removeItem("completedHabits");
+			// await AsyncStorage.removeItem("habits");
 		})();
 	}, []);
+
 
 	//Save habits
 	const saveHabit = async (habit: Habit) => {
@@ -76,6 +79,32 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 			navigation.goBack(); // Use navigation to go back
 		} catch (error) {
 			console.error("Error al guardar el hábito:", error);
+		}
+	};
+
+	// Edit Habit
+	const editHabit = async (habitId: string, updatedHabit: Habit) => {
+		try {
+			const storedHabits = await AsyncStorage.getItem("habits");
+			const storedHabitsArray = storedHabits ? JSON.parse(storedHabits) : [];
+
+			const habitIndex = storedHabitsArray.findIndex(
+				(habit: Habit) => habit.id === habitId
+			);
+
+			if (habitIndex !== -1) {
+				updatedHabit.id = habitId; // Mantener el id original
+
+				storedHabitsArray.splice(habitIndex, 1, updatedHabit); // Reemplazar el hábito en el array
+
+				await AsyncStorage.setItem("habits", JSON.stringify(storedHabitsArray));
+
+				console.log("Hábito editado en AsyncStorage.");
+				setHabits([...storedHabitsArray]);
+				navigation.goBack(); // Usar navegación para volver atrás
+			}
+		} catch (error) {
+			console.error("Error al editar el hábito:", error);
 		}
 	};
 
@@ -179,6 +208,7 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		habits,
 		setHabits,
 		saveHabit,
+		editHabit,
 		removeHabit,
 		completedHabits,
 		completeHabit,

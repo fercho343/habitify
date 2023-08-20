@@ -61,5 +61,9 @@
   "today": "Hoy",
   "tuesday": "Martes",
   "wednesday": "Miércoles",
-  "welcome": "Buenos días"
+  "welcome": "Buenos días",
+  "edit": {
+    "edit": "Editar"
+  },
+  "edit-habit": "Editar Habito"
 }

@@ -6,10 +6,16 @@ export const Body = styled.View`
   margin-bottom: 16px;
 `;
 
-export const Box = styled.View`
+interface BoxProps {
+	$isOpen: boolean;
+}
+
+export const Box = styled.View<BoxProps>`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.card};
   border-radius: 10px;
+  border-top-right-radius: ${({ $isOpen }) => ($isOpen ? "0" : "10px")};
+  border-bottom-right-radius: ${({ $isOpen }) => ($isOpen ? "0" : "10px")};
   padding: 10px;
   flex-direction: row;
   align-items: center;
@@ -55,11 +61,18 @@ export const Controls = styled.View`
 
 export const SwipContent = styled.TouchableOpacity`
     aspect-ratio: 1;
-    background-color: ${({ theme }) => theme.colors.error};
     justify-content: center;
     align-items: center;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+`;
+
+export const SwipDelete = styled(SwipContent)`
+  background-color: ${({ theme }) => theme.colors.error};
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+`;
+
+export const SwipEdit = styled(SwipContent)`
+  background-color: ${({ theme }) => theme.colors.info};
 `;
 
 export const EmptyHabit = styled.View`
