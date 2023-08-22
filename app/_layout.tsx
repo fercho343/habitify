@@ -1,6 +1,10 @@
+import i18n from "@/constants/i18n";
+import { lightTheme } from "@/constants/theme/light-theme";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
+import { I18nextProvider } from "react-i18next";
+import { ThemeProvider } from "styled-components/native";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -39,7 +43,13 @@ export default function RootLayout() {
 		return null;
 	}
 
-	return <RootLayoutNav />;
+	return (
+		<ThemeProvider theme={lightTheme}>
+			<I18nextProvider i18n={i18n}>
+				<RootLayoutNav />
+			</I18nextProvider>
+		</ThemeProvider>
+	);
 }
 
 function RootLayoutNav() {
