@@ -35,5 +35,12 @@
   "has-reminder": "Activar recordatorio",
   "accept": "Aceptar",
   "cancel": "Cencelar",
-  "define-time": "Definir una hora"
+  "define-time": "Definir una hora",
+  "delete": {
+    "delete": "Eliminar"
+  },
+  "edit": {
+    "edit": "Editar"
+  },
+  "of": "de"
 }

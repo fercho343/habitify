@@ -61,8 +61,20 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		// Implementación de actualizar hábito
 	};
 
-	const removeHabit = (habitId: string) => {
-		// Implementación de eliminar hábito
+	const removeHabit = async (habitId: string) => {
+		const storedHabits = await AsyncStorage.getItem("@habits");
+		const storedHabitsArray = storedHabits ? JSON.parse(storedHabits) : [];
+
+		const indexToRemove = storedHabitsArray.findIndex(
+			(habit: Habit) => habit.id === habitId,
+		);
+
+		if (indexToRemove !== -1) {
+			storedHabitsArray.splice(indexToRemove, 1);
+			await AsyncStorage.setItem("@habits", JSON.stringify(storedHabitsArray));
+			setHabits(storedHabitsArray);
+			console.log("Delete habit from AsyncStorage.");
+		}
 	};
 
 	const markHabitAsCompleted = (habitId: string) => {

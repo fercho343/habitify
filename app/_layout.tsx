@@ -3,7 +3,6 @@ import { lightTheme } from "@/constants/theme/light-theme";
 import { HabitProvider } from "@/services/context/HabitContext";
 import { ProfileProvider } from "@/services/context/ProfileContext";
 import { AntDesign } from "@expo/vector-icons";
-import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack, router } from "expo-router";
 import { t } from "i18next";
@@ -64,37 +63,35 @@ function RootLayoutNav() {
 		<ProfileProvider>
 			<HabitProvider>
 				<GestureHandlerRootView style={{ flex: 1 }}>
-					<BottomSheetModalProvider>
-						<Stack>
-							<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-							<Stack.Screen
-								name="add-habit"
-								options={{
-									presentation: "modal",
-									animation:
-										Platform.OS === "android" ? "slide_from_bottom" : "default",
-									title: t("add-habit"),
-									headerStyle: {
-										backgroundColor: lightTheme.colors.background,
-									},
-									headerTitleStyle: {
-										color: lightTheme.colors.text,
-										fontFamily: lightTheme.fonts.MacPaw,
-									},
-									headerLeft: () => (
-										<TouchableOpacity onPress={() => router.back()}>
-											<AntDesign
-												name="down"
-												size={25}
-												color="#fff"
-												style={Platform.OS === "android" && { marginRight: 10 }}
-											/>
-										</TouchableOpacity>
-									),
-								}}
-							/>
-						</Stack>
-					</BottomSheetModalProvider>
+					<Stack>
+						<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+						<Stack.Screen
+							name="add-habit"
+							options={{
+								presentation: "modal",
+								animation:
+									Platform.OS === "android" ? "slide_from_bottom" : "default",
+								title: t("add-habit"),
+								headerStyle: {
+									backgroundColor: lightTheme.colors.background,
+								},
+								headerTitleStyle: {
+									color: lightTheme.colors.text,
+									fontFamily: lightTheme.fonts.MacPaw,
+								},
+								headerLeft: () => (
+									<TouchableOpacity onPress={() => router.back()}>
+										<AntDesign
+											name="down"
+											size={25}
+											color="#fff"
+											style={Platform.OS === "android" && { marginRight: 10 }}
+										/>
+									</TouchableOpacity>
+								),
+							}}
+						/>
+					</Stack>
 				</GestureHandlerRootView>
 			</HabitProvider>
 		</ProfileProvider>
