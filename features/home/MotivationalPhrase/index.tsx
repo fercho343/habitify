@@ -10,8 +10,6 @@ export const MotivationalPhrase = () => {
 	const isWhatMoment = getHourToday(moment());
 	const dayOfYear = moment().dayOfYear();
 
-	console.log(phrases.length);
-
 	return (
 		<Box style={{ elevation: 4 }}>
 			<Background
