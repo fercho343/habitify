@@ -52,7 +52,6 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 			// AsyncStorage.removeItem("@completedHabits");
 		})();
 	}, []);
-
 	const addHabit = async (newHabit: Habit): Promise<boolean> => {
 		try {
 			const storedHabits = await AsyncStorage.getItem("@habits");
@@ -86,7 +85,10 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 			if (habitIndex !== -1) {
 				updatedHabit.id = habitId;
 				storedHabitsArray.splice(habitIndex, 1, updatedHabit);
-				await AsyncStorage.setItem("habits", JSON.stringify(storedHabitsArray));
+				await AsyncStorage.setItem(
+					"@habits",
+					JSON.stringify(storedHabitsArray),
+				);
 				setHabits([...storedHabitsArray]);
 				//Notification
 				deletePushNotification(habitId);
