@@ -27,5 +27,5 @@ export interface HabitCompletion {
 	id: string;
 	habitId: string;
 	completionDate: Date;
-	progressPercent: number;
+	progressPercent?: number;
 }

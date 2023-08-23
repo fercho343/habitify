@@ -5,7 +5,6 @@ import { Item } from "./Item";
 
 export const Habit = () => {
 	const { habits } = useHabit();
-	console.log(habits.length);
 
 	return (
 		<ScrollView

@@ -4,6 +4,8 @@ import { Habit } from "@/types/habit";
 import { AntDesign, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { t } from "i18next";
+import { toLower } from "lodash";
+import moment from "moment";
 import React, { useRef } from "react";
 import { Text as TextNative, TouchableOpacity, View } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
@@ -33,8 +35,9 @@ export const Item: React.FC<Habit> = (item) => {
 		startTime,
 	} = item;
 	const theme = useTheme();
+	const today = moment().startOf("day");
 
-	const { removeHabit } = useHabit();
+	const { completedHabits, removeHabit, markHabitAsCompleted } = useHabit();
 
 	// Swippeable
 	const swipeableRef = useRef<Swipeable>(null);
@@ -71,67 +74,90 @@ export const Item: React.FC<Habit> = (item) => {
 		);
 	};
 
-	const progressHabit = 0;
-	const isCompleted = false;
+	const idHabit = completedHabits.find(
+		(habit) =>
+			habit.habitId === id &&
+			moment(habit.completionDate).startOf("day").isSame(today),
+	);
+	const isCompleted = idHabit ? true : false;
+
+	//with progress
+	const progressHabit = isCompleted
+		? requiresGoal
+			? idHabit?.progressPercent
+			: 0
+		: 0;
+
+	const avaliableToday = daysOfWeek.find(
+		(d) => d === toLower(today.format("dddd")),
+	);
 
 	return (
-		<Body>
-			<Swipeable
-				renderRightActions={renderLeftActions}
-				overshootRight={false}
-				ref={swipeableRef}
-			>
-				<Box $isOpen={false}>
-					<Icon $color={color}>
-						<TextNative style={{ fontSize: 30 }}>{icon}</TextNative>
-					</Icon>
+		<>
+			{avaliableToday && (
+				<Body>
+					<Swipeable
+						renderRightActions={renderLeftActions}
+						overshootRight={false}
+						ref={swipeableRef}
+					>
+						<Box $isOpen={false}>
+							<Icon $color={color}>
+								<TextNative style={{ fontSize: 30 }}>{icon}</TextNative>
+							</Icon>
 
-					<Content>
-						<View>
-							<Text variant="subtitle_medium" style={{ marginBottom: 5 }}>
-								{name}
-							</Text>
-							{requiresGoal ? (
-								<Text variant="body_medium">
-									{`${progressHabit} `}
-									<Text style={{ color: theme.colors.disabled }}>
-										{`${t("of")} ${goalAmount} ${measureUnit}`}{" "}
+							<Content>
+								<View>
+									<Text variant="subtitle_medium" style={{ marginBottom: 5 }}>
+										{name}
 									</Text>
-								</Text>
-							) : (
-								<Text variant="body_small">A las {startTime}</Text>
-							)}
-						</View>
+									{requiresGoal ? (
+										<Text variant="body_medium">
+											{`${progressHabit} `}
+											<Text style={{ color: theme.colors.disabled }}>
+												{`${t("of")} ${goalAmount} ${measureUnit}`}{" "}
+											</Text>
+										</Text>
+									) : (
+										<Text variant="body_small">A las {startTime}</Text>
+									)}
+								</View>
 
-						{requiresGoal ? (
-							//@ts-ignore
-							progressHabit >= goal ? (
-								<AntDesign
-									name="check"
-									size={40}
-									color={theme.colors.primary}
-								/>
-							) : (
-								<Controls>
-									<TouchableOpacity>
-										<Entypo name="plus" color="#fff" size={30} />
+								{requiresGoal ? (
+									//@ts-ignore
+									progressHabit >= goal ? (
+										<AntDesign
+											name="check"
+											size={40}
+											color={theme.colors.primary}
+										/>
+									) : (
+										<Controls>
+											<TouchableOpacity>
+												<Entypo name="plus" color="#fff" size={30} />
+											</TouchableOpacity>
+										</Controls>
+									)
+								) : isCompleted ? (
+									<AntDesign
+										name="check"
+										size={40}
+										color={theme.colors.primary}
+									/>
+								) : (
+									<TouchableOpacity onPress={() => markHabitAsCompleted(id)}>
+										<AntDesign
+											name="checkcircle"
+											size={40}
+											color={theme.colors.primary}
+										/>
 									</TouchableOpacity>
-								</Controls>
-							)
-						) : isCompleted ? (
-							<AntDesign name="check" size={40} color={theme.colors.primary} />
-						) : (
-							<TouchableOpacity>
-								<AntDesign
-									name="checkcircle"
-									size={40}
-									color={theme.colors.primary}
-								/>
-							</TouchableOpacity>
-						)}
-					</Content>
-				</Box>
-			</Swipeable>
-		</Body>
+								)}
+							</Content>
+						</Box>
+					</Swipeable>
+				</Body>
+			)}
+		</>
 	);
 };

@@ -1,5 +1,6 @@
 import { Habit, HabitCompletion } from "@/types/habit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { randomUUID } from "expo-crypto";
 import {
 	ReactNode,
 	createContext,
@@ -36,6 +37,14 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 				const getHabits = await AsyncStorage.getItem("@habits");
 				if (getHabits !== null) {
 					setHabits(JSON.parse(getHabits));
+				}
+
+				const getCompletedHabits = await AsyncStorage.getItem(
+					"completedHabits",
+				);
+
+				if (getCompletedHabits !== null) {
+					setCompletedHabits(JSON.parse(getCompletedHabits));
 				}
 			} catch (error) {}
 		})();
@@ -77,8 +86,36 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		}
 	};
 
-	const markHabitAsCompleted = (habitId: string) => {
-		// Implementación de marcar hábito como completado
+	const markHabitAsCompleted = async (habitId: string) => {
+		try {
+			const habitToComplete = habits.find((habit) => habit.id === habitId);
+			if (!habitToComplete) return;
+
+			const updatedCompletedHabits = [...completedHabits];
+			const existingCompletion = completedHabits.find(
+				(completion) => completion.habitId === habitId,
+			);
+			const progressPercent = existingCompletion
+				? (existingCompletion.progressPercent || 0) + 1
+				: 1;
+
+			const completion: HabitCompletion = {
+				id: randomUUID(),
+				habitId,
+				completionDate: new Date(),
+				progressPercent,
+			};
+
+			updatedCompletedHabits.push(completion);
+			setCompletedHabits(updatedCompletedHabits);
+
+			await AsyncStorage.setItem(
+				"@completedHabits",
+				JSON.stringify(updatedCompletedHabits),
+			);
+		} catch (error) {
+			console.error("Error al guardar la completación del hábito:", error);
+		}
 	};
 
 	const habitContextValue: HabitContextType = {
