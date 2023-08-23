@@ -40,13 +40,15 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 				}
 
 				const getCompletedHabits = await AsyncStorage.getItem(
-					"completedHabits",
+					"@completedHabits",
 				);
 
 				if (getCompletedHabits !== null) {
 					setCompletedHabits(JSON.parse(getCompletedHabits));
 				}
 			} catch (error) {}
+
+			// AsyncStorage.removeItem("@completedHabits");
 		})();
 	}, []);
 

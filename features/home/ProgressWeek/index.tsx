@@ -12,13 +12,13 @@ export const ProgressWeek = () => {
 
 	return (
 		<Bar>
-			<Item day="monday" dayWeek={startOfWeek} />
-			<Item day="tuesday" dayWeek={startOfWeek} />
-			<Item day="wednesday" dayWeek={startOfWeek} />
-			<Item day="thursday" dayWeek={startOfWeek} />
-			<Item day="friday" dayWeek={startOfWeek} />
-			<Item day="saturday" dayWeek={startOfWeek} />
-			<Item day="sunday" dayWeek={startOfWeek} />
+			<Item day="monday" dayWeek={weekDates[0]} />
+			<Item day="tuesday" dayWeek={weekDates[1]} />
+			<Item day="wednesday" dayWeek={weekDates[2]} />
+			<Item day="thursday" dayWeek={weekDates[3]} />
+			<Item day="friday" dayWeek={weekDates[4]} />
+			<Item day="saturday" dayWeek={weekDates[5]} />
+			<Item day="sunday" dayWeek={weekDates[6]} />
 		</Bar>
 	);
 };

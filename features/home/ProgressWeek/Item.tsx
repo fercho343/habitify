@@ -1,4 +1,6 @@
 import { Text as StyledText } from "@/components/Text";
+import { useHabit } from "@/services/context/HabitContext";
+import { DayOfWeek, Habit } from "@/types/habit";
 import { t } from "i18next";
 import { toUpper } from "lodash";
 import moment, { Moment } from "moment";
@@ -14,24 +16,36 @@ import { useTheme } from "styled-components/native";
 import { ItemBody } from "./styled";
 
 interface Props {
-	day: string;
+	day: DayOfWeek;
 	dayWeek: Moment;
 }
 
+const RADIUS = 15;
+const STROKE_WIDTH = 2;
+
 export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 	const theme = useTheme();
-	const RADIUS = 15;
-	const STROKE_WIDTH = 2;
-
 	const [circumference, setCircumference] = useState(0);
 	const today = moment().startOf("day");
+	const { habits, completedHabits } = useHabit();
 
-	const calculateCircumference = () => {
+	useEffect(() => {
 		const calcCircumference = 2 * Math.PI * RADIUS;
 		setCircumference(calcCircumference);
-	};
+	}, []);
 
-	const progress = 0;
+	const totalHabits = habits.filter((habit: Habit) =>
+		habit.daysOfWeek.includes(day),
+	).length;
+
+	const habitsCompleted = completedHabits.filter((completedHabit) =>
+		dayWeek
+			.startOf("day")
+			.isSame(moment(completedHabit.completionDate).startOf("day")),
+	).length;
+
+	const progress = totalHabits > 0 ? habitsCompleted / totalHabits : 0;
+
 	const progressOffset = (1 - progress) * circumference;
 
 	const animatedProgress = useSharedValue(0);
@@ -47,10 +61,6 @@ export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 			strokeDashoffset: progressOffsetValue,
 		};
 	});
-
-	useEffect(() => {
-		calculateCircumference();
-	}, [RADIUS]);
 
 	return (
 		<ItemBody>
