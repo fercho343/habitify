@@ -5,6 +5,7 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeProvider } from "styled-components/native";
 
 export { ErrorBoundary } from "expo-router";
@@ -56,9 +57,11 @@ export default function RootLayout() {
 function RootLayoutNav() {
 	return (
 		<ProfileProvider>
-			<Stack>
-				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-			</Stack>
+			<GestureHandlerRootView style={{ flex: 1 }}>
+				<Stack>
+					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+				</Stack>
+			</GestureHandlerRootView>
 		</ProfileProvider>
 	);
 }
