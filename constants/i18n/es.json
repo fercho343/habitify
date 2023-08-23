@@ -20,9 +20,20 @@
   "error": {
     "name": "El nombre es obligatorio",
     "icon": "Escoje un icono",
-    "color": "Escoge un color"
+    "color": "Escoge un color",
+    "goal": "El objetivo es requerido",
+    "measure": "Selecciona la unidad de medida para tu meta",
+    "start-time": "La fecha es requerida"
   },
   "description": "Descripcion",
   "icon": "Icono",
-  "done": "Hecho"
+  "done": "Hecho",
+  "need-goal": "¿Necesitas establecer una meta?",
+  "steps": "pasos",
+  "mile": "millas",
+  "cup": "vasos",
+  "has-reminder": "Activar recordatorio",
+  "accept": "Aceptar",
+  "cancel": "Cencelar",
+  "define-time": "Definir una hora"
 }

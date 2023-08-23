@@ -1,7 +1,13 @@
+import { Button } from "@/components/Button";
 import { ColorInput } from "@/components/ColorInput";
+import { DayField } from "@/components/DayInput";
+import { GoalField } from "@/components/GoalField";
 import { IconInput } from "@/components/IconInput";
+import { SwichControl } from "@/components/SwichControl";
 import { TextInput } from "@/components/TextInput";
-import { Habit } from "@/types/habit";
+import { TimeInput } from "@/components/TimeInput";
+import { DayOfWeek, Habit } from "@/types/habit";
+import { randomUUID } from "expo-crypto";
 import { t } from "i18next";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -17,6 +23,7 @@ export const FormAddHabit = () => {
 		formState: { errors },
 	} = useForm<Habit>({
 		defaultValues: {
+			id: randomUUID(),
 			name: "",
 			description: "",
 			icon: "",
@@ -37,6 +44,28 @@ export const FormAddHabit = () => {
 			startTime: "00:00",
 		},
 	});
+
+	const updateFrequencies = (day: DayOfWeek) => {
+		const daysOfWeek = watch("daysOfWeek");
+
+		if (daysOfWeek.includes(day)) {
+			const updatedFrequencies = daysOfWeek.filter((d) => d !== day);
+			setValue("daysOfWeek", updatedFrequencies);
+		} else {
+			const updatedFrequencies = [...daysOfWeek, day];
+			setValue("daysOfWeek", updatedFrequencies);
+		}
+	};
+
+	const onSubmit = async (data: Habit) => {
+		const habit = {
+			...data,
+		};
+
+		console.log(habit);
+
+		// saveHabit(habit);
+	};
 
 	return (
 		<Body>
@@ -61,7 +90,7 @@ export const FormAddHabit = () => {
 					placeholder={t("placeholder.description")}
 					multiline={true}
 					numberOfLines={5}
-					style={{ maxHeight: 100 }}
+					style={{ maxHeight: 70, minHeight: 50 }}
 				/>
 
 				<Divider />
@@ -71,6 +100,34 @@ export const FormAddHabit = () => {
 					<ColorInput control={control} />
 				</Row>
 				<Divider />
+
+				<SwichControl
+					control={control}
+					name="requiresGoal"
+					label={t("need-goal")}
+				/>
+
+				{watch("requiresGoal") && (
+					//@ts-ignore
+					<GoalField control={control} requires_goal={watch("requiresGoal")} />
+				)}
+				<Divider />
+
+				<DayField control={control} updateFrequencies={updateFrequencies} />
+
+				<Divider />
+
+				<SwichControl
+					control={control}
+					name="hasReminder"
+					label={t("has-reminder")}
+				/>
+
+				<Divider />
+
+				<TimeInput control={control} watch={watch} setValue={setValue} />
+
+				<Button onPress={handleSubmit(onSubmit)}>{t("add-habit")}</Button>
 			</ScrollView>
 		</Body>
 	);

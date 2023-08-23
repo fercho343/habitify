@@ -8,7 +8,7 @@ import { SplashScreen, Stack, router } from "expo-router";
 import { t } from "i18next";
 import { useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
-import { TouchableOpacity } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeProvider } from "styled-components/native";
 
@@ -69,6 +69,8 @@ function RootLayoutNav() {
 							name="add-habit"
 							options={{
 								presentation: "modal",
+								animation:
+									Platform.OS === "android" ? "slide_from_bottom" : "default",
 								title: t("add-habit"),
 								headerStyle: {
 									backgroundColor: lightTheme.colors.background,
@@ -79,7 +81,12 @@ function RootLayoutNav() {
 								},
 								headerLeft: () => (
 									<TouchableOpacity onPress={() => router.back()}>
-										<AntDesign name="down" size={25} color="#fff" />
+										<AntDesign
+											name="down"
+											size={25}
+											color="#fff"
+											style={Platform.OS === "android" && { marginRight: 10 }}
+										/>
 									</TouchableOpacity>
 								),
 							}}

@@ -31,7 +31,10 @@ export const IconInput: React.FC<Props> = ({ control }) => {
 				render={({ field: { onChange, value }, fieldState: { error } }) => (
 					<View>
 						<Text>{t("icon")}</Text>
-						<IconBox onPress={handlePresentModalPress}>
+						<IconBox
+							onPress={handlePresentModalPress}
+							$error={error ? true : false}
+						>
 							<Text>{value}</Text>
 						</IconBox>
 
