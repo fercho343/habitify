@@ -13,3 +13,7 @@ export const Divider = styled.View`
   background-color: ${({ theme }) => theme.colors.disabled};
   margin: 10px 0;
 `;
+
+export const Row = styled.View`
+  flex-direction: row;
+`;

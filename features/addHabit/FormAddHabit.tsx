@@ -1,3 +1,4 @@
+import { ColorInput } from "@/components/ColorInput";
 import { IconInput } from "@/components/IconInput";
 import { TextInput } from "@/components/TextInput";
 import { Habit } from "@/types/habit";
@@ -5,7 +6,7 @@ import { t } from "i18next";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { ScrollView } from "react-native";
-import { Body, Divider } from "./styled";
+import { Body, Divider, Row } from "./styled";
 
 export const FormAddHabit = () => {
 	const {
@@ -65,7 +66,11 @@ export const FormAddHabit = () => {
 
 				<Divider />
 
-				<IconInput control={control} />
+				<Row>
+					<IconInput control={control} />
+					<ColorInput control={control} />
+				</Row>
+				<Divider />
 			</ScrollView>
 		</Body>
 	);

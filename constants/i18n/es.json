@@ -19,7 +19,8 @@
   },
   "error": {
     "name": "El nombre es obligatorio",
-    "icon": "Escoje un icono"
+    "icon": "Escoje un icono",
+    "color": "Escoge un color"
   },
   "description": "Descripcion",
   "icon": "Icono",
