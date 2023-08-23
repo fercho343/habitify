@@ -11,5 +11,17 @@
   "friday": "Viernes",
   "saturday": "Sábado",
   "sunday": "Domingo",
-  "add-habit": "Crear habito"
+  "add-habit": "Crear habito",
+  "name": "Nombre",
+  "placeholder": {
+    "habit_name": "Ej. Beber agua",
+    "description": "¿Por qué deseas desarrollar este hábito?"
+  },
+  "error": {
+    "name": "El nombre es obligatorio",
+    "icon": "Escoje un icono"
+  },
+  "description": "Descripcion",
+  "icon": "Icono",
+  "done": "Hecho"
 }

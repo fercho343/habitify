@@ -34,3 +34,8 @@ export const HelperText = styled.Text<HelperType>`
   color: ${({ theme, $error }) =>
 		$error ? theme.colors.error : theme.colors.text};
 `;
+
+export const InputBox = styled.View`
+  width: 100%;
+  margin-bottom: 10px;
+`;

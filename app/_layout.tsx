@@ -2,6 +2,7 @@ import i18n from "@/constants/i18n";
 import { lightTheme } from "@/constants/theme/light-theme";
 import { ProfileProvider } from "@/services/context/ProfileContext";
 import { AntDesign } from "@expo/vector-icons";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack, router } from "expo-router";
 import { t } from "i18next";
@@ -61,28 +62,30 @@ function RootLayoutNav() {
 	return (
 		<ProfileProvider>
 			<GestureHandlerRootView style={{ flex: 1 }}>
-				<Stack>
-					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-					<Stack.Screen
-						name="add-habit"
-						options={{
-							presentation: "modal",
-							title: t("add-habit"),
-							headerStyle: {
-								backgroundColor: lightTheme.colors.background,
-							},
-							headerTitleStyle: {
-								color: lightTheme.colors.text,
-								fontFamily: lightTheme.fonts.MacPaw,
-							},
-							headerLeft: () => (
-								<TouchableOpacity onPress={() => router.back()}>
-									<AntDesign name="down" size={25} color="#fff" />
-								</TouchableOpacity>
-							),
-						}}
-					/>
-				</Stack>
+				<BottomSheetModalProvider>
+					<Stack>
+						<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+						<Stack.Screen
+							name="add-habit"
+							options={{
+								presentation: "modal",
+								title: t("add-habit"),
+								headerStyle: {
+									backgroundColor: lightTheme.colors.background,
+								},
+								headerTitleStyle: {
+									color: lightTheme.colors.text,
+									fontFamily: lightTheme.fonts.MacPaw,
+								},
+								headerLeft: () => (
+									<TouchableOpacity onPress={() => router.back()}>
+										<AntDesign name="down" size={25} color="#fff" />
+									</TouchableOpacity>
+								),
+							}}
+						/>
+					</Stack>
+				</BottomSheetModalProvider>
 			</GestureHandlerRootView>
 		</ProfileProvider>
 	);

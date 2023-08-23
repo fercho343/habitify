@@ -6,3 +6,10 @@ export const Body = styled.View`
   padding: 16px;
   background-color: ${({ theme }) => theme.colors.background};
 `;
+
+export const Divider = styled.View`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.disabled};
+  margin: 10px 0;
+`;

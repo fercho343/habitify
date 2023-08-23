@@ -1,7 +1,11 @@
+import { IconInput } from "@/components/IconInput";
 import { TextInput } from "@/components/TextInput";
+import { Habit } from "@/types/habit";
+import { t } from "i18next";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Body } from "./styled";
+import { ScrollView } from "react-native";
+import { Body, Divider } from "./styled";
 
 export const FormAddHabit = () => {
 	const {
@@ -10,16 +14,16 @@ export const FormAddHabit = () => {
 		setValue,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
+	} = useForm<Habit>({
 		defaultValues: {
 			name: "",
 			description: "",
 			icon: "",
 			color: "#ffffff",
-			requires_goal: false,
-			goal: 1,
-			measure: "",
-			frequencies: [
+			requiresGoal: false,
+			goalAmount: 1,
+			measureUnit: "",
+			daysOfWeek: [
 				"monday",
 				"tuesday",
 				"wednesday",
@@ -28,14 +32,41 @@ export const FormAddHabit = () => {
 				"saturday",
 				"sunday",
 			],
-			reminders: true,
-			start_time: "00:00",
+			hasReminder: true,
+			startTime: "00:00",
 		},
 	});
 
 	return (
 		<Body>
-			<TextInput control={control} name="name" />
+			<ScrollView>
+				<TextInput
+					control={control}
+					name="name"
+					label={t("name")}
+					placeholder={t("placeholder.habit_name")}
+					rules={{
+						required: {
+							value: true,
+							message: t("error.name"),
+						},
+					}}
+				/>
+
+				<TextInput
+					control={control}
+					name="description"
+					label={t("description")}
+					placeholder={t("placeholder.description")}
+					multiline={true}
+					numberOfLines={5}
+					style={{ maxHeight: 100 }}
+				/>
+
+				<Divider />
+
+				<IconInput control={control} />
+			</ScrollView>
 		</Body>
 	);
 };
