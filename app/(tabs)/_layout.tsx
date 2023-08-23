@@ -1,20 +1,19 @@
-import { Tabs } from 'expo-router';
+import { TabBar } from "@/components/TabBar";
+import { Tabs } from "expo-router";
 
 export default function TabLayout() {
+	return (
+		<Tabs
+			tabBar={(props) => <TabBar {...props} />}
+			screenOptions={{
+				headerShown: false,
+			}}
+		>
+			<Tabs.Screen name="index" />
 
-  return (
-    <Tabs
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Tab One',
+			<Tabs.Screen name="progress" />
 
-        }}
-      />
-    </Tabs>
-  );
+			<Tabs.Screen name="profile" />
+		</Tabs>
+	);
 }
