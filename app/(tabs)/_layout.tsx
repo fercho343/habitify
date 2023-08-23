@@ -13,10 +13,13 @@ import {
 	setNotificationHandler,
 } from "expo-notifications";
 import { Tabs } from "expo-router";
+import { t } from "i18next";
 import { useEffect, useRef, useState } from "react";
 import { Platform } from "react-native";
+import { useTheme } from "styled-components/native";
 
 export default function TabLayout() {
+	const theme = useTheme();
 	const [expoPushToken, setExpoPushToken] = useState<string | undefined>("");
 	const notificationListener = useRef<Subscription>();
 	const responseListener = useRef<Subscription>();
@@ -49,11 +52,17 @@ export default function TabLayout() {
 			tabBar={(props) => <TabBar {...props} />}
 			screenOptions={{
 				headerShown: false,
+				headerStyle: {
+					backgroundColor: theme.colors.background,
+					shadowColor: "transparent",
+					elevation: 0,
+				},
+				headerTitleStyle: { color: theme.colors.text },
 			}}
 		>
-			<Tabs.Screen name="index" />
+			<Tabs.Screen name="index" options={{ headerShown: false }} />
 
-			<Tabs.Screen name="progress" />
+			<Tabs.Screen name="progress" options={{ title: t("progress") }} />
 
 			<Tabs.Screen name="profile" />
 		</Tabs>
