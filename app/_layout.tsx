@@ -91,6 +91,33 @@ function RootLayoutNav() {
 								),
 							}}
 						/>
+
+						<Stack.Screen
+							name="edit-habit"
+							options={{
+								presentation: "modal",
+								animation:
+									Platform.OS === "android" ? "slide_from_bottom" : "default",
+								title: t("edit.habit"),
+								headerStyle: {
+									backgroundColor: lightTheme.colors.background,
+								},
+								headerTitleStyle: {
+									color: lightTheme.colors.text,
+									fontFamily: lightTheme.fonts.MacPaw,
+								},
+								headerLeft: () => (
+									<TouchableOpacity onPress={() => router.back()}>
+										<AntDesign
+											name="down"
+											size={25}
+											color="#fff"
+											style={Platform.OS === "android" && { marginRight: 10 }}
+										/>
+									</TouchableOpacity>
+								),
+							}}
+						/>
 					</Stack>
 				</GestureHandlerRootView>
 			</HabitProvider>

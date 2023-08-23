@@ -59,7 +59,7 @@ export const Item: React.FC<Habit> = (item) => {
 				<Link
 					href={{
 						pathname: "/edit-habit",
-						// params: { habit: JSON.stringify(item) }
+						params: { habit: JSON.stringify(item) },
 					}}
 					asChild
 				>

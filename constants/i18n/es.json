@@ -40,7 +40,8 @@
     "delete": "Eliminar"
   },
   "edit": {
-    "edit": "Editar"
+    "edit": "Editar",
+    "habit": "Editar habito"
   },
   "of": "de"
 }

@@ -12,7 +12,7 @@ import {
 interface HabitContextType {
 	habits: Habit[];
 	addHabit: (newHabit: Habit) => Promise<boolean>;
-	updateHabit: (habitId: string, updatedHabit: Habit) => void;
+	updateHabit: (habitId: string, updatedHabit: Habit) => Promise<boolean>;
 	removeHabit: (habitId: string) => void;
 	completedHabits: HabitCompletion[];
 	markHabitAsCompleted: (habitId: string) => void;
@@ -21,7 +21,7 @@ interface HabitContextType {
 export const HabitContext = createContext<HabitContextType>({
 	habits: [],
 	addHabit: async (newHabit: Habit) => false,
-	updateHabit: (habitId: string, updatedHabit: Habit) => {},
+	updateHabit: async (habitId: string, updatedHabit: Habit) => false,
 	removeHabit: (habitId: string) => {},
 	completedHabits: [],
 	markHabitAsCompleted: (habitId: string) => {},
@@ -68,8 +68,29 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		}
 	};
 
-	const updateHabit = async (habitId: string, updatedHabit: Habit) => {
-		// Implementación de actualizar hábito
+	const updateHabit = async (
+		habitId: string,
+		updatedHabit: Habit,
+	): Promise<boolean> => {
+		try {
+			const storedHabits = await AsyncStorage.getItem("@habits");
+			const storedHabitsArray = storedHabits ? JSON.parse(storedHabits) : [];
+
+			const habitIndex = storedHabitsArray.findIndex(
+				(habit: Habit) => habit.id === habitId,
+			);
+
+			if (habitIndex !== -1) {
+				updatedHabit.id = habitId;
+				storedHabitsArray.splice(habitIndex, 1, updatedHabit);
+				await AsyncStorage.setItem("habits", JSON.stringify(storedHabitsArray));
+				setHabits([...storedHabitsArray]);
+			}
+
+			return true;
+		} catch (error) {
+			return false;
+		}
 	};
 
 	const removeHabit = async (habitId: string) => {
