@@ -93,71 +93,67 @@ export const Item: React.FC<Habit> = (item) => {
 	);
 
 	return (
-		<>
-			{avaliableToday && (
-				<Body>
-					<Swipeable
-						renderRightActions={renderLeftActions}
-						overshootRight={false}
-						ref={swipeableRef}
-					>
-						<Box $isOpen={false}>
-							<Icon $color={color}>
-								<TextNative style={{ fontSize: 30 }}>{icon}</TextNative>
-							</Icon>
+		// <>
+		// 	{avaliableToday && (
+		<Body>
+			<Swipeable
+				renderRightActions={renderLeftActions}
+				overshootRight={false}
+				ref={swipeableRef}
+			>
+				<Box $isOpen={false}>
+					<Icon $color={color}>
+						<TextNative style={{ fontSize: 30 }}>{icon}</TextNative>
+					</Icon>
 
-							<Content>
-								<View>
-									<Text variant="subtitle_medium" style={{ marginBottom: 5 }}>
-										{name}
+					<Content>
+						<View>
+							<Text variant="subtitle_medium" style={{ marginBottom: 5 }}>
+								{name}
+							</Text>
+							{requiresGoal ? (
+								<Text variant="body_medium">
+									{`${progressHabit} `}
+									<Text style={{ color: theme.colors.disabled }}>
+										{`${t("of")} ${goalAmount} ${measureUnit}`}{" "}
 									</Text>
-									{requiresGoal ? (
-										<Text variant="body_medium">
-											{`${progressHabit} `}
-											<Text style={{ color: theme.colors.disabled }}>
-												{`${t("of")} ${goalAmount} ${measureUnit}`}{" "}
-											</Text>
-										</Text>
-									) : (
-										<Text variant="body_small">A las {startTime}</Text>
-									)}
-								</View>
+								</Text>
+							) : (
+								<Text variant="body_small">A las {startTime}</Text>
+							)}
+						</View>
 
-								{requiresGoal ? (
-									//@ts-ignore
-									progressHabit >= goal ? (
-										<AntDesign
-											name="check"
-											size={40}
-											color={theme.colors.primary}
-										/>
-									) : (
-										<Controls>
-											<TouchableOpacity>
-												<Entypo name="plus" color="#fff" size={30} />
-											</TouchableOpacity>
-										</Controls>
-									)
-								) : isCompleted ? (
-									<AntDesign
-										name="check"
-										size={40}
-										color={theme.colors.primary}
-									/>
-								) : (
-									<TouchableOpacity onPress={() => markHabitAsCompleted(id)}>
-										<AntDesign
-											name="checkcircle"
-											size={40}
-											color={theme.colors.primary}
-										/>
+						{requiresGoal ? (
+							//@ts-ignore
+							progressHabit >= goal ? (
+								<AntDesign
+									name="check"
+									size={40}
+									color={theme.colors.primary}
+								/>
+							) : (
+								<Controls>
+									<TouchableOpacity>
+										<Entypo name="plus" color="#fff" size={30} />
 									</TouchableOpacity>
-								)}
-							</Content>
-						</Box>
-					</Swipeable>
-				</Body>
-			)}
-		</>
+								</Controls>
+							)
+						) : isCompleted ? (
+							<AntDesign name="check" size={40} color={theme.colors.primary} />
+						) : (
+							<TouchableOpacity onPress={() => markHabitAsCompleted(id)}>
+								<AntDesign
+									name="checkcircle"
+									size={40}
+									color={theme.colors.primary}
+								/>
+							</TouchableOpacity>
+						)}
+					</Content>
+				</Box>
+			</Swipeable>
+		</Body>
+		// 	)}
+		// </>
 	);
 };

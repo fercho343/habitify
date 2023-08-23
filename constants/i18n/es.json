@@ -43,5 +43,7 @@
     "edit": "Editar",
     "habit": "Editar habito"
   },
-  "of": "de"
+  "of": "de",
+  "reminder": "Recordatorio",
+  "is-time": "Es hora de"
 }

@@ -1,6 +1,13 @@
-import { Habit, HabitCompletion } from "@/types/habit";
+import { Habit, HabitCompletion, HabitContextType } from "@/types/habit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { randomUUID } from "expo-crypto";
+import {
+	cancelScheduledNotificationAsync,
+	getAllScheduledNotificationsAsync,
+	scheduleNotificationAsync,
+} from "expo-notifications";
+import { t } from "i18next";
+import moment from "moment";
 import {
 	ReactNode,
 	createContext,
@@ -8,15 +15,6 @@ import {
 	useEffect,
 	useState,
 } from "react";
-
-interface HabitContextType {
-	habits: Habit[];
-	addHabit: (newHabit: Habit) => Promise<boolean>;
-	updateHabit: (habitId: string, updatedHabit: Habit) => Promise<boolean>;
-	removeHabit: (habitId: string) => void;
-	completedHabits: HabitCompletion[];
-	markHabitAsCompleted: (habitId: string) => void;
-}
 
 export const HabitContext = createContext<HabitContextType>({
 	habits: [],
@@ -34,11 +32,14 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 	useEffect(() => {
 		(async () => {
 			try {
+				//Habits
 				const getHabits = await AsyncStorage.getItem("@habits");
+
 				if (getHabits !== null) {
 					setHabits(JSON.parse(getHabits));
 				}
 
+				//Complete habits
 				const getCompletedHabits = await AsyncStorage.getItem(
 					"@completedHabits",
 				);
@@ -60,6 +61,8 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 
 			await AsyncStorage.setItem("@habits", JSON.stringify(storedHabitsArray));
 			setHabits([...storedHabitsArray]);
+			//Notifitication
+			schedulePushNotification(newHabit);
 			console.log("Save habit in AsyncStorage.");
 			return true;
 		} catch (error) {
@@ -85,6 +88,9 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 				storedHabitsArray.splice(habitIndex, 1, updatedHabit);
 				await AsyncStorage.setItem("habits", JSON.stringify(storedHabitsArray));
 				setHabits([...storedHabitsArray]);
+				//Notification
+				deletePushNotification(habitId);
+				await schedulePushNotification(updatedHabit);
 			}
 
 			return true;
@@ -102,6 +108,7 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		);
 
 		if (indexToRemove !== -1) {
+			deletePushNotification(habitId);
 			storedHabitsArray.splice(indexToRemove, 1);
 			await AsyncStorage.setItem("@habits", JSON.stringify(storedHabitsArray));
 			setHabits(storedHabitsArray);
@@ -136,9 +143,7 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 				"@completedHabits",
 				JSON.stringify(updatedCompletedHabits),
 			);
-		} catch (error) {
-			console.error("Error al guardar la completación del hábito:", error);
-		}
+		} catch (error) {}
 	};
 
 	const habitContextValue: HabitContextType = {
@@ -163,4 +168,60 @@ interface HabitProviderProps {
 
 export function useHabit() {
 	return useContext(HabitContext);
+}
+
+async function schedulePushNotification(habit: Habit) {
+	if (!habit.hasReminder) {
+		return;
+	}
+
+	const daysToSchedule = habit.daysOfWeek;
+	if (daysToSchedule.length === 0) {
+		return; // No days specified to schedule, do nothing
+	}
+
+	const hour = parseInt(moment(habit.startTime, "HH:mm").format("HH"));
+	const minute = parseInt(moment(habit.startTime, "HH:mm").format("mm"));
+	if (daysToSchedule.length === 7) {
+		await scheduleNotificationAsync({
+			content: {
+				title: t("reminder"),
+				body: `¡${t("is-time")} "${habit.name}"!`,
+				data: { habitId: habit.id },
+			},
+			trigger: { hour: hour, minute: minute, repeats: true },
+		});
+	} else {
+		for (let i = 0; i < daysToSchedule.length; i++) {
+			const day = habit.daysOfWeek[i];
+			const dayOfWeekNumber = moment().day(day).isoWeekday();
+			const weekday = dayOfWeekNumber === 7 ? 1 : dayOfWeekNumber + 1;
+
+			await scheduleNotificationAsync({
+				content: {
+					title: t("reminder"),
+					body: `¡${t("is-time")} "${habit.name}"!`,
+					data: { habitId: habit.id },
+				},
+				trigger: {
+					hour: hour,
+					minute: minute,
+					repeats: true,
+					weekday: weekday,
+				},
+			});
+		}
+	}
+}
+
+async function deletePushNotification(habitId: string) {
+	const allNotifications = await getAllScheduledNotificationsAsync();
+
+	const notificationIdentifier = allNotifications.find(
+		(notification) => notification.content.data.habitId === habitId,
+	)?.identifier;
+
+	if (notificationIdentifier) {
+		cancelScheduledNotificationAsync(notificationIdentifier);
+	}
 }
