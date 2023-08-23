@@ -1,3 +1,9 @@
+import { Layout } from "@/constants/Layout";
+
 export default function ProfileScreen() {
-	return <></>;
+	return (
+		<Layout>
+			<></>
+		</Layout>
+	);
 }

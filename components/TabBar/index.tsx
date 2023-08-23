@@ -8,7 +8,7 @@ import { Bar, Content } from "./styled";
 export const TabBar = ({ state }) => {
 	return (
 		<Bar>
-			<Content>
+			<Content intensity={10}>
 				<Item
 					label={t("home")}
 					icon="home"

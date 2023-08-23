@@ -1,5 +1,6 @@
 import i18n from "@/constants/i18n";
 import { lightTheme } from "@/constants/theme/light-theme";
+import { ProfileProvider } from "@/services/context/ProfileContext";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
@@ -54,10 +55,10 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
 	return (
-		<>
+		<ProfileProvider>
 			<Stack>
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 			</Stack>
-		</>
+		</ProfileProvider>
 	);
 }

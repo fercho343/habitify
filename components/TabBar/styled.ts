@@ -8,7 +8,6 @@ export const Bar = styled.View`
   position: absolute;
   bottom: 25px;
   align-self: center;
-  background-color: ${({ theme }) => theme.colors.card};
   border-radius: 50px;
 `;
 

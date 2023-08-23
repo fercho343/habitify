@@ -1,9 +1,10 @@
-import { View } from 'react-native';
+import { Layout } from "@/constants/Layout";
+import { BarUser } from "@/features/home/BarUser";
 
 export default function TabOneScreen() {
-  return (
-    <View >
-
-    </View>
-  );
+	return (
+		<Layout>
+			<BarUser />
+		</Layout>
+	);
 }
