@@ -1,10 +1,13 @@
 import i18n from "@/constants/i18n";
 import { lightTheme } from "@/constants/theme/light-theme";
 import { ProfileProvider } from "@/services/context/ProfileContext";
+import { AntDesign } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack } from "expo-router";
+import { SplashScreen, Stack, router } from "expo-router";
+import { t } from "i18next";
 import { useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
+import { TouchableOpacity } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeProvider } from "styled-components/native";
 
@@ -60,6 +63,25 @@ function RootLayoutNav() {
 			<GestureHandlerRootView style={{ flex: 1 }}>
 				<Stack>
 					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+					<Stack.Screen
+						name="add-habit"
+						options={{
+							presentation: "modal",
+							title: t("add-habit"),
+							headerStyle: {
+								backgroundColor: lightTheme.colors.background,
+							},
+							headerTitleStyle: {
+								color: lightTheme.colors.text,
+								fontFamily: lightTheme.fonts.MacPaw,
+							},
+							headerLeft: () => (
+								<TouchableOpacity onPress={() => router.back()}>
+									<AntDesign name="down" size={25} color="#fff" />
+								</TouchableOpacity>
+							),
+						}}
+					/>
 				</Stack>
 			</GestureHandlerRootView>
 		</ProfileProvider>

@@ -1,14 +1,15 @@
 {
-	"home": "Inicio",
-	"progress": "Progreso",
-	"profile": "Perfil",
-	"welcome": "Bienvenid@",
-	"today": "Hoy",
-	"monday": "Lunes",
-	"tuesday": "Martes",
-	"wednesday": "Miercoles",
-	"thursday": "Jueves",
-	"friday": "Viernes",
-	"saturday": "Sábado",
-	"sunday": "Domingo"
+  "home": "Inicio",
+  "progress": "Progreso",
+  "profile": "Perfil",
+  "welcome": "Bienvenid@",
+  "today": "Hoy",
+  "monday": "Lunes",
+  "tuesday": "Martes",
+  "wednesday": "Miercoles",
+  "thursday": "Jueves",
+  "friday": "Viernes",
+  "saturday": "Sábado",
+  "sunday": "Domingo",
+  "add-habit": "Crear habito"
 }

@@ -23,16 +23,17 @@ export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 	const RADIUS = 15;
 	const STROKE_WIDTH = 2;
 
-	const progress = 0.5;
-
 	const [circumference, setCircumference] = useState(0);
+	const today = moment().startOf("day");
 
-	useEffect(() => {
+	const calculateCircumference = () => {
 		const calcCircumference = 2 * Math.PI * RADIUS;
 		setCircumference(calcCircumference);
-	}, [RADIUS]);
+	};
 
+	const progress = 0;
 	const progressOffset = (1 - progress) * circumference;
+
 	const animatedProgress = useSharedValue(0);
 	animatedProgress.value = withTiming(progress, {
 		duration: 1000,
@@ -40,13 +41,16 @@ export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 	});
 
 	const animatedProps = useAnimatedProps(() => {
-		const progressOffset = (1 - animatedProgress.value) * circumference;
+		const animatedProgressValue = animatedProgress.value;
+		const progressOffsetValue = (1 - animatedProgressValue) * circumference;
 		return {
-			strokeDashoffset: progressOffset,
+			strokeDashoffset: progressOffsetValue,
 		};
 	});
 
-	const today = moment().startOf("day");
+	useEffect(() => {
+		calculateCircumference();
+	}, [RADIUS]);
 
 	return (
 		<ItemBody>
