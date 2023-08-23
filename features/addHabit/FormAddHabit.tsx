@@ -6,8 +6,10 @@ import { IconInput } from "@/components/IconInput";
 import { SwichControl } from "@/components/SwichControl";
 import { TextInput } from "@/components/TextInput";
 import { TimeInput } from "@/components/TimeInput";
+import { useHabit } from "@/services/context/HabitContext";
 import { DayOfWeek, Habit } from "@/types/habit";
 import { randomUUID } from "expo-crypto";
+import { router } from "expo-router";
 import { t } from "i18next";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -57,12 +59,14 @@ export const FormAddHabit = () => {
 		}
 	};
 
-	const onSubmit = async (data: Habit) => {
-		const habit = {
-			...data,
-		};
+	const { addHabit } = useHabit();
 
-		console.log(habit);
+	const onSubmit = async (data: Habit) => {
+		const wasAdd = await addHabit(data);
+
+		if (wasAdd) {
+			router.back();
+		}
 
 		// saveHabit(habit);
 	};
