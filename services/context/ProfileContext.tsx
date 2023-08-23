@@ -1,5 +1,6 @@
 import { ProfileType, ProviderProps } from "@/types/profile";
-import { createContext, useContext, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface ProfileContextType {
 	profile: ProfileType;
@@ -17,7 +18,30 @@ export const ProfileProvider: React.FC<ProviderProps> = ({ children }) => {
 		picture: "",
 	});
 
-	const saveProfile = async (profileInput: ProfileType) => {};
+	useEffect(() => {
+		(async () => {
+			const getProfile = await AsyncStorage.getItem("@profile");
+			if (getProfile !== null) {
+				setProfile(JSON.parse(getProfile));
+			} else {
+			}
+		})();
+	}, []);
+
+	const saveProfile = async (profileInput: ProfileType) => {
+		const updatedProfile = {
+			name: profileInput.name !== "" ? profileInput.name : profile.name,
+			picture:
+				profileInput.picture !== "" ? profileInput.picture : profile.picture,
+		};
+
+		try {
+			await AsyncStorage.setItem("@profile", JSON.stringify(updatedProfile));
+			setProfile(updatedProfile);
+		} catch (error) {
+			console.error("Error saving profile in AsyncStorage:", error);
+		}
+	};
 
 	return (
 		<ProfileContext.Provider

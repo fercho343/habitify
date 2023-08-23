@@ -3,6 +3,7 @@ import { lightTheme } from "@/constants/theme/light-theme";
 import { HabitProvider } from "@/services/context/HabitContext";
 import { ProfileProvider } from "@/services/context/ProfileContext";
 import { AntDesign } from "@expo/vector-icons";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack, router } from "expo-router";
 import { t } from "i18next";
@@ -52,7 +53,9 @@ export default function RootLayout() {
 	return (
 		<ThemeProvider theme={lightTheme}>
 			<I18nextProvider i18n={i18n}>
-				<RootLayoutNav />
+				<BottomSheetModalProvider>
+					<RootLayoutNav />
+				</BottomSheetModalProvider>
 			</I18nextProvider>
 		</ThemeProvider>
 	);

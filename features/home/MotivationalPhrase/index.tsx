@@ -50,4 +50,4 @@ const getHourToday = (date: Moment) => {
 	}
 };
 
-const phrases = phrases_es.frases_motivacionales;
+const phrases = phrases_es.phrases;

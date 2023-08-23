@@ -1,7 +1,7 @@
 import { Text } from "@/components/Text";
 import { t } from "i18next";
 import { toLower, upperCase } from "lodash";
-import React, { useState } from "react";
+import React from "react";
 import { TouchableOpacity } from "react-native";
 import { Item } from "./Item";
 import {
@@ -14,12 +14,23 @@ import {
 	TitleContent,
 } from "./styled";
 
-export const Calendar = () => {
-	const today = new Date();
-	const [currentMonth, setCurrentMonth] = useState(today.getMonth());
-	const [currentYear, setCurrentYear] = useState(today.getFullYear());
-	const [selectedDay, setSelectedDay] = useState(today.getDate());
+interface Props {
+	selectedDay: number;
+	setSelectedDay: React.Dispatch<React.SetStateAction<number>>;
+	currentMonth: number;
+	setCurrentMonth: React.Dispatch<React.SetStateAction<number>>;
+	currentYear: number;
+	setCurrentYear: React.Dispatch<React.SetStateAction<number>>;
+}
 
+export const Calendar: React.FC<Props> = ({
+	selectedDay,
+	setSelectedDay,
+	currentMonth,
+	setCurrentMonth,
+	currentYear,
+	setCurrentYear,
+}) => {
 	const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 	const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 	const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
