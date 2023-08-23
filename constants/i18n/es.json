@@ -69,5 +69,18 @@
   "journal": "Diario",
   "donations": "Donaciones",
   "code": "Codigo",
-  "contact-us": "Contactanos"
+  "contact-us": "Contactanos",
+  "information": {
+    "information": "Informacion",
+    "title": {
+      "important": "Importante: Tus Datos están Seguros en tu Dispositivo",
+      "privacity": "Sin Vinculación a Otros Dispositivos",
+      "remember": "Recuerda: Hacer Copias de Seguridad"
+    },
+    "description": {
+      "important": "Queremos asegurarte que todos los datos relacionados con tus hábitos y logros están almacenados de forma segura en tu propio dispositivo. Esto significa que todos los detalles importantes sobre tus hábitos, tus completaciones y tus metas están resguardados en tu dispositivo móvil.",
+      "privacity": "Es esencial destacar que estos datos no están vinculados a ningún otro dispositivo o servidor externo. No estamos guardando ni compartiendo tus datos en la nube ni en ningún otro lugar. Esta decisión se tomó para brindarte un mayor nivel de privacidad y control sobre tu información personal. Además, hemos optado por este enfoque para poder ofrecerte nuestros servicios de manera gratuita. Mantener tus datos localmente nos permite mantener la aplicación sin costos ocultos ni suscripciones.",
+      "remember": "Debido a que los datos se almacenan localmente en tu dispositivo, es recomendable que hagas copias de seguridad de tus hábitos y logros de forma periódica. Así podrás asegurarte de que tus registros estén protegidos en caso de algún problema con tu dispositivo."
+    }
+  }
 }

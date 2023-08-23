@@ -1,5 +1,6 @@
 import { Text } from "@/components/Text";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 import { t } from "i18next";
 import React from "react";
 import { useTheme } from "styled-components/native";
@@ -15,6 +16,15 @@ export const Menu = () => {
 				</IconContent>
 				<Text variant="subtitle_small">{t("journal")}</Text>
 			</Row>
+
+			<Link href="/information" asChild>
+				<Row>
+					<IconContent>
+						<Ionicons name="information" size={25} color={theme.colors.box} />
+					</IconContent>
+					<Text variant="subtitle_small">{t("information.information")}</Text>
+				</Row>
+			</Link>
 
 			<Row>
 				<IconContent>
