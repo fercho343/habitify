@@ -1,5 +1,7 @@
 import { Text } from "@/components/Text";
+import phrases_en from "@/constants/phrases/en.json";
 import phrases_es from "@/constants/phrases/es.json";
+import { getLocales } from "expo-localization";
 import moment, { Moment } from "moment";
 import React from "react";
 import { useTheme } from "styled-components/native";
@@ -9,6 +11,8 @@ export const MotivationalPhrase = () => {
 	const theme = useTheme();
 	const isWhatMoment = getHourToday(moment());
 	const dayOfYear = moment().dayOfYear();
+
+	const phraseIndex = ((dayOfYear - 1) % (phrases.length - 1)) + 1;
 
 	return (
 		<Box style={{ elevation: 4 }}>
@@ -31,7 +35,7 @@ export const MotivationalPhrase = () => {
 						textAlign: "center",
 					}}
 				>
-					{phrases[dayOfYear]}
+					{phrases[phraseIndex]}
 				</Text>
 			</Background>
 		</Box>
@@ -50,4 +54,6 @@ const getHourToday = (date: Moment) => {
 	}
 };
 
-const phrases = phrases_es.phrases;
+const languaje = getLocales()[0].languageCode;
+
+const phrases = languaje === "es" ? phrases_es.phrases : phrases_en.phrases;
