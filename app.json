@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Habitify",
-    "slug": "habit-up",
+    "slug": "habitify",
     "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -43,13 +43,16 @@
     "extra": {
       "router": {
         "origin": false
+      },
+      "eas": {
+        "projectId": "8414644a-99e8-46ad-bfb4-1af9c84d1988"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/b7ffe484-6df6-47b4-bc33-43dcbb7e2ca0"
+      "url": "https://u.expo.dev/8414644a-99e8-46ad-bfb4-1af9c84d1988"
     }
   }
 }
