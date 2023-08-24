@@ -168,6 +168,6 @@ const meters = [
 		value: "mg",
 	},
 	{
-		value: t("cup"),
+		value: t("glasses"),
 	},
 ];

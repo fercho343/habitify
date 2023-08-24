@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "HabitUp",
+    "name": "Habitify",
     "slug": "habit-up",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "habitup",
+    "scheme": "habitfy",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -16,7 +16,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.habit-coach"
     },
     "android": {
