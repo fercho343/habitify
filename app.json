@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Habit Coach",
-    "slug": "habit-coach",
+    "name": "HabitUp",
+    "slug": "habit-up",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "habit-coach",
+    "scheme": "habitup",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
