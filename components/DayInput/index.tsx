@@ -14,7 +14,7 @@ interface Props {
 export const DayField = ({ control, updateFrequencies }: Props) => {
 	return (
 		<>
-			<Text variant="subtitle_medium">Frecuencia</Text>
+			<Text variant="subtitle_medium">{t("frequency")}</Text>
 			<Controller
 				name="daysOfWeek"
 				control={control}

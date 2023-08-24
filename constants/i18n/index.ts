@@ -46,7 +46,7 @@ i18n.init({
 	compatibilityJSON: "v3",
 	interpolation: { escapeValue: false },
 	resources,
-	supportedLngs: ["en", "es"],
+	supportedLngs: ["de", "en", "es", "fr", "ja", "ko", "pt", "ru", "zh"],
 	lng: languaje,
 	fallbackLng: "en",
 	ns: ["translation"],
