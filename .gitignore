@@ -9,6 +9,7 @@ dist/
 web-build/
 .vscode
 .env
+eas.json
 
 # Native
 *.orig.*

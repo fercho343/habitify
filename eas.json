@@ -11,7 +11,10 @@
       "distribution": "internal"
     },
     "production": {
-      "channel": "production"
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_MAIL": "habitcoach23@gmail.com"
+      }
     }
   },
   "submit": {
