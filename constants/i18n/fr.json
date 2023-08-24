@@ -1,0 +1,89 @@
+{
+	"accept": "Accepter",
+	"add-habit": "Ajouter une habitude",
+	"april": "Avril",
+	"august": "Août",
+	"camera": "Appareil photo",
+	"cancel": "Annuler",
+	"code": "Code",
+	"completed-habits": "Habitudes accomplies le",
+	"contact-us": "Contactez-nous",
+	"december": "Décembre",
+	"define-time": "Définir l'heure",
+	"delete": {
+		"delete": "Supprimer"
+	},
+	"description": "Description",
+	"donate-cashapp": "Faire un don via Cash App",
+	"donate-paypal": "Faire un don via PayPal",
+	"donation-message": "Soutenir le développement de l'application\n\nChez Habit Coach, notre mission est de vous fournir un outil puissant pour atteindre vos objectifs et développer des habitudes positives dans votre vie quotidienne. Pour continuer à nous améliorer et offrir une expérience exceptionnelle, nous vous invitons à envisager de faire un don.\n\nVous avez le pouvoir de contribuer directement au futur développement de l'application, nous permettant de continuer à innover et à développer nos capacités. Votre soutien nous permet de maintenir notre engagement envers l'excellence et de continuer à apporter de la valeur à notre communauté d'utilisateurs.\n\nSi vous souhaitez nous soutenir, vous avez la possibilité de faire un don via PayPal ou Cash App. Chaque contribution, quelle que soit sa taille, a un impact significatif sur notre capacité à grandir et à nous améliorer.",
+	"donations": "Dons",
+	"done": "Terminé",
+	"edit": {
+		"edit": "Modifier",
+		"habit": "Modifier l'habitude"
+	},
+	"error": {
+		"color": "Sélectionnez une couleur",
+		"goal": "L'objectif est requis",
+		"icon": "Sélectionnez une icône",
+		"measure": "Sélectionnez l'unité de mesure pour votre objectif",
+		"name": "Le nom est requis",
+		"start-time": "La date de début est requise"
+	},
+	"february": "Février",
+	"friday": "Vendredi",
+	"glasses": "verres",
+	"has-reminder": "Activer le rappel",
+	"home": "Accueil",
+	"icon": "Icône",
+	"image-camera": "Prendre une photo",
+	"image-gallery": "Sélectionner dans la galerie",
+	"information": {
+		"description": {
+			"important": "Nous tenons à vous assurer que toutes les données relatives à vos habitudes et à vos réalisations sont stockées en toute sécurité sur votre propre appareil. Cela signifie que tous les détails importants concernant vos habitudes, vos réalisations et vos objectifs sont protégés sur votre appareil mobile.",
+			"privacy": "Il est essentiel de souligner que ces données ne sont pas liées à un autre appareil ou à un serveur externe. Nous ne stockons ni ne partageons vos données dans le cloud ou tout autre endroit. Cette décision a été prise pour vous offrir un niveau plus élevé de confidentialité et de contrôle sur vos informations personnelles. De plus, nous avons choisi cette approche pour proposer nos services gratuitement. Le fait de conserver vos données localement nous permet de maintenir l'application sans coûts cachés ni abonnements.",
+			"remember": "Étant donné que les données sont stockées localement sur votre appareil, il est recommandé de sauvegarder périodiquement vos habitudes et vos réalisations. De cette manière, vous pouvez garantir que vos enregistrements sont protégés en cas de problème avec votre appareil."
+		},
+		"information": "Informations",
+		"title": {
+			"important": "Important : Vos données sont sécurisées sur votre appareil",
+			"privacy": "Non lié à d'autres appareils",
+			"remember": "Rappelez-vous : Faites des sauvegardes"
+		}
+	},
+	"is-time": "Il est temps de",
+	"january": "Janvier",
+	"journal": "Journal",
+	"july": "Juillet",
+	"june": "Juin",
+	"march": "Mars",
+	"may": "Mai",
+	"mile": "miles",
+	"monday": "Lundi",
+	"name": "Nom",
+	"need-goal": "Besoin de fixer un objectif ?",
+	"november": "Novembre",
+	"october": "Octobre",
+	"of": "de",
+	"permissions": {
+		"camera": "Autoriser l'utilisation de la caméra"
+	},
+	"placeholder": {
+		"description": "Pourquoi voulez-vous développer cette habitude ?",
+		"habit_name": "Par exemple : Boire de l'eau"
+	},
+	"profile": "Profil",
+	"progress": "Progrès",
+	"reminder": "Rappel",
+	"saturday": "Samedi",
+	"september": "Septembre",
+	"steps": "pas",
+	"sunday": "Dimanche",
+	"take-picture": "Prendre une photo",
+	"thursday": "Jeudi",
+	"today": "Aujourd'hui",
+	"tuesday": "Mardi",
+	"wednesday": "Mercredi",
+	"welcome": "Bienvenue"
+}

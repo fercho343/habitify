@@ -1,0 +1,89 @@
+{
+	"accept": "接受",
+	"add-habit": "添加习惯",
+	"april": "四月",
+	"august": "八月",
+	"camera": "相机",
+	"cancel": "取消",
+	"code": "代码",
+	"completed-habits": "完成的习惯",
+	"contact-us": "联系我们",
+	"december": "十二月",
+	"define-time": "设置时间",
+	"delete": {
+		"delete": "删除"
+	},
+	"description": "描述",
+	"donate-cashapp": "通过Cash App捐赠",
+	"donate-paypal": "通过PayPal捐赠",
+	"donation-message": "支持应用开发\n\n在Habit Coach中，我们的使命是为您提供强大的工具，以实现您的目标并在日常生活中养成积极的习惯。为了不断改进并提供出色的体验，我们邀请您考虑捐赠。\n\n您有能力直接为应用的未来发展做出贡献，让我们继续创新和扩展我们的能力。您的支持使我们能够保持对卓越的承诺，并继续为我们的用户社区提供价值。\n\n如果您希望支持我们，您可以选择通过PayPal或Cash App捐赠。无论金额大小，每一笔捐款都对我们的增长和提升能力产生重要影响。",
+	"donations": "捐赠",
+	"done": "完成",
+	"edit": {
+		"edit": "编辑",
+		"habit": "编辑习惯"
+	},
+	"error": {
+		"color": "选择颜色",
+		"goal": "目标是必需的",
+		"icon": "选择图标",
+		"measure": "选择目标的测量单位",
+		"name": "名称是必需的",
+		"start-time": "开始日期是必需的"
+	},
+	"february": "二月",
+	"friday": "星期五",
+	"glasses": "眼镜",
+	"has-reminder": "激活提醒",
+	"home": "主页",
+	"icon": "图标",
+	"image-camera": "拍照",
+	"image-gallery": "从相册选择",
+	"information": {
+		"description": {
+			"important": "我们要向您保证，与您的习惯和成就相关的所有数据都安全地存储在您自己的设备上。这意味着所有与您的习惯、完成和目标相关的重要细节都在您的移动设备上得到保护。",
+			"privacy": "需要强调的是，这些数据与任何其他设备或外部服务器无关联。我们不会将您的数据存储或共享到云端或任何其他地方。这个决策是为了为您提供更高水平的隐私和对个人信息的控制。此外，我们选择了这种方式来免费提供我们的服务。将数据本地保存使我们能够在没有隐藏成本或订阅的情况下维护应用。",
+			"remember": "由于数据在您的设备上本地存储，建议定期备份您的习惯和成就。这样，您可以确保在设备出现任何问题时保护您的记录。"
+		},
+		"information": "信息",
+		"title": {
+			"important": "重要：您的数据在您的设备上安全",
+			"privacy": "不连接其他设备",
+			"remember": "记住：进行备份"
+		}
+	},
+	"is-time": "是时候",
+	"january": "一月",
+	"journal": "日志",
+	"july": "七月",
+	"june": "六月",
+	"march": "三月",
+	"may": "五月",
+	"mile": "英里",
+	"monday": "星期一",
+	"name": "名称",
+	"need-goal": "需要设定目标吗？",
+	"november": "十一月",
+	"october": "十月",
+	"of": "的",
+	"permissions": {
+		"camera": "允许使用相机"
+	},
+	"placeholder": {
+		"description": "为什么要养成这个习惯？",
+		"habit_name": "例如：喝水"
+	},
+	"profile": "个人资料",
+	"progress": "进展",
+	"reminder": "提醒",
+	"saturday": "星期六",
+	"september": "九月",
+	"steps": "步数",
+	"sunday": "星期天",
+	"take-picture": "拍照",
+	"thursday": "星期四",
+	"today": "今天",
+	"tuesday": "星期二",
+	"wednesday": "星期三",
+	"welcome": "欢迎"
+}
