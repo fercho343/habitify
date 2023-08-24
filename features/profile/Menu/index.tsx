@@ -1,5 +1,6 @@
 import { Text } from "@/components/Text";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import * as MailComposer from "expo-mail-composer";
 import { Link } from "expo-router";
 import { t } from "i18next";
 import React from "react";
@@ -8,14 +9,29 @@ import { Body, IconContent, Row } from "./styled";
 
 export const Menu = () => {
 	const theme = useTheme();
+
+	const Email = process.env.EXPO_PUBLIC_MAIL
+		? process.env.EXPO_PUBLIC_MAIL
+		: "";
+
+	const sendEmail = async () => {
+		const isAvaliable = await MailComposer.isAvailableAsync();
+		if (isAvaliable) {
+			const mail = await MailComposer.composeAsync({
+				recipients: [Email],
+				body: "",
+			});
+		}
+	};
+
 	return (
 		<Body>
-			<Row>
+			{/* <Row>
 				<IconContent>
 					<Ionicons name="journal-sharp" size={25} color={theme.colors.box} />
 				</IconContent>
 				<Text variant="subtitle_small">{t("journal")}</Text>
-			</Row>
+			</Row> */}
 
 			<Link href="/information" asChild>
 				<Row>
@@ -42,7 +58,7 @@ export const Menu = () => {
 				<Text variant="subtitle_small">{t("code")}</Text>
 			</Row> */}
 
-			<Row>
+			<Row onPress={sendEmail}>
 				<IconContent>
 					<Ionicons name="mail" size={25} color={theme.colors.box} />
 				</IconContent>

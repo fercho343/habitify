@@ -8,6 +8,7 @@ node_modules/
 dist/
 web-build/
 .vscode
+.env
 
 # Native
 *.orig.*
