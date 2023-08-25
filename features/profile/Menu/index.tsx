@@ -1,5 +1,5 @@
 import { Text } from "@/components/Text";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import * as MailComposer from "expo-mail-composer";
 import { Link } from "expo-router";
 import { t } from "i18next";
@@ -42,14 +42,14 @@ export const Menu = () => {
 				</Row>
 			</Link>
 
-			<Link href="/donations" asChild>
+			{/* <Link href="/donations" asChild>
 				<Row>
 					<IconContent>
 						<FontAwesome name="gittip" size={25} color={theme.colors.box} />
 					</IconContent>
 					<Text variant="subtitle_small">{t("donations")}</Text>
 				</Row>
-			</Link>
+			</Link> */}
 
 			{/* <Row>
 				<IconContent>
