@@ -17,7 +17,8 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.habitfy"
+      "bundleIdentifier": "com.habitfy",
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
