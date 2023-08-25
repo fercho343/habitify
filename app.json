@@ -17,8 +17,7 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.habit-coach",
-      "buildNumber": "3"
+      "bundleIdentifier": "com.habitfy"
     },
     "android": {
       "adaptiveIcon": {
@@ -43,13 +42,16 @@
     "extra": {
       "router": {
         "origin": false
+      },
+      "eas": {
+        "projectId": "1ad47dc3-c049-4398-a4ef-295885433fe6"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/8414644a-99e8-46ad-bfb4-1af9c84d1988"
+      "url": "https://u.expo.dev/1ad47dc3-c049-4398-a4ef-295885433fe6"
     }
   }
 }

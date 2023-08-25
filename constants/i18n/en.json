@@ -1,92 +1,93 @@
 {
-	"accept": "Accept",
-	"add-habit": "Add Habit",
-	"april": "April",
-	"august": "August",
-	"camera": "Camera",
-	"cancel": "Cancel",
-	"code": "Code",
-	"completed-habits": "Completed Habits on",
-	"contact-us": "Contact Us",
-	"december": "December",
-	"define-time": "Set Time",
-	"delete": {
-		"delete": "Delete"
-	},
-	"description": "Description",
-	"donate-cashapp": "Donate via Cash App",
-	"donate-paypal": "Donate via PayPal",
-	"donation-message": "Support App Development\n\nAt Habitify, our mission is to provide you with a powerful tool to reach your goals and build positive habits in your daily life. To keep improving and offering an exceptional experience, we invite you to consider making a donation.\n\nYou have the power to directly contribute to the future development of the app, allowing us to continue innovating and expanding our capabilities. Your support enables us to maintain our dedication to excellence and keep delivering value to our user community.\n\nIf you'd like to support us, you have the option to donate via PayPal or Cash App. Every contribution, regardless of its size, has a significant impact on our ability to grow and enhance.",
-	"donations": "Donations",
-	"done": "Done",
-	"edit": {
-		"edit": "Edit",
-		"habit": "Edit Habit"
-	},
-	"error": {
-		"color": "Select a Color",
-		"goal": "Goal is Required",
-		"icon": "Select an Icon",
-		"measure": "Select the Measurement Unit for Your Goal",
-		"name": "Name is Required",
-		"start-time": "Start Date is Required"
-	},
-	"february": "February",
-	"friday": "Friday",
-	"glasses": "glasses",
-	"has-reminder": "Activate Reminder",
-	"home": "Home",
-	"icon": "Icon",
-	"image-camera": "Take Photo",
-	"image-gallery": "Select from Gallery",
-	"information": {
-		"description": {
-			"important": "We want to assure you that all data related to your habits and achievements are securely stored on your own device. This means that all important details about your habits, completions, and goals are safeguarded on your mobile device.",
-			"privacy": "It's essential to highlight that this data is not linked to any other device or external server. We are not storing or sharing your data in the cloud or any other location. This decision was made to provide you with a higher level of privacy and control over your personal information. Additionally, we have chosen this approach to offer our services for free. Keeping your data locally allows us to maintain the app without hidden costs or subscriptions.",
-			"remember": "Since the data is stored locally on your device, it's recommended to periodically back up your habits and achievements. This way, you can ensure your records are protected in case of any issues with your device.",
-			"privacity": "It is essential to emphasize that this data is not linked to any other external device or server. \nWe are not saving or sharing your data in the cloud or anywhere else. \nThis decision was made to give you a higher level of privacy and control over your personal information. \nIn addition, we have chosen this approach in order to offer our services to you free of charge. \nKeeping your data local allows us to maintain the app without hidden costs or subscriptions."
-		},
-		"information": "Information",
-		"title": {
-			"important": "Important: Your Data is Secure on Your Device",
-			"privacy": "Not Linked to Other Devices",
-			"remember": "Remember: Make Backups",
-			"privacity": "Privacy and Free"
-		}
-	},
-	"is-time": "It's Time to",
-	"january": "January",
-	"journal": "Journal",
-	"july": "July",
-	"june": "June",
-	"march": "March",
-	"may": "May",
-	"mile": "miles",
-	"monday": "Monday",
-	"name": "Name",
-	"need-goal": "Need to Set a Goal?",
-	"november": "November",
-	"october": "October",
-	"of": "of",
-	"permissions": {
-		"camera": "Allow Camera Usage"
-	},
-	"placeholder": {
-		"description": "Why do you want to develop this habit?",
-		"habit_name": "E.g. Drink water"
-	},
-	"profile": "Profile",
-	"progress": "Progress",
-	"reminder": "Reminder",
-	"saturday": "Saturday",
-	"september": "September",
-	"steps": "steps",
-	"sunday": "Sunday",
-	"take-picture": "Take Photo",
-	"thursday": "Thursday",
-	"today": "Today",
-	"tuesday": "Tuesday",
-	"wednesday": "Wednesday",
-	"welcome": "Welcome",
-	"frequency": "Frequency"
+  "accept": "Accept",
+  "add-habit": "Add Habit",
+  "april": "April",
+  "august": "August",
+  "camera": "Camera",
+  "cancel": "Cancel",
+  "code": "Code",
+  "completed-habits": "Completed Habits on",
+  "contact-us": "Contact Us",
+  "december": "December",
+  "define-time": "Set Time",
+  "delete": {
+    "delete": "Delete"
+  },
+  "description": "Description",
+  "donate-cashapp": "Donate via Cash App",
+  "donate-paypal": "Donate via PayPal",
+  "donation-message": "Support App Development\n\nAt Habitify, our mission is to provide you with a powerful tool to reach your goals and build positive habits in your daily life. To keep improving and offering an exceptional experience, we invite you to consider making a donation.\n\nYou have the power to directly contribute to the future development of the app, allowing us to continue innovating and expanding our capabilities. Your support enables us to maintain our dedication to excellence and keep delivering value to our user community.\n\nIf you'd like to support us, you have the option to donate via PayPal or Cash App. Every contribution, regardless of its size, has a significant impact on our ability to grow and enhance.",
+  "donations": "Donations",
+  "done": "Done",
+  "edit": {
+    "edit": "Edit",
+    "habit": "Edit Habit"
+  },
+  "error": {
+    "color": "Select a Color",
+    "goal": "Goal is Required",
+    "icon": "Select an Icon",
+    "measure": "Select the Measurement Unit for Your Goal",
+    "name": "Name is Required",
+    "start-time": "Start Date is Required"
+  },
+  "february": "February",
+  "friday": "Friday",
+  "glasses": "glasses",
+  "has-reminder": "Activate Reminder",
+  "home": "Home",
+  "icon": "Icon",
+  "image-camera": "Take Photo",
+  "image-gallery": "Select from Gallery",
+  "information": {
+    "description": {
+      "important": "We want to assure you that all data related to your habits and achievements are securely stored on your own device. This means that all important details about your habits, completions, and goals are safeguarded on your mobile device.",
+      "privacy": "It's essential to highlight that this data is not linked to any other device or external server. We are not storing or sharing your data in the cloud or any other location. This decision was made to provide you with a higher level of privacy and control over your personal information. Additionally, we have chosen this approach to offer our services for free. Keeping your data locally allows us to maintain the app without hidden costs or subscriptions.",
+      "remember": "Since the data is stored locally on your device, it's recommended to periodically back up your habits and achievements. This way, you can ensure your records are protected in case of any issues with your device.",
+      "privacity": "It is essential to emphasize that this data is not linked to any other external device or server. \nWe are not saving or sharing your data in the cloud or anywhere else. \nThis decision was made to give you a higher level of privacy and control over your personal information. \nIn addition, we have chosen this approach in order to offer our services to you free of charge. \nKeeping your data local allows us to maintain the app without hidden costs or subscriptions."
+    },
+    "information": "Information",
+    "title": {
+      "important": "Important: Your Data is Secure on Your Device",
+      "privacy": "Not Linked to Other Devices",
+      "remember": "Remember: Make Backups",
+      "privacity": "Privacy and Free"
+    }
+  },
+  "is-time": "It's Time to",
+  "january": "January",
+  "journal": "Journal",
+  "july": "July",
+  "june": "June",
+  "march": "March",
+  "may": "May",
+  "mile": "miles",
+  "monday": "Monday",
+  "name": "Name",
+  "need-goal": "Need to Set a Goal?",
+  "november": "November",
+  "october": "October",
+  "of": "of",
+  "permissions": {
+    "camera": "Allow Camera Usage"
+  },
+  "placeholder": {
+    "description": "Why do you want to develop this habit?",
+    "habit_name": "E.g. Drink water"
+  },
+  "profile": "Profile",
+  "progress": "Progress",
+  "reminder": "Reminder",
+  "saturday": "Saturday",
+  "september": "September",
+  "steps": "steps",
+  "sunday": "Sunday",
+  "take-picture": "Take Photo",
+  "thursday": "Thursday",
+  "today": "Today",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "welcome": "Welcome",
+  "frequency": "Frequency",
+  "image-galery": "Choose from the geleria"
 }

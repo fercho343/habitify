@@ -1,92 +1,93 @@
 {
-	"accept": "Akzeptieren",
-	"add-habit": "Gewohnheit hinzufügen",
-	"april": "April",
-	"august": "August",
-	"camera": "Kamera",
-	"cancel": "Abbrechen",
-	"code": "Code",
-	"completed-habits": "Abgeschlossene Gewohnheiten am",
-	"contact-us": "Kontaktiere uns",
-	"december": "Dezember",
-	"define-time": "Zeit festlegen",
-	"delete": {
-		"delete": "Löschen"
-	},
-	"description": "Beschreibung",
-	"donate-cashapp": "Spenden über Cash App",
-	"donate-paypal": "Spenden über PayPal",
-	"donation-message": "Unterstützung der App-Entwicklung\n\nBei Habitify lautet unsere Mission, Ihnen ein leistungsstarkes Werkzeug zur Verfügung zu stellen, um Ihre Ziele zu erreichen und positive Gewohnheiten in Ihrem täglichen Leben aufzubauen. Um uns kontinuierlich zu verbessern und ein außergewöhnliches Erlebnis zu bieten, möchten wir Sie dazu einladen, eine Spende in Erwägung zu ziehen.\n\nSie haben die Möglichkeit, direkt zur zukünftigen Entwicklung der App beizutragen, um uns zu ermöglichen, Innovationen voranzutreiben und unsere Fähigkeiten auszubauen. Ihre Unterstützung ermöglicht es uns, unser Engagement für Exzellenz aufrechtzuerhalten und weiterhin Wert für unsere Benutzercommunity zu liefern.\n\nWenn Sie uns unterstützen möchten, haben Sie die Möglichkeit, über PayPal oder Cash App zu spenden. Jeder Beitrag, unabhängig von seiner Größe, hat einen erheblichen Einfluss auf unsere Fähigkeit zu wachsen und uns zu verbessern.",
-	"donations": "Spenden",
-	"done": "Erledigt",
-	"edit": {
-		"edit": "Bearbeiten",
-		"habit": "Gewohnheit bearbeiten"
-	},
-	"error": {
-		"color": "Farbe auswählen",
-		"goal": "Ziel ist erforderlich",
-		"icon": "Symbol auswählen",
-		"measure": "Wähle die Maßeinheit für dein Ziel",
-		"name": "Name ist erforderlich",
-		"start-time": "Startdatum ist erforderlich"
-	},
-	"february": "Februar",
-	"friday": "Freitag",
-	"glasses": "Gläser",
-	"has-reminder": "Erinnerung aktivieren",
-	"home": "Startseite",
-	"icon": "Symbol",
-	"image-camera": "Foto aufnehmen",
-	"image-gallery": "Aus Galerie auswählen",
-	"information": {
-		"description": {
-			"important": "Wir möchten Sie darüber informieren, dass alle Daten zu Ihren Gewohnheiten und Erfolgen sicher auf Ihrem eigenen Gerät gespeichert werden. Dies bedeutet, dass alle wichtigen Details zu Ihren Gewohnheiten, Abschlüssen und Zielen auf Ihrem Mobilgerät geschützt sind.",
-			"privacy": "Es ist wichtig hervorzuheben, dass diese Daten nicht mit einem anderen Gerät oder einem externen Server verknüpft sind. Wir speichern oder teilen Ihre Daten weder in der Cloud noch an einem anderen Ort. Diese Entscheidung wurde getroffen, um Ihnen ein höheres Maß an Privatsphäre und Kontrolle über Ihre persönlichen Informationen zu bieten. Zusätzlich haben wir uns ausgewählt, diese Herangehensweise anzubieten, um unsere Dienste kostenlos zur Verfügung zu stellen. Durch die lokale Speicherung Ihrer Daten können wir die App ohne versteckte Kosten oder Abonnements betreiben.",
-			"remember": "Da die Daten lokal auf Ihrem Gerät gespeichert werden, wird empfohlen, Ihre Gewohnheiten und Erfolge regelmäßig zu sichern. Dadurch können Sie sicherstellen, dass Ihre Aufzeichnungen im Falle von Problemen mit Ihrem Gerät geschützt sind.",
-			"privacity": "Es ist unbedingt zu betonen, dass diese Daten nicht mit anderen externen Geräten oder Servern verknüpft werden. \nWir speichern oder teilen Ihre Daten nicht in der Cloud oder anderswo. \nDiese Entscheidung wurde getroffen, um Ihnen ein höheres Maß an Privatsphäre und Kontrolle über Ihre persönlichen Daten zu bieten. \nDarüber hinaus haben wir diesen Ansatz gewählt, um Ihnen unsere Leistungen kostenfrei anbieten zu können. \nDurch die lokale Speicherung Ihrer Daten können wir die App ohne versteckte Kosten oder Abonnements warten."
-		},
-		"information": "Informationen",
-		"title": {
-			"important": "Wichtig: Ihre Daten sind auf Ihrem Gerät sicher",
-			"privacy": "Nicht mit anderen Geräten verknüpft",
-			"remember": "Denken Sie daran: Sichern Sie Ihre Daten",
-			"privacity": "Privatsphäre und kostenlos"
-		}
-	},
-	"is-time": "Es ist Zeit zu",
-	"january": "Januar",
-	"journal": "Tagebuch",
-	"july": "Juli",
-	"june": "Juni",
-	"march": "März",
-	"may": "Mai",
-	"mile": "Meilen",
-	"monday": "Montag",
-	"name": "Name",
-	"need-goal": "Müssen Sie ein Ziel festlegen?",
-	"november": "November",
-	"october": "Oktober",
-	"of": "von",
-	"permissions": {
-		"camera": "Kameranutzung erlauben"
-	},
-	"placeholder": {
-		"description": "Warum möchten Sie diese Gewohnheit entwickeln?",
-		"habit_name": "Zum Beispiel: Wasser trinken"
-	},
-	"profile": "Profil",
-	"progress": "Fortschritt",
-	"reminder": "Erinnerung",
-	"saturday": "Samstag",
-	"september": "September",
-	"steps": "Schritte",
-	"sunday": "Sonntag",
-	"take-picture": "Foto aufnehmen",
-	"thursday": "Donnerstag",
-	"today": "Heute",
-	"tuesday": "Dienstag",
-	"wednesday": "Mittwoch",
-	"welcome": "Willkommen",
-	"frequency": "Frequenz"
+  "accept": "Akzeptieren",
+  "add-habit": "Gewohnheit hinzufügen",
+  "april": "April",
+  "august": "August",
+  "camera": "Kamera",
+  "cancel": "Abbrechen",
+  "code": "Code",
+  "completed-habits": "Abgeschlossene Gewohnheiten am",
+  "contact-us": "Kontaktiere uns",
+  "december": "Dezember",
+  "define-time": "Zeit festlegen",
+  "delete": {
+    "delete": "Löschen"
+  },
+  "description": "Beschreibung",
+  "donate-cashapp": "Spenden über Cash App",
+  "donate-paypal": "Spenden über PayPal",
+  "donation-message": "Unterstützung der App-Entwicklung\n\nBei Habitify lautet unsere Mission, Ihnen ein leistungsstarkes Werkzeug zur Verfügung zu stellen, um Ihre Ziele zu erreichen und positive Gewohnheiten in Ihrem täglichen Leben aufzubauen. Um uns kontinuierlich zu verbessern und ein außergewöhnliches Erlebnis zu bieten, möchten wir Sie dazu einladen, eine Spende in Erwägung zu ziehen.\n\nSie haben die Möglichkeit, direkt zur zukünftigen Entwicklung der App beizutragen, um uns zu ermöglichen, Innovationen voranzutreiben und unsere Fähigkeiten auszubauen. Ihre Unterstützung ermöglicht es uns, unser Engagement für Exzellenz aufrechtzuerhalten und weiterhin Wert für unsere Benutzercommunity zu liefern.\n\nWenn Sie uns unterstützen möchten, haben Sie die Möglichkeit, über PayPal oder Cash App zu spenden. Jeder Beitrag, unabhängig von seiner Größe, hat einen erheblichen Einfluss auf unsere Fähigkeit zu wachsen und uns zu verbessern.",
+  "donations": "Spenden",
+  "done": "Erledigt",
+  "edit": {
+    "edit": "Bearbeiten",
+    "habit": "Gewohnheit bearbeiten"
+  },
+  "error": {
+    "color": "Farbe auswählen",
+    "goal": "Ziel ist erforderlich",
+    "icon": "Symbol auswählen",
+    "measure": "Wähle die Maßeinheit für dein Ziel",
+    "name": "Name ist erforderlich",
+    "start-time": "Startdatum ist erforderlich"
+  },
+  "february": "Februar",
+  "friday": "Freitag",
+  "glasses": "Gläser",
+  "has-reminder": "Erinnerung aktivieren",
+  "home": "Startseite",
+  "icon": "Symbol",
+  "image-camera": "Foto aufnehmen",
+  "image-gallery": "Aus Galerie auswählen",
+  "information": {
+    "description": {
+      "important": "Wir möchten Sie darüber informieren, dass alle Daten zu Ihren Gewohnheiten und Erfolgen sicher auf Ihrem eigenen Gerät gespeichert werden. Dies bedeutet, dass alle wichtigen Details zu Ihren Gewohnheiten, Abschlüssen und Zielen auf Ihrem Mobilgerät geschützt sind.",
+      "privacy": "Es ist wichtig hervorzuheben, dass diese Daten nicht mit einem anderen Gerät oder einem externen Server verknüpft sind. Wir speichern oder teilen Ihre Daten weder in der Cloud noch an einem anderen Ort. Diese Entscheidung wurde getroffen, um Ihnen ein höheres Maß an Privatsphäre und Kontrolle über Ihre persönlichen Informationen zu bieten. Zusätzlich haben wir uns ausgewählt, diese Herangehensweise anzubieten, um unsere Dienste kostenlos zur Verfügung zu stellen. Durch die lokale Speicherung Ihrer Daten können wir die App ohne versteckte Kosten oder Abonnements betreiben.",
+      "remember": "Da die Daten lokal auf Ihrem Gerät gespeichert werden, wird empfohlen, Ihre Gewohnheiten und Erfolge regelmäßig zu sichern. Dadurch können Sie sicherstellen, dass Ihre Aufzeichnungen im Falle von Problemen mit Ihrem Gerät geschützt sind.",
+      "privacity": "Es ist unbedingt zu betonen, dass diese Daten nicht mit anderen externen Geräten oder Servern verknüpft werden. \nWir speichern oder teilen Ihre Daten nicht in der Cloud oder anderswo. \nDiese Entscheidung wurde getroffen, um Ihnen ein höheres Maß an Privatsphäre und Kontrolle über Ihre persönlichen Daten zu bieten. \nDarüber hinaus haben wir diesen Ansatz gewählt, um Ihnen unsere Leistungen kostenfrei anbieten zu können. \nDurch die lokale Speicherung Ihrer Daten können wir die App ohne versteckte Kosten oder Abonnements warten."
+    },
+    "information": "Informationen",
+    "title": {
+      "important": "Wichtig: Ihre Daten sind auf Ihrem Gerät sicher",
+      "privacy": "Nicht mit anderen Geräten verknüpft",
+      "remember": "Denken Sie daran: Sichern Sie Ihre Daten",
+      "privacity": "Privatsphäre und kostenlos"
+    }
+  },
+  "is-time": "Es ist Zeit zu",
+  "january": "Januar",
+  "journal": "Tagebuch",
+  "july": "Juli",
+  "june": "Juni",
+  "march": "März",
+  "may": "Mai",
+  "mile": "Meilen",
+  "monday": "Montag",
+  "name": "Name",
+  "need-goal": "Müssen Sie ein Ziel festlegen?",
+  "november": "November",
+  "october": "Oktober",
+  "of": "von",
+  "permissions": {
+    "camera": "Kameranutzung erlauben"
+  },
+  "placeholder": {
+    "description": "Warum möchten Sie diese Gewohnheit entwickeln?",
+    "habit_name": "Zum Beispiel: Wasser trinken"
+  },
+  "profile": "Profil",
+  "progress": "Fortschritt",
+  "reminder": "Erinnerung",
+  "saturday": "Samstag",
+  "september": "September",
+  "steps": "Schritte",
+  "sunday": "Sonntag",
+  "take-picture": "Foto aufnehmen",
+  "thursday": "Donnerstag",
+  "today": "Heute",
+  "tuesday": "Dienstag",
+  "wednesday": "Mittwoch",
+  "welcome": "Willkommen",
+  "frequency": "Frequenz",
+  "image-galery": "Wählen Sie aus der Geleria"
 }
