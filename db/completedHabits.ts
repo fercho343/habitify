@@ -156,6 +156,28 @@ export async function updateCompletedHabitDB(
 	});
 }
 
+export async function deleteCompletedHabitsByHabitIdDB(
+	db: SQLite.SQLiteDatabase,
+	habitId: string,
+): Promise<void> {
+	return new Promise<void>((resolve, reject) => {
+		db.transaction((tx) => {
+			tx.executeSql(
+				"DELETE FROM completedHabits WHERE habitId = ?;",
+				[habitId],
+				() => {
+					resolve();
+				},
+				(_, error) => {
+					console.error("Error deleting completedHabits:", error);
+					reject(error);
+					return false;
+				},
+			);
+		});
+	});
+}
+
 // Función para migrar datos de AsyncStorage a SQLite para completedHabits
 export const migrateCompletedDataFromAsyncStorageToSQLite = async (
 	db: SQLite.SQLiteDatabase,

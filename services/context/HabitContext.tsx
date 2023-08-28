@@ -1,5 +1,6 @@
 import {
 	createCompletedHabitsTable,
+	deleteCompletedHabitsByHabitIdDB,
 	getAllCompletedHabitsDB,
 	getCompletedHabitByHabitIdDB,
 	migrateCompletedDataFromAsyncStorageToSQLite,
@@ -65,19 +66,11 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 
 				//Complete habits
 				const getCompletedHabits = await getAllCompletedHabitsDB(db);
+				console.log(getCompletedHabits);
 
 				if (getCompletedHabits !== null) {
 					setCompletedHabits(getCompletedHabits);
 				}
-
-				// await AsyncStorage.setItem("@habits", JSON.stringify(sampleHabits));
-				// await AsyncStorage.setItem(
-				// 	"@completedHabits",
-				// 	JSON.stringify(sampleCompletedHabits),
-				// );
-
-				// AsyncStorage.removeItem("@habits");
-				// AsyncStorage.removeItem("@completedHabits");
 			} catch (error) {}
 		})();
 	}, []);
@@ -132,8 +125,12 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 
 	const removeHabit = async (habitId: string) => {
 		try {
+			await deleteCompletedHabitsByHabitIdDB(db, habitId);
+
 			await deleteHabitByIdDB(db, habitId);
+
 			deletePushNotification(habitId);
+
 			setHabits((prevHabits) =>
 				prevHabits.filter((habit) => habit.id !== habitId),
 			);
