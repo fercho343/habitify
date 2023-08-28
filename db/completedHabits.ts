@@ -1,4 +1,5 @@
 import { HabitCompletion } from "@/types/habit";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SQLite from "expo-sqlite";
 
 export async function createCompletedHabitsTable(
@@ -154,3 +155,36 @@ export async function updateCompletedHabitDB(
 		});
 	});
 }
+
+// Función para migrar datos de AsyncStorage a SQLite para completedHabits
+export const migrateCompletedDataFromAsyncStorageToSQLite = async (
+	db: SQLite.SQLiteDatabase,
+) => {
+	try {
+		// Obtener datos de AsyncStorage
+		const storedCompletedHabits = await AsyncStorage.getItem(
+			"@completedHabits",
+		);
+		if (storedCompletedHabits) {
+			const storedCompletedHabitsArray = JSON.parse(storedCompletedHabits);
+
+			// Insertar datos en SQLite
+			await Promise.all(
+				storedCompletedHabitsArray.map(
+					async (completedHabit: HabitCompletion) => {
+						await saveCompletedHabitDB(db, completedHabit);
+					},
+				),
+			);
+
+			// Borrar datos de AsyncStorage
+			await AsyncStorage.removeItem("@completedHabits");
+
+			console.log("Migration of completedHabits successful");
+		} else {
+			console.log("No completedHabits to migrate");
+		}
+	} catch (error) {
+		console.error("Error during migration of completedHabits:", error);
+	}
+};

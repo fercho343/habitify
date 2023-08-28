@@ -2,6 +2,7 @@ import {
 	createCompletedHabitsTable,
 	getAllCompletedHabitsDB,
 	getCompletedHabitByHabitIdDB,
+	migrateCompletedDataFromAsyncStorageToSQLite,
 	saveCompletedHabitDB,
 	updateCompletedHabitDB,
 } from "@/db/completedHabits";
@@ -10,6 +11,7 @@ import {
 	deleteHabitByIdDB,
 	getAllHabits,
 	getHabitByIdDB,
+	migrateDataFromAsyncStorageToSQLite,
 	saveHabitDB,
 	updateHabitDB,
 } from "@/db/habitsDb";
@@ -48,6 +50,8 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 
 	useEffect(() => {
 		(async () => {
+			migrateDataFromAsyncStorageToSQLite(db);
+			migrateCompletedDataFromAsyncStorageToSQLite(db);
 			try {
 				createHabitsTable(db);
 				createCompletedHabitsTable(db);

@@ -1,4 +1,5 @@
 import { Habit } from "@/types/habit";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SQLite from "expo-sqlite";
 
 export async function createHabitsTable(
@@ -209,3 +210,32 @@ export async function deleteHabitByIdDB(
 		});
 	});
 }
+
+// Función para migrar datos de AsyncStorage a SQLite
+export const migrateDataFromAsyncStorageToSQLite = async (
+	db: SQLite.SQLiteDatabase,
+) => {
+	try {
+		// Obtener datos de AsyncStorage
+		const storedHabits = await AsyncStorage.getItem("@habits");
+		if (storedHabits) {
+			const storedHabitsArray = JSON.parse(storedHabits);
+
+			// Insertar datos en SQLite
+			await Promise.all(
+				storedHabitsArray.map(async (habit: Habit) => {
+					await saveHabitDB(db, habit);
+				}),
+			);
+
+			// Borrar datos de AsyncStorage
+			await AsyncStorage.removeItem("@habits");
+
+			console.log("Migration successful");
+		} else {
+			console.log("No Habits to migrate");
+		}
+	} catch (error) {
+		console.error("Error during migration:", error);
+	}
+};
