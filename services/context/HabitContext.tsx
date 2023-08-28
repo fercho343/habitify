@@ -1,11 +1,26 @@
+import {
+	createCompletedHabitsTable,
+	getAllCompletedHabitsDB,
+	getCompletedHabitByHabitIdDB,
+	saveCompletedHabitDB,
+	updateCompletedHabitDB,
+} from "@/db/completedHabits";
+import {
+	createHabitsTable,
+	deleteHabitByIdDB,
+	getAllHabits,
+	getHabitByIdDB,
+	saveHabitDB,
+	updateHabitDB,
+} from "@/db/habitsDb";
 import { Habit, HabitCompletion, HabitContextType } from "@/types/habit";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { randomUUID } from "expo-crypto";
 import {
 	cancelScheduledNotificationAsync,
 	getAllScheduledNotificationsAsync,
 	scheduleNotificationAsync,
 } from "expo-notifications";
+import * as SQLite from "expo-sqlite";
 import { t } from "i18next";
 import moment from "moment";
 import {
@@ -29,22 +44,26 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 	const [habits, setHabits] = useState<Habit[]>([]);
 	const [completedHabits, setCompletedHabits] = useState<HabitCompletion[]>([]);
 
+	const db = SQLite.openDatabase("habitDevelop.db");
+
 	useEffect(() => {
 		(async () => {
 			try {
+				createHabitsTable(db);
+				createCompletedHabitsTable(db);
+
 				//Habits
-				const getHabits = await AsyncStorage.getItem("@habits");
+				const getHabits = await getAllHabits(db);
 
 				if (getHabits !== null) {
-					setHabits(JSON.parse(getHabits));
+					setHabits(getHabits);
 				}
 
 				//Complete habits
-				const getCompletedHabits = await AsyncStorage.getItem(
-					"@completedHabits",
-				);
+				const getCompletedHabits = await getAllCompletedHabitsDB(db);
+
 				if (getCompletedHabits !== null) {
-					setCompletedHabits(JSON.parse(getCompletedHabits));
+					setCompletedHabits(getCompletedHabits);
 				}
 
 				// await AsyncStorage.setItem("@habits", JSON.stringify(sampleHabits));
@@ -61,16 +80,17 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 
 	const addHabit = async (newHabit: Habit): Promise<boolean> => {
 		try {
-			const storedHabits = await AsyncStorage.getItem("@habits");
-			const storedHabitsArray = storedHabits ? JSON.parse(storedHabits) : [];
+			const storedHabitsArray = habits ? habits : [];
 			storedHabitsArray.push(newHabit);
-
-			await AsyncStorage.setItem("@habits", JSON.stringify(storedHabitsArray));
 			setHabits([...storedHabitsArray]);
-			//Notifitication
+
+			await saveHabitDB(db, newHabit);
+			//Notificación
 			schedulePushNotification(newHabit);
+
 			return true;
 		} catch (error) {
+			console.error("Error adding habit:", error);
 			return false;
 		}
 	};
@@ -80,61 +100,60 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		updatedHabit: Habit,
 	): Promise<boolean> => {
 		try {
-			const storedHabits = await AsyncStorage.getItem("@habits");
-			const storedHabitsArray = storedHabits ? JSON.parse(storedHabits) : [];
+			const existingHabit = await getHabitByIdDB(db, habitId);
 
-			const habitIndex = storedHabitsArray.findIndex(
-				(habit: Habit) => habit.id === habitId,
-			);
-
-			if (habitIndex !== -1) {
-				updatedHabit.id = habitId;
-				storedHabitsArray.splice(habitIndex, 1, updatedHabit);
-				await AsyncStorage.setItem(
-					"@habits",
-					JSON.stringify(storedHabitsArray),
-				);
-				setHabits([...storedHabitsArray]);
-				//Notification
-				deletePushNotification(habitId);
+			if (existingHabit) {
+				await updateHabitDB(db, habitId, updatedHabit);
+				// Notificación: Eliminar la notificación anterior y programar una nueva
+				await deletePushNotification(habitId);
 				await schedulePushNotification(updatedHabit);
+
+				// Actualizar el array de hábitos con el hábito actualizado
+				setHabits((prevHabits) => {
+					const updatedHabits = prevHabits.map((habit) =>
+						habit.id === habitId ? { ...habit, ...updatedHabit } : habit,
+					);
+					return updatedHabits;
+				});
+
+				return true;
 			}
 
-			return true;
+			return false; // No se encontró el hábito con el ID dado
 		} catch (error) {
+			console.error("Error updating habit:", error);
 			return false;
 		}
 	};
 
 	const removeHabit = async (habitId: string) => {
-		const storedHabits = await AsyncStorage.getItem("@habits");
-		const storedHabitsArray = storedHabits ? JSON.parse(storedHabits) : [];
-
-		const indexToRemove = storedHabitsArray.findIndex(
-			(habit: Habit) => habit.id === habitId,
-		);
-
-		if (indexToRemove !== -1) {
+		try {
+			await deleteHabitByIdDB(db, habitId);
 			deletePushNotification(habitId);
-			storedHabitsArray.splice(indexToRemove, 1);
-			await AsyncStorage.setItem("@habits", JSON.stringify(storedHabitsArray));
-			setHabits(storedHabitsArray);
+			setHabits((prevHabits) =>
+				prevHabits.filter((habit) => habit.id !== habitId),
+			);
+		} catch (error) {
+			console.error("Error removing habit:", error);
+			// Manejo de errores si es necesario
 		}
 	};
 
+	//Mark ready habit
 	const markHabitAsCompleted = async (habitId: string) => {
 		try {
 			const habitToComplete = habits.find((habit) => habit.id === habitId);
 			if (habitToComplete) {
 				if (habitToComplete.requiresGoal) {
-					const updatedCompletedHabits = [...completedHabits];
-					const existingCompletion = completedHabits.find(
-						(completion) => completion.habitId === habitId,
+					const existingCompletion = await getCompletedHabitByHabitIdDB(
+						db,
+						habitId,
 					);
 
 					if (existingCompletion) {
 						existingCompletion.progressPercent =
 							(existingCompletion.progressPercent || 0) + 1;
+						await updateCompletedHabitDB(db, existingCompletion);
 					} else {
 						const completion: HabitCompletion = {
 							id: randomUUID(),
@@ -142,32 +161,24 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 							completionDate: new Date(),
 							progressPercent: 1,
 						};
-						updatedCompletedHabits.push(completion);
+						await saveCompletedHabitDB(db, completion);
 					}
-
-					setCompletedHabits(updatedCompletedHabits);
-
-					await AsyncStorage.setItem(
-						"@completedHabits",
-						JSON.stringify(updatedCompletedHabits),
-					);
 				} else {
-					// Completa el hábito sin progreso
 					const completion: HabitCompletion = {
 						id: randomUUID(),
 						habitId: habitId,
 						completionDate: new Date(),
 					};
-					const updatedCompletedHabits = [...completedHabits, completion];
-
-					setCompletedHabits(updatedCompletedHabits);
-					await AsyncStorage.setItem(
-						"@completedHabits",
-						JSON.stringify(updatedCompletedHabits),
-					);
+					await saveCompletedHabitDB(db, completion);
 				}
+
+				const updatedCompletedHabits = await getAllCompletedHabitsDB(db);
+				setCompletedHabits(updatedCompletedHabits);
 			}
-		} catch (error) {}
+		} catch (error) {
+			console.error("Error marking habit as completed:", error);
+			// Manejo de errores si es necesario
+		}
 	};
 
 	const habitContextValue: HabitContextType = {
