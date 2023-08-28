@@ -58,6 +58,8 @@ export const Menu = () => {
 				<Text variant="subtitle_small">{t("code")}</Text>
 			</Row> */}
 
+			{/* <DownloadItem /> */}
+
 			<Row onPress={sendEmail}>
 				<IconContent>
 					<Ionicons name="mail" size={25} color={theme.colors.box} />
