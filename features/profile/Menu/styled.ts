@@ -13,7 +13,7 @@ export const Row = styled.TouchableOpacity`
   justify-content: flex-start;
   height: 50px;
   background-color: ${({ theme }) => theme.colors.box};
-  border-radius: 5px;
+  /* border-radius: 5px; */
   margin-bottom: 16px;
   padding: 0 12px;
 `;
@@ -21,7 +21,7 @@ export const Row = styled.TouchableOpacity`
 export const IconContent = styled.View`
   width: 32px;
   height: 32px;
-  border-radius: 99%;
+  border-radius: 99px;
   align-items: center;
   justify-content: center;
   margin-right: 12px;

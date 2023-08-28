@@ -6,7 +6,7 @@ import {
 	migrateCompletedDataFromAsyncStorageToSQLite,
 	saveCompletedHabitDB,
 	updateCompletedHabitDB,
-} from "@/db/completedHabits";
+} from "@/services/db/completedHabits";
 import {
 	createHabitsTable,
 	deleteHabitByIdDB,
@@ -15,7 +15,7 @@ import {
 	migrateDataFromAsyncStorageToSQLite,
 	saveHabitDB,
 	updateHabitDB,
-} from "@/db/habitsDb";
+} from "@/services/db/habitsDb";
 import { Habit, HabitCompletion, HabitContextType } from "@/types/habit";
 import { randomUUID } from "expo-crypto";
 import {

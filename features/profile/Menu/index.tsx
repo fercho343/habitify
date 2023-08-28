@@ -4,7 +4,9 @@ import * as MailComposer from "expo-mail-composer";
 import { Link } from "expo-router";
 import { t } from "i18next";
 import React from "react";
+import { Platform } from "react-native";
 import { useTheme } from "styled-components/native";
+import { AsyncData } from "./AsyncData";
 import { Body, IconContent, Row } from "./styled";
 
 export const Menu = () => {
@@ -60,12 +62,16 @@ export const Menu = () => {
 
 			{/* <DownloadItem /> */}
 
-			<Row onPress={sendEmail}>
-				<IconContent>
-					<Ionicons name="mail" size={25} color={theme.colors.box} />
-				</IconContent>
-				<Text variant="subtitle_small">{t("contact-us")}</Text>
-			</Row>
+			<AsyncData />
+
+			{Platform.OS === "ios" && (
+				<Row onPress={sendEmail}>
+					<IconContent>
+						<Ionicons name="mail" size={25} color={theme.colors.box} />
+					</IconContent>
+					<Text variant="subtitle_small">{t("contact-us")}</Text>
+				</Row>
+			)}
 		</Body>
 	);
 };

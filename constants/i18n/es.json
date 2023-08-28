@@ -90,5 +90,6 @@
   "welcome": "Bienvenid@",
   "frequency": "Frecuencia",
   "image-galery": "Escoger de la geleria",
-  "download-data": "Descargar tu informacion"
+  "download-data": "Descargar tu informacion",
+  "async-data": "Sincronizar tus datos"
 }
