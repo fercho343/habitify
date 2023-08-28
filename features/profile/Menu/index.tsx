@@ -7,6 +7,7 @@ import React from "react";
 import { Platform } from "react-native";
 import { useTheme } from "styled-components/native";
 import { AsyncData } from "./AsyncData";
+import { CodeItem } from "./CodeItem";
 import { Body, IconContent, Row } from "./styled";
 
 export const Menu = () => {
@@ -53,14 +54,7 @@ export const Menu = () => {
 				</Row>
 			</Link> */}
 
-			{/* <Row>
-				<IconContent>
-					<Ionicons name="ios-logo-github" size={25} color={theme.colors.box} />
-				</IconContent>
-				<Text variant="subtitle_small">{t("code")}</Text>
-			</Row> */}
-
-			{/* <DownloadItem /> */}
+			<CodeItem />
 
 			<AsyncData />
 
