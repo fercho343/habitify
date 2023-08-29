@@ -1,33 +1,54 @@
 import { Text } from "@/components/Text";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Updates from "expo-updates";
-import React from "react";
+import { t } from "i18next";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "styled-components/native";
-import { IconContent, Row } from "./styled";
+import { Content, IconContent, Point, Row, Status } from "./styled";
 
 export const UpdatItem = () => {
+	const [haveUpdate, setUpdate] = useState<boolean>(false);
 	const theme = useTheme();
 
-	async function onFetchUpdateAsync() {
-		try {
-			const update = await Updates.checkForUpdateAsync();
-
-			if (update.isAvailable) {
-				await Updates.fetchUpdateAsync();
-				await Updates.reloadAsync();
+	useEffect(() => {
+		(async () => {
+			try {
+				const update = await Updates.checkForUpdateAsync();
+				setUpdate(update.isAvailable);
+			} catch (error) {
+				console.log(error);
 			}
-		} catch (error) {
-			// You can also add an alert() to see the error message in case of an error when fetching updates.
-			alert(`Error fetching latest Expo update: ${error}`);
-		}
-	}
+		})();
+	}, []);
+
+	// async function onFetchUpdateAsync() {
+	// 	try {
+	// 		const update = await Updates.checkForUpdateAsync();
+	// 		alert("Ejecutabdo");
+	// 		alert(`${update.isAvailable}`);
+
+	// 		if (update.isAvailable) {
+	// 			await Updates.fetchUpdateAsync();
+	// 			await Updates.reloadAsync();
+	// 		}
+	// 	} catch (error) {
+	// 		// You can also add an alert() to see the error message in case of an error when fetching updates.
+	// 		alert(`Error fetching latest Expo update: ${error}`);
+	// 	}
+	// }
 
 	return (
-		<Row onPress={onFetchUpdateAsync}>
-			<IconContent>
-				<MaterialIcons name="update" size={25} color={theme.colors.box} />
-			</IconContent>
-			<Text variant="subtitle_small">Expo Update</Text>
-		</Row>
+		<Content>
+			<Row>
+				<IconContent>
+					<MaterialIcons name="update" size={25} color={theme.colors.box} />
+				</IconContent>
+				<Text variant="subtitle_small">{t("new-update")}</Text>
+			</Row>
+
+			<Point>
+				<Status $haveUpdate={haveUpdate} />
+			</Point>
+		</Content>
 	);
 };
