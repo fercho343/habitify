@@ -6,7 +6,6 @@ import { t } from "i18next";
 import React from "react";
 import { Platform } from "react-native";
 import { useTheme } from "styled-components/native";
-import { AsyncData } from "./AsyncData";
 import { CodeItem } from "./CodeItem";
 import { Body, IconContent, Row } from "./styled";
 
@@ -56,7 +55,7 @@ export const Menu = () => {
 
 			<CodeItem />
 
-			<AsyncData />
+			{/* <AsyncData /> */}
 
 			{Platform.OS === "ios" && (
 				<Row onPress={sendEmail}>
