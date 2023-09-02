@@ -65,9 +65,7 @@ export const ModalCamera = ({
 
 				{!permission.granted ? (
 					<View>
-						<Text style={{ textAlign: "center" }}>
-							We need your permission to show the camera
-						</Text>
+						<Text style={{ textAlign: "center" }}>{t("permissions.info")}</Text>
 						<Button onPress={requestPermission}>
 							<Text
 								variant="body_large"

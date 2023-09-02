@@ -69,7 +69,10 @@
   "october": "Octubre",
   "of": "de",
   "permissions": {
-    "camera": "Permitir el uso de la cámara"
+    "camera": "Permitir el uso de la cámara",
+    "info": {
+      "camera": "Necesitamos su permiso para mostrar la cámara."
+    }
   },
   "placeholder": {
     "description": "¿Por qué deseas desarrollar este hábito?",

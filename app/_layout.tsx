@@ -6,6 +6,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack, router } from "expo-router";
+import * as StoreReview from "expo-store-review";
 import { t } from "i18next";
 import { useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
@@ -62,6 +63,17 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+	useEffect(() => {
+		(async () => {
+			const isAvailable = await StoreReview.isAvailableAsync();
+			if (isAvailable) {
+				if (await StoreReview.hasAction()) {
+					StoreReview.requestReview();
+				}
+			}
+		})();
+	});
+
 	return (
 		<>
 			<ProfileProvider>

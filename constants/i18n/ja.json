@@ -69,7 +69,10 @@
   "october": "10月",
   "of": "の",
   "permissions": {
-    "camera": "カメラの使用を許可する"
+    "camera": "カメラの使用を許可する",
+    "info": {
+      "camera": "カメラを見せるにはあなたの許可が必要です。"
+    }
   },
   "placeholder": {
     "description": "なぜこの習慣を身につけたいですか？",
