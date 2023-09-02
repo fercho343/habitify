@@ -43,4 +43,5 @@ interface HabitContextType {
 	removeHabit: (habitId: string) => void;
 	completedHabits: HabitCompletion[];
 	markHabitAsCompleted: (habitId: string) => void;
+	completedDays: CompletedDay[];
 }

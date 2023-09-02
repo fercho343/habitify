@@ -53,6 +53,7 @@ export const HabitContext = createContext<HabitContextType>({
 	removeHabit: (habitId: string) => {},
 	completedHabits: [],
 	markHabitAsCompleted: (habitId: string) => {},
+	completedDays: [],
 });
 
 export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
@@ -80,14 +81,14 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 
 				//Complete habits
 				const getCompletedHabits = await getAllCompletedHabitsDB(db);
-
 				if (getCompletedHabits !== null) {
 					setCompletedHabits(getCompletedHabits);
 				}
 
 				const getCompletedDay = await getAllCompletedDaysDB(db);
-				console.log(getCompletedDay.length);
-				// deleteAllCompletedDays(db);
+				if (getCompletedDay !== null) {
+					setCompletedDays(getCompletedDay);
+				}
 			} catch (error) {}
 		})();
 	}, []);
@@ -179,6 +180,12 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 			setHabits((prevHabits) =>
 				prevHabits.filter((habit) => habit.id !== habitId),
 			);
+
+			setCompletedHabits((prevCompletedHabit) =>
+				prevCompletedHabit.filter(
+					(completedHabit) => completedHabit.habitId !== habitId,
+				),
+			);
 		} catch (error) {
 			console.error("Error removing habit:", error);
 			// Manejo de errores si es necesario
@@ -234,6 +241,7 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 		removeHabit,
 		completedHabits,
 		markHabitAsCompleted,
+		completedDays,
 	};
 
 	return (
