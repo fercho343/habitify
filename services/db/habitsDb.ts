@@ -9,19 +9,19 @@ export async function createHabitsTable(
 		db.transaction((tx) => {
 			tx.executeSql(
 				`
-                CREATE TABLE IF NOT EXISTS habits (
-                    id TEXT PRIMARY KEY,
-                    name TEXT NOT NULL,
-                    description TEXT,
-                    icon TEXT NOT NULL,
-                    color TEXT NOT NULL,
-                    requiresGoal INTEGER NOT NULL,
-                    goalAmount INTEGER,
-                    measureUnit TEXT,
-                    daysOfWeek TEXT NOT NULL,
-                    hasReminder INTEGER NOT NULL,
-                    startTime TEXT NOT NULL
-                );
+					CREATE TABLE IF NOT EXISTS habits (
+							id TEXT PRIMARY KEY,
+							name TEXT NOT NULL,
+							description TEXT,
+							icon TEXT NOT NULL,
+							color TEXT NOT NULL,
+							requiresGoal INTEGER NOT NULL,
+							goalAmount INTEGER,
+							measureUnit TEXT,
+							daysOfWeek TEXT NOT NULL,
+							hasReminder INTEGER NOT NULL,
+							startTime TEXT NOT NULL
+					);
                 `,
 				[],
 				() => {
@@ -116,10 +116,10 @@ export async function saveHabitDB(
 		db.transaction((tx) => {
 			tx.executeSql(
 				`
-                INSERT INTO habits 
-                (id, name, description, icon, color, requiresGoal, goalAmount, measureUnit, daysOfWeek, hasReminder, startTime)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-                `,
+					INSERT INTO habits 
+					(id, name, description, icon, color, requiresGoal, goalAmount, measureUnit, daysOfWeek, hasReminder, startTime)
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+				`,
 				[
 					habit.id,
 					habit.name,
@@ -230,10 +230,6 @@ export const migrateDataFromAsyncStorageToSQLite = async (
 
 			// Borrar datos de AsyncStorage
 			await AsyncStorage.removeItem("@habits");
-
-			console.log("Migration successful");
-		} else {
-			console.log("No Habits to migrate");
 		}
 	} catch (error) {
 		console.error("Error during migration:", error);

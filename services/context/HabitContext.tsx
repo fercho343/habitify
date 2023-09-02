@@ -1,3 +1,4 @@
+import { useUpdateEffect } from "@/hooks/useUpdateEffect";
 import {
 	createCompletedHabitsTable,
 	deleteCompletedHabitsByHabitIdDB,
@@ -6,7 +7,7 @@ import {
 	migrateCompletedDataFromAsyncStorageToSQLite,
 	saveCompletedHabitDB,
 	updateCompletedHabitDB,
-} from "@/services/db/completedHabits";
+} from "@/services/db/completedHabitsDb";
 import {
 	createHabitsTable,
 	deleteHabitByIdDB,
@@ -16,7 +17,12 @@ import {
 	saveHabitDB,
 	updateHabitDB,
 } from "@/services/db/habitsDb";
-import { Habit, HabitCompletion, HabitContextType } from "@/types/habit";
+import {
+	CompletedDay,
+	Habit,
+	HabitCompletion,
+	HabitContextType,
+} from "@/types/habit";
 import { randomUUID } from "expo-crypto";
 import {
 	cancelScheduledNotificationAsync,
@@ -33,6 +39,12 @@ import {
 	useEffect,
 	useState,
 } from "react";
+import {
+	createCompletedDaysTable,
+	getAllCompletedDaysDB,
+	getCompletedDayByDateDB,
+	saveCompletedDayDB,
+} from "../db/completedDayDB";
 
 export const HabitContext = createContext<HabitContextType>({
 	habits: [],
@@ -46,6 +58,7 @@ export const HabitContext = createContext<HabitContextType>({
 export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 	const [habits, setHabits] = useState<Habit[]>([]);
 	const [completedHabits, setCompletedHabits] = useState<HabitCompletion[]>([]);
+	const [completedDays, setCompletedDays] = useState<CompletedDay[]>([]);
 
 	const db = SQLite.openDatabase("habitDevelop.db");
 
@@ -56,6 +69,7 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 			try {
 				createHabitsTable(db);
 				createCompletedHabitsTable(db);
+				createCompletedDaysTable(db);
 
 				//Habits
 				const getHabits = await getAllHabits(db);
@@ -66,14 +80,45 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 
 				//Complete habits
 				const getCompletedHabits = await getAllCompletedHabitsDB(db);
-				console.log(getCompletedHabits);
 
 				if (getCompletedHabits !== null) {
 					setCompletedHabits(getCompletedHabits);
 				}
+
+				const getCompletedDay = await getAllCompletedDaysDB(db);
+				console.log(getCompletedDay.length);
+				// deleteAllCompletedDays(db);
 			} catch (error) {}
 		})();
 	}, []);
+
+	useUpdateEffect(() => {
+		(async () => {
+			const allHabitsCompleted = checkIfAllHabitsCompleted(
+				habits,
+				completedHabits,
+			);
+
+			if (habits.length > 0) {
+				if (allHabitsCompleted) {
+					const completedDay = {
+						id: randomUUID(),
+						date: new Date(),
+						allHabitsCompleted: true,
+					};
+
+					const existingRecord = await getCompletedDayByDateDB(
+						db,
+						completedDay.date,
+					);
+
+					if (existingRecord === null) {
+						await saveCompletedDayDB(db, completedDay);
+					}
+				}
+			}
+		})();
+	}, [completedHabits, habits]);
 
 	const addHabit = async (newHabit: Habit): Promise<boolean> => {
 		try {
@@ -260,6 +305,28 @@ async function deletePushNotification(habitId: string) {
 	if (notificationIdentifier) {
 		cancelScheduledNotificationAsync(notificationIdentifier);
 	}
+}
+
+function checkIfAllHabitsCompleted(
+	habits: Habit[],
+	completedHabits: HabitCompletion[],
+): boolean {
+	const allHabitsCompleted = habits.every((habit) => {
+		const completedHabit = completedHabits.find(
+			(completed) => completed.habitId === habit.id,
+		);
+
+		if (
+			!completedHabit ||
+			(habit.requiresGoal &&
+				completedHabit.progressPercent !== habit.goalAmount)
+		) {
+			return false;
+		}
+		return true;
+	});
+
+	return allHabitsCompleted;
 }
 
 const sampleHabits = [
