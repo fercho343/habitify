@@ -41,7 +41,7 @@ export const Item: React.FC<Props> = ({
 		setCircumference(calcCircumference);
 	}, [radius]);
 
-	const { habits, completedHabits } = useHabit();
+	const { habits, completedHabits, completedDays } = useHabit();
 
 	const year = currentYear;
 	const month = currentMonth;
@@ -59,7 +59,16 @@ export const Item: React.FC<Props> = ({
 			.isSame(moment(completedHabit.completionDate).startOf("day")),
 	).length;
 
-	const progress = totalHabits > 0 ? habitsCompleted / totalHabits : 0;
+	const dayIsCompleted = completedDays.filter((completedDay) =>
+		currentDate.startOf("day").isSame(moment(completedDay.date).startOf("day")),
+	);
+
+	const progress =
+		dayIsCompleted.length > 0
+			? 1
+			: totalHabits > 0
+			? habitsCompleted / totalHabits
+			: 0;
 
 	const progressOffset = (1 - progress) * circumference;
 	const animatedProgress = useSharedValue(0);
