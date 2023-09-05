@@ -1,5 +1,5 @@
 import { Text } from "@/components/Text";
-import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import * as MailComposer from "expo-mail-composer";
 import { Link } from "expo-router";
 import { t } from "i18next";
