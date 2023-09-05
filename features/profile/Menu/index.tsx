@@ -45,14 +45,14 @@ export const Menu = () => {
 				</Row>
 			</Link>
 
-			{/* <Link href="/donations" asChild>
+			<Link href="/donations" asChild>
 				<Row>
 					<IconContent>
 						<FontAwesome name="gittip" size={25} color={theme.colors.box} />
 					</IconContent>
 					<Text variant="subtitle_small">{t("donations")}</Text>
 				</Row>
-			</Link> */}
+			</Link>
 
 			<CodeItem />
 
