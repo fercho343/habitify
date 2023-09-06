@@ -1,5 +1,6 @@
 import { Text } from "@/components/Text";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as Linking from "expo-linking";
 import * as Updates from "expo-updates";
 import { t } from "i18next";
 import React, { useEffect, useState } from "react";
@@ -9,6 +10,7 @@ import { Content, IconContent, Point, Row, Status } from "./styled";
 export const UpdatItem = () => {
 	const [haveUpdate, setUpdate] = useState<boolean>(false);
 	const theme = useTheme();
+	const url = Linking.useURL();
 
 	useEffect(() => {
 		(async () => {
@@ -20,6 +22,8 @@ export const UpdatItem = () => {
 			}
 		})();
 	}, []);
+
+	const showAlert = () => alert(url);
 
 	// async function onFetchUpdateAsync() {
 	// 	try {
@@ -39,7 +43,7 @@ export const UpdatItem = () => {
 
 	return (
 		<Content>
-			<Row>
+			<Row onPress={showAlert}>
 				<IconContent>
 					<MaterialIcons name="update" size={25} color={theme.colors.box} />
 				</IconContent>
