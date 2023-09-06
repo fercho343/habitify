@@ -43,7 +43,7 @@ export const UpdatItem = () => {
 
 	return (
 		<Content>
-			<Row onPress={showAlert}>
+			<Row>
 				<IconContent>
 					<MaterialIcons name="update" size={25} color={theme.colors.box} />
 				</IconContent>
