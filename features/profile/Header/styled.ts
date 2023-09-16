@@ -31,3 +31,7 @@ export const ItemMenu = styled.TouchableOpacity`
   border-radius: 10px;
   margin-bottom: 16px;
 `;
+
+export const Content = styled.TouchableOpacity`
+  position: relative;
+`;

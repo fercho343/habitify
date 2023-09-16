@@ -34,6 +34,7 @@ export default function RootLayout() {
 		MacPawSemiBold: require("@/assets/fonts/MacPaw/MacPaw-SemiBold.ttf"),
 		MacPawBold: require("@/assets/fonts/MacPaw/MacPaw-Bold.ttf"),
 		MacPawExtraBold: require("@/assets/fonts/MacPaw/MacPaw-ExtraBold.ttf"),
+		Nabla: require("@/assets/fonts/Nabla-Regular.ttf"),
 	});
 
 	// Expo Router uses Error Boundaries to catch errors in the navigation tree.

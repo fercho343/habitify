@@ -1,14 +1,14 @@
+import { Nv } from "@/components/Nv";
 import { Text } from "@/components/Text";
 import { useProfile } from "@/services/context/ProfileContext";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
 import { t } from "i18next";
 import { useCallback, useMemo, useRef, useState } from "react";
-import { TouchableOpacity } from "react-native";
 import { useTheme } from "styled-components/native";
 import { ModalCamera } from "./ModalCamera";
 import { NameInput } from "./NameInput";
-import { Avatar, BodySheet, Head, ItemMenu } from "./styled";
+import { Avatar, BodySheet, Content, Head, ItemMenu } from "./styled";
 
 export const Header = () => {
 	const theme = useTheme();
@@ -62,7 +62,7 @@ export const Header = () => {
 	return (
 		<>
 			<Head>
-				<TouchableOpacity onPress={handlePresentModalPress}>
+				<Content onPress={handlePresentModalPress}>
 					<Avatar
 						source={
 							picture
@@ -71,7 +71,8 @@ export const Header = () => {
 						}
 						transition={0}
 					/>
-				</TouchableOpacity>
+					<Nv width={60} height={60} bottom={-15} right={-10} fontSize={18} />
+				</Content>
 				<NameInput />
 			</Head>
 

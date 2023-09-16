@@ -1,99 +1,99 @@
 {
-  "accept": "Aceptar",
-  "add-habit": "Agregar Hábito",
-  "april": "Abril",
-  "august": "Agosto",
-  "camera": "Cámara",
-  "cancel": "Cancelar",
-  "code": "Código",
-  "completed-habits": "Hábitos completados el",
-  "contact-us": "Contáctanos",
-  "december": "Diciembre",
-  "define-time": "Definir Hora",
-  "delete": {
-    "delete": "Eliminar"
-  },
-  "description": "Descripción",
-  "donate-cashapp": "Donar a través de Cash App",
-  "donate-paypal": "Donar a través de PayPal",
-  "donation-message": "Apoya el Desarrollo de Nuestra Aplicación\n\nEn Habitify, nuestra misión es proporcionarte una herramienta poderosa para alcanzar tus metas y construir hábitos positivos en tu vida diaria. Para continuar mejorando y brindándote una experiencia excepcional, te invitamos a considerar hacer una donación.\n\nTú tienes el poder de contribuir directamente al futuro desarrollo de la aplicación y permitirnos seguir innovando y expandiendo nuestras capacidades. Tu apoyo nos permite mantener nuestra dedicación a la excelencia y continuar entregando valor a nuestra comunidad de usuarios.\n\nSi deseas apoyarnos, tienes la opción de hacer una donación a través de PayPal o Cash App. Cada contribución, independientemente de su tamaño, tiene un impacto significativo en nuestra capacidad para crecer y mejorar.",
-  "donations": "Donaciones",
-  "done": "Hecho",
-  "edit": {
-    "edit": "Editar",
-    "habit": "Editar Hábito"
-  },
-  "error": {
-    "color": "Selecciona un color",
-    "goal": "Se requiere un objetivo",
-    "icon": "Selecciona un icono",
-    "measure": "Selecciona la unidad de medida para tu meta",
-    "name": "El nombre es obligatorio",
-    "start-time": "Se requiere la fecha de inicio"
-  },
-  "february": "Febrero",
-  "friday": "Viernes",
-  "glasses": "vasos",
-  "has-reminder": "Activar recordatorio",
-  "home": "Inicio",
-  "icon": "Ícono",
-  "image-camera": "Tomar Foto",
-  "image-gallery": "Seleccionar de la Galería",
-  "information": {
-    "description": {
-      "important": "Queremos asegurarte que todos los datos relacionados con tus hábitos y logros están almacenados de forma segura en tu propio dispositivo. Esto significa que todos los detalles importantes sobre tus hábitos, tus completaciones y tus metas están resguardados en tu dispositivo móvil.",
-      "privacy": "Es esencial destacar que estos datos no están vinculados a ningún otro dispositivo ni servidor externo. No estamos almacenando ni compartiendo tus datos en la nube ni en ningún otro lugar. Esta decisión se tomó para brindarte un mayor nivel de privacidad y control sobre tu información personal. Además, hemos optado por este enfoque para poder ofrecerte nuestros servicios de manera gratuita. Mantener tus datos localmente nos permite mantener la aplicación sin costos ocultos ni suscripciones.",
-      "remember": "Debido a que los datos se almacenan localmente en tu dispositivo, se recomienda hacer copias de seguridad de tus hábitos y logros periódicamente. Así podrás asegurarte de que tus registros estén protegidos en caso de algún problema con tu dispositivo.",
-      "privacity": "Es esencial destacar que estos datos no están vinculados a ningún otro dispositivo o servidor externo. No estamos guardando ni compartiendo tus datos en la nube ni en ningún otro lugar. Esta decisión se tomó para brindarte un mayor nivel de privacidad y control sobre tu información personal. Además, hemos optado por este enfoque para poder ofrecerte nuestros servicios de manera gratuita. Mantener tus datos localmente nos permite mantener la aplicación sin costos ocultos ni suscripciones."
-    },
-    "information": "Información",
-    "title": {
-      "important": "Importante: Tus Datos están Seguros en tu Dispositivo",
-      "privacy": "Sin Vinculación a Otros Dispositivos",
-      "remember": "Recuerda: Hacer Copias de Seguridad",
-      "privacity": "Privacidad y Gratuidad"
-    }
-  },
-  "is-time": "Es Hora de",
-  "january": "Enero",
-  "journal": "Diario",
-  "july": "Julio",
-  "june": "Junio",
-  "march": "Marzo",
-  "may": "Mayo",
-  "mile": "millas",
-  "monday": "Lunes",
-  "name": "Nombre",
-  "need-goal": "¿Necesitas Establecer una Meta?",
-  "november": "Noviembre",
-  "october": "Octubre",
-  "of": "de",
-  "permissions": {
-    "camera": "Permitir el uso de la cámara",
-    "info": {
-      "camera": "Necesitamos su permiso para mostrar la cámara."
-    }
-  },
-  "placeholder": {
-    "description": "¿Por qué deseas desarrollar este hábito?",
-    "habit_name": "Ej. Beber agua"
-  },
-  "profile": "Perfil",
-  "progress": "Progreso",
-  "reminder": "Recordatorio",
-  "saturday": "Sábado",
-  "september": "Septiembre",
-  "steps": "pasos",
-  "sunday": "Domingo",
-  "take-picture": "Tomar Foto",
-  "thursday": "Jueves",
-  "today": "Hoy",
-  "tuesday": "Martes",
-  "wednesday": "Miércoles",
-  "welcome": "Bienvenid@",
-  "frequency": "Frecuencia",
-  "image-galery": "Escoger de la geleria",
-  "download-data": "Descargar tu informacion",
-  "async-data": "Sincronizar tus datos",
-  "new-update": "Hay nueva actualizacion"
+	"accept": "Aceptar",
+	"add-habit": "Agregar Hábito",
+	"april": "Abril",
+	"august": "Agosto",
+	"camera": "Cámara",
+	"cancel": "Cancelar",
+	"code": "Código",
+	"completed-habits": "Hábitos completados el",
+	"contact-us": "Contáctanos",
+	"december": "Diciembre",
+	"define-time": "Definir Hora",
+	"delete": {
+		"delete": "Eliminar"
+	},
+	"description": "Descripción",
+	"donate-cashapp": "Donar a través de Cash App",
+	"donate-paypal": "Donar a través de PayPal",
+	"donation-message": "Apoya el Desarrollo de Nuestra Aplicación\n\nEn Habitify, nuestra misión es proporcionarte una herramienta poderosa para alcanzar tus metas y construir hábitos positivos en tu vida diaria. Para continuar mejorando y brindándote una experiencia excepcional, te invitamos a considerar hacer una donación.\n\nTú tienes el poder de contribuir directamente al futuro desarrollo de la aplicación y permitirnos seguir innovando y expandiendo nuestras capacidades. Tu apoyo nos permite mantener nuestra dedicación a la excelencia y continuar entregando valor a nuestra comunidad de usuarios.\n\nSi deseas apoyarnos, tienes la opción de hacer una donación a través de PayPal o Cash App. Cada contribución, independientemente de su tamaño, tiene un impacto significativo en nuestra capacidad para crecer y mejorar.",
+	"donations": "Donaciones",
+	"done": "Hecho",
+	"edit": {
+		"edit": "Editar",
+		"habit": "Editar Hábito"
+	},
+	"error": {
+		"color": "Selecciona un color",
+		"goal": "Se requiere un objetivo",
+		"icon": "Selecciona un icono",
+		"measure": "Selecciona la unidad de medida para tu meta",
+		"name": "El nombre es obligatorio",
+		"start-time": "Se requiere la fecha de inicio"
+	},
+	"february": "Febrero",
+	"friday": "Viernes",
+	"glasses": "vasos",
+	"has-reminder": "Activar recordatorio",
+	"home": "Inicio",
+	"icon": "Ícono",
+	"image-camera": "Tomar Foto",
+	"image-gallery": "Seleccionar de la Galería",
+	"information": {
+		"description": {
+			"important": "Queremos asegurarte que todos los datos relacionados con tus hábitos y logros están almacenados de forma segura en tu propio dispositivo. Esto significa que todos los detalles importantes sobre tus hábitos, tus completaciones y tus metas están resguardados en tu dispositivo móvil.",
+			"privacy": "Es esencial destacar que estos datos no están vinculados a ningún otro dispositivo ni servidor externo. No estamos almacenando ni compartiendo tus datos en la nube ni en ningún otro lugar. Esta decisión se tomó para brindarte un mayor nivel de privacidad y control sobre tu información personal. Además, hemos optado por este enfoque para poder ofrecerte nuestros servicios de manera gratuita. Mantener tus datos localmente nos permite mantener la aplicación sin costos ocultos ni suscripciones.",
+			"remember": "Debido a que los datos se almacenan localmente en tu dispositivo, se recomienda hacer copias de seguridad de tus hábitos y logros periódicamente. Así podrás asegurarte de que tus registros estén protegidos en caso de algún problema con tu dispositivo.",
+			"privacity": "Es esencial destacar que estos datos no están vinculados a ningún otro dispositivo o servidor externo. No estamos guardando ni compartiendo tus datos en la nube ni en ningún otro lugar. Esta decisión se tomó para brindarte un mayor nivel de privacidad y control sobre tu información personal. Además, hemos optado por este enfoque para poder ofrecerte nuestros servicios de manera gratuita. Mantener tus datos localmente nos permite mantener la aplicación sin costos ocultos ni suscripciones."
+		},
+		"information": "Información",
+		"title": {
+			"important": "Importante: Tus Datos están Seguros en tu Dispositivo",
+			"privacy": "Sin Vinculación a Otros Dispositivos",
+			"remember": "Recuerda: Hacer Copias de Seguridad",
+			"privacity": "Privacidad y Gratuidad"
+		}
+	},
+	"is-time": "Es Hora de",
+	"january": "Enero",
+	"journal": "Diario",
+	"july": "Julio",
+	"june": "Junio",
+	"march": "Marzo",
+	"may": "Mayo",
+	"mile": "millas",
+	"monday": "Lunes",
+	"name": "Nombre",
+	"need-goal": "¿Necesitas Establecer una Meta?",
+	"november": "Noviembre",
+	"october": "Octubre",
+	"of": "de",
+	"permissions": {
+		"camera": "Permitir el uso de la cámara",
+		"info": {
+			"camera": "Necesitamos su permiso para mostrar la cámara."
+		}
+	},
+	"placeholder": {
+		"description": "¿Por qué deseas desarrollar este hábito?",
+		"habit_name": "Ej. Beber agua"
+	},
+	"profile": "Perfil",
+	"progress": "Progreso",
+	"reminder": "Recordatorio",
+	"saturday": "Sábado",
+	"september": "Septiembre",
+	"steps": "pasos",
+	"sunday": "Domingo",
+	"take-picture": "Tomar Foto",
+	"thursday": "Jueves",
+	"today": "Hoy",
+	"tuesday": "Martes",
+	"wednesday": "Miércoles",
+	"welcome": "Bienvenid@",
+	"frequency": "Frecuencia",
+	"image-galery": "Escoger de la galeria",
+	"download-data": "Descargar tu informacion",
+	"async-data": "Sincronizar tus datos",
+	"new-update": "Hay nueva actualizacion"
 }

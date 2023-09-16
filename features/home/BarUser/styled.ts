@@ -14,12 +14,16 @@ export const UserBox = styled(View)`
   align-items: center;
 `;
 
+export const UserContent = styled(View)`
+  position: relative;
+`;
+
 export const Avatar = styled(Image)`
   width: 50px;
   height: 50px;
   object-fit: cover;
   border-radius: 50px;
-  margin-right: 16px;
+  margin-right: 20px;
 `;
 
 export const IconButton = styled(TouchableOpacity)`

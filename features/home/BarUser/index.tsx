@@ -1,15 +1,18 @@
+//@ts-nocheck
+
+import { Nv } from "@/components/Nv";
 import { Text } from "@/components/Text";
 import { useProfile } from "@/services/context/ProfileContext";
 import { AntDesign } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { t } from "i18next";
 import { toLower } from "lodash";
-import { Avatar, Bar, IconButton, UserBox } from "./styled";
 //@ts-ignore
 import moment from "moment/min/moment-with-locales.min.js";
 import React from "react";
 import { View } from "react-native";
 import { useTheme } from "styled-components/native";
+import { Avatar, Bar, IconButton, UserBox, UserContent } from "./styled";
 
 export const BarUser = () => {
 	const theme = useTheme();
@@ -22,13 +25,16 @@ export const BarUser = () => {
 	return (
 		<Bar>
 			<UserBox>
-				<Avatar
-					source={
-						picture
-							? { uri: picture }
-							: require("@/assets/images/no-profile.png")
-					}
-				/>
+				<UserContent>
+					<Avatar
+						source={
+							picture
+								? { uri: picture }
+								: require("@/assets/images/no-profile.png")
+						}
+					/>
+					<Nv />
+				</UserContent>
 				<View>
 					<Text variant="subtitle_medium">
 						{t("welcome")}, {name}!
