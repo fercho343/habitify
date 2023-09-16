@@ -30,6 +30,12 @@ export interface HabitCompletion {
 	progressPercent?: number;
 }
 
+export interface CompletedDay {
+	id: string;
+	date: Date;
+	allHabitsCompleted: boolean;
+}
+
 interface HabitContextType {
 	habits: Habit[];
 	addHabit: (newHabit: Habit) => Promise<boolean>;
@@ -37,4 +43,5 @@ interface HabitContextType {
 	removeHabit: (habitId: string) => void;
 	completedHabits: HabitCompletion[];
 	markHabitAsCompleted: (habitId: string) => void;
+	completedDays: CompletedDay[];
 }

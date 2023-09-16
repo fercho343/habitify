@@ -27,7 +27,7 @@ export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 	const theme = useTheme();
 	const [circumference, setCircumference] = useState(0);
 	const today = moment().startOf("day");
-	const { habits, completedHabits } = useHabit();
+	const { habits, completedHabits, completedDays } = useHabit();
 
 	useEffect(() => {
 		const calcCircumference = 2 * Math.PI * RADIUS;
@@ -44,7 +44,16 @@ export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 			.isSame(moment(completedHabit.completionDate).startOf("day")),
 	).length;
 
-	const progress = totalHabits > 0 ? habitsCompleted / totalHabits : 0;
+	const dayIsCompleted = completedDays.filter((completedDay) =>
+		dayWeek.startOf("day").isSame(moment(completedDay.date).startOf("day")),
+	);
+
+	const progress =
+		dayIsCompleted.length > 0
+			? 1
+			: totalHabits > 0
+			? habitsCompleted / totalHabits
+			: 0;
 
 	const progressOffset = (1 - progress) * circumference;
 

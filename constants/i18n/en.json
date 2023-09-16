@@ -69,7 +69,10 @@
   "october": "October",
   "of": "of",
   "permissions": {
-    "camera": "Allow Camera Usage"
+    "camera": "Allow Camera Usage",
+    "info": {
+      "camera": "We need your permission to show the camera."
+    }
   },
   "placeholder": {
     "description": "Why do you want to develop this habit?",

@@ -201,10 +201,6 @@ export const migrateCompletedDataFromAsyncStorageToSQLite = async (
 
 			// Borrar datos de AsyncStorage
 			await AsyncStorage.removeItem("@completedHabits");
-
-			console.log("Migration of completedHabits successful");
-		} else {
-			console.log("No completedHabits to migrate");
 		}
 	} catch (error) {
 		console.error("Error during migration of completedHabits:", error);
