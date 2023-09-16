@@ -137,6 +137,43 @@ function RootLayoutNav() {
 							/>
 
 							<Stack.Screen
+								name="journal"
+								options={{
+									animation:
+										Platform.OS === "android" ? "slide_from_bottom" : "default",
+									title: t("journal"),
+									headerStyle: {
+										backgroundColor: lightTheme.colors.background,
+									},
+									headerTitleStyle: {
+										color: lightTheme.colors.text,
+										fontFamily: lightTheme.fonts.MacPaw,
+									},
+									headerLeft: () => (
+										<TouchableOpacity onPress={() => router.back()}>
+											<AntDesign
+												name="left"
+												size={25}
+												color="#fff"
+												style={Platform.OS === "android" && { marginRight: 10 }}
+											/>
+										</TouchableOpacity>
+									),
+
+									headerRight: () => (
+										<TouchableOpacity onPress={() => router.back()}>
+											<AntDesign
+												name="plus"
+												size={25}
+												color="#fff"
+												style={Platform.OS === "android" && { marginRight: 10 }}
+											/>
+										</TouchableOpacity>
+									),
+								}}
+							/>
+
+							<Stack.Screen
 								name="information"
 								options={{
 									presentation: "modal",

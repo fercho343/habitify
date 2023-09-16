@@ -28,12 +28,14 @@ export const Menu = () => {
 
 	return (
 		<Body>
-			{/* <Row>
-				<IconContent>
-					<Ionicons name="journal-sharp" size={25} color={theme.colors.box} />
-				</IconContent>
-				<Text variant="subtitle_small">{t("journal")}</Text>
-			</Row> */}
+			<Link href="/journal" asChild>
+				<Row>
+					<IconContent>
+						<Ionicons name="journal-sharp" size={25} color={theme.colors.box} />
+					</IconContent>
+					<Text variant="subtitle_small">{t("journal")}</Text>
+				</Row>
+			</Link>
 
 			<Link href="/information" asChild>
 				<Row>
