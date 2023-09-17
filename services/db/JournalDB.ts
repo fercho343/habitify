@@ -122,3 +122,72 @@ export async function saveJournalDB(
 		});
 	});
 }
+
+// Función para editar una entrada de diario existente por su ID
+export async function editJournalEntryDB(
+	db: SQLiteDatabase,
+	entryId: string,
+	newText: string,
+): Promise<void> {
+	try {
+		await db.transaction(async (tx) => {
+			const [query, params] = [
+				"UPDATE journal SET text = ? WHERE id = ?;",
+				[newText, entryId],
+			];
+
+			return new Promise<void>((resolve, reject) => {
+				tx.executeSql(
+					query,
+					params,
+					(_, result) => {
+						// Verificar si la actualización fue exitosa
+						if (result.rowsAffected > 0) {
+							resolve();
+						} else {
+							reject(
+								new Error(
+									"No se encontró ninguna entrada con el ID proporcionado.",
+								),
+							);
+						}
+					},
+					(_, error) => {
+						console.error("Error editing journal entry:", error);
+						reject(error);
+						return false;
+					},
+				);
+			});
+		});
+	} catch (error) {
+		console.error(
+			"Error en la transacción de edición de entrada de diario:",
+			error,
+		);
+		throw error;
+	}
+}
+
+export async function deleteAllJournalEntries(
+	db: SQLiteDatabase,
+): Promise<void> {
+	return new Promise<void>((resolve, reject) => {
+		db.transaction((tx) => {
+			tx.executeSql(
+				`
+          DELETE FROM journal;
+        `,
+				[],
+				() => {
+					resolve();
+				},
+				(_, error) => {
+					console.error("Error deleting all journal entries:", error);
+					reject(error);
+					return false;
+				},
+			);
+		});
+	});
+}

@@ -3,8 +3,9 @@ import { useProfile } from "@/services/context/ProfileContext";
 import { AntDesign } from "@expo/vector-icons";
 import { randomUUID } from "expo-crypto";
 import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
-import { useNavigation } from "expo-router";
+import { router, useNavigation } from "expo-router";
 import { t } from "i18next";
+import moment from "moment";
 import { useEffect, useRef } from "react";
 import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -19,9 +20,14 @@ export default function AddJournalScreen() {
 	const theme = useTheme();
 	//@ts-ignore
 	const navigation = useNavigation();
-	const richText = useRef<RichEditor>(null);
 
-	const { saveJournalEntry } = useProfile();
+	const { journalEntries, saveOrUpdateJournalEntry } = useProfile();
+
+	const haveJournalToday = journalEntries.find((entry) =>
+		moment(entry.date).startOf("day").isSame(moment().startOf("day")),
+	);
+
+	const richText = useRef<RichEditor>(null);
 
 	useEffect(() => {
 		navigation.setOptions({
@@ -42,11 +48,15 @@ export default function AddJournalScreen() {
 		const text = await richText.current?.getContentHtml();
 		const newText: string = text ? text : "";
 		const entry = {
-			id: randomUUID(),
+			id: haveJournalToday ? haveJournalToday.id : randomUUID(),
 			text: newText,
 			date: new Date(),
 		};
-		await saveJournalEntry(entry);
+		if (newText !== "") {
+			await saveOrUpdateJournalEntry(entry);
+
+			router.back();
+		}
 	};
 
 	async function onPressAddImage() {
@@ -96,9 +106,8 @@ export default function AddJournalScreen() {
 							color: theme.colors.text,
 						}}
 						placeholder={t("write-some")}
-						// initialContentHTML={
-						// 	"Hello <b>World</b> <p>this is a new paragraph</p> <p>this is another new paragraph</p>"
-						// }
+						//@ts-ignore
+						initialContentHTML={haveJournalToday ? haveJournalToday.text : ""}
 					/>
 				</KeyboardAvoidingView>
 			</ScrollView>

@@ -1,9 +1,11 @@
 import { ProfileType, ProviderProps } from "@/types/profile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SQLite from "expo-sqlite";
+import moment from "moment";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
 	createJournalTableIfNotExists,
+	editJournalEntryDB,
 	getAllJournalEntriesDB,
 	saveJournalDB,
 } from "../db/JournalDB";
@@ -11,13 +13,15 @@ import {
 interface ProfileContextType {
 	profile: ProfileType;
 	saveProfile: (profileInput: ProfileType) => void;
-	saveJournalEntry: (entry: JournalType) => void;
+	journalEntries: JournalType[];
+	saveOrUpdateJournalEntry: (entry: JournalType) => void;
 }
 
 export const ProfileContext = createContext<ProfileContextType>({
 	profile: { name: "", picture: "" },
 	saveProfile: (profileInput: ProfileType) => {},
-	saveJournalEntry: () => {},
+	journalEntries: [],
+	saveOrUpdateJournalEntry: () => {},
 });
 
 export const ProfileProvider: React.FC<ProviderProps> = ({ children }) => {
@@ -40,8 +44,9 @@ export const ProfileProvider: React.FC<ProviderProps> = ({ children }) => {
 				}
 
 				const getJournalEntries = await getAllJournalEntriesDB(db);
+				console.log(getJournalEntries);
 
-				if (getJournalEntries.length > 0) {
+				if (getJournalEntries !== null) {
 					setJournalEntries(getJournalEntries);
 				}
 			} catch (error) {}
@@ -63,10 +68,40 @@ export const ProfileProvider: React.FC<ProviderProps> = ({ children }) => {
 		}
 	};
 
-	const saveJournalEntry = async (entry: JournalType) => {
+	const saveOrUpdateJournalEntry = async (entry: JournalType) => {
 		try {
-			saveJournalDB(db, entry);
-		} catch (error) {}
+			const today = moment().startOf("day"); // Inicializa a las 12:00 a. m. del día de hoy
+
+			const existingEntry = journalEntries.find((journalEntry) =>
+				moment(journalEntry.date).startOf("day").isSame(today, "day"),
+			);
+
+			if (existingEntry) {
+				// Si existe una entrada con la fecha de hoy, editarla
+				const updatedEntry = { ...existingEntry, ...entry };
+				await editJournalEntryDB(db, updatedEntry.id, updatedEntry.text);
+
+				setJournalEntries((prevJournalEntries) =>
+					prevJournalEntries.map((journalEntry) =>
+						journalEntry.id === updatedEntry.id ? updatedEntry : journalEntry,
+					),
+				);
+			} else {
+				// Si no existe una entrada con la fecha de hoy, crear una nueva entrada
+				const newEntry = {
+					...entry,
+					date: today.toDate(), // Convierte la fecha Moment a un objeto Date
+				};
+				await saveJournalDB(db, newEntry);
+
+				setJournalEntries((prevJournalEntries) => [
+					...prevJournalEntries,
+					newEntry,
+				]);
+			}
+		} catch (error) {
+			console.error("Error saving or updating journal entry:", error);
+		}
 	};
 
 	return (
@@ -74,7 +109,8 @@ export const ProfileProvider: React.FC<ProviderProps> = ({ children }) => {
 			value={{
 				profile,
 				saveProfile,
-				saveJournalEntry,
+				journalEntries,
+				saveOrUpdateJournalEntry,
 			}}
 		>
 			{children}
