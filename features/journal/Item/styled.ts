@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const Body = styled.View`
+export const Body = styled.TouchableOpacity`
   width: 100%;
   padding: 10px;
   background-color: ${({ theme }) => theme.colors.box};

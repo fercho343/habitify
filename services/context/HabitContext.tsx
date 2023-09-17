@@ -84,10 +84,6 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 				if (getCompletedHabits !== null) {
 					setCompletedHabits(getCompletedHabits);
 				}
-				// console.log(getCompletedHabits.length);
-
-				// console.log(getCompletedHabits[0].id);
-				// deleteCompletedHabitsByHabitIdDB(db, getCompletedHabits[0].habitId);
 
 				const getCompletedDay = await getAllCompletedDaysDB(db);
 				if (getCompletedDay !== null) {

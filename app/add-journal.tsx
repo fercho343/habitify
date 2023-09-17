@@ -55,7 +55,7 @@ export default function AddJournalScreen() {
 		if (newText !== "") {
 			await saveOrUpdateJournalEntry(entry);
 
-			router.back();
+			router.push("/journal");
 		}
 	};
 

@@ -44,7 +44,6 @@ export const ProfileProvider: React.FC<ProviderProps> = ({ children }) => {
 				}
 
 				const getJournalEntries = await getAllJournalEntriesDB(db);
-				console.log(getJournalEntries);
 
 				if (getJournalEntries !== null) {
 					setJournalEntries(getJournalEntries);
