@@ -1,15 +1,23 @@
 import { ProfileType, ProviderProps } from "@/types/profile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as SQLite from "expo-sqlite";
 import { createContext, useContext, useEffect, useState } from "react";
+import {
+	createJournalTableIfNotExists,
+	getAllJournalEntriesDB,
+	saveJournalDB,
+} from "../db/JournalDB";
 
 interface ProfileContextType {
 	profile: ProfileType;
 	saveProfile: (profileInput: ProfileType) => void;
+	saveJournalEntry: (entry: JournalType) => void;
 }
 
 export const ProfileContext = createContext<ProfileContextType>({
 	profile: { name: "", picture: "" },
 	saveProfile: (profileInput: ProfileType) => {},
+	saveJournalEntry: () => {},
 });
 
 export const ProfileProvider: React.FC<ProviderProps> = ({ children }) => {
@@ -18,13 +26,25 @@ export const ProfileProvider: React.FC<ProviderProps> = ({ children }) => {
 		picture: "",
 	});
 
+	const [journalEntries, setJournalEntries] = useState<JournalType[]>([]);
+
+	const db = SQLite.openDatabase("habitDevelop.db");
+
 	useEffect(() => {
 		(async () => {
-			const getProfile = await AsyncStorage.getItem("@profile");
-			if (getProfile !== null) {
-				setProfile(JSON.parse(getProfile));
-			} else {
-			}
+			try {
+				createJournalTableIfNotExists(db);
+				const getProfile = await AsyncStorage.getItem("@profile");
+				if (getProfile !== null) {
+					setProfile(JSON.parse(getProfile));
+				}
+
+				const getJournalEntries = await getAllJournalEntriesDB(db);
+
+				if (getJournalEntries.length > 0) {
+					setJournalEntries(getJournalEntries);
+				}
+			} catch (error) {}
 		})();
 	}, []);
 
@@ -43,11 +63,18 @@ export const ProfileProvider: React.FC<ProviderProps> = ({ children }) => {
 		}
 	};
 
+	const saveJournalEntry = async (entry: JournalType) => {
+		try {
+			saveJournalDB(db, entry);
+		} catch (error) {}
+	};
+
 	return (
 		<ProfileContext.Provider
 			value={{
 				profile,
 				saveProfile,
+				saveJournalEntry,
 			}}
 		>
 			{children}

@@ -161,9 +161,38 @@ function RootLayoutNav() {
 									),
 
 									headerRight: () => (
-										<TouchableOpacity onPress={() => router.back()}>
+										<TouchableOpacity
+											onPress={() => router.push("/add-journal")}
+										>
 											<AntDesign
 												name="plus"
+												size={25}
+												color="#fff"
+												style={Platform.OS === "android" && { marginRight: 10 }}
+											/>
+										</TouchableOpacity>
+									),
+								}}
+							/>
+
+							<Stack.Screen
+								name="add-journal"
+								options={{
+									presentation: "modal",
+									animation:
+										Platform.OS === "android" ? "slide_from_bottom" : "default",
+									title: t("write-journal"),
+									headerStyle: {
+										backgroundColor: lightTheme.colors.background,
+									},
+									headerTitleStyle: {
+										color: lightTheme.colors.text,
+										fontFamily: lightTheme.fonts.MacPaw,
+									},
+									headerLeft: () => (
+										<TouchableOpacity onPress={() => router.back()}>
+											<AntDesign
+												name="down"
 												size={25}
 												color="#fff"
 												style={Platform.OS === "android" && { marginRight: 10 }}

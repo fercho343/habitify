@@ -61,9 +61,6 @@ export const HabitProvider: React.FC<HabitProviderProps> = ({ children }) => {
 	const [completedHabits, setCompletedHabits] = useState<HabitCompletion[]>([]);
 	const [completedDays, setCompletedDays] = useState<CompletedDay[]>([]);
 
-	const [currentStreak, setCurrentStreak] = useState<number>(0);
-	const [currentLevel, setCurrentLevel] = useState<number>(1);
-
 	const db = SQLite.openDatabase("habitDevelop.db");
 
 	useEffect(() => {
