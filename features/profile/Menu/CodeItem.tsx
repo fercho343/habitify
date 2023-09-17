@@ -14,7 +14,7 @@ export const CodeItem = () => {
 
 	const _handlePressButtonAsync = async () => {
 		const result = await openBrowserAsync(
-			"https://github.com/fernando343/habitify",
+			"https://github.com/habitify/habitify",
 			{
 				presentationStyle: WebBrowserPresentationStyle.FORM_SHEET,
 			},
