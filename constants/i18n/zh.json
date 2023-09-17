@@ -96,5 +96,6 @@
   "download-data": "下载您的信息",
   "new-update": "有新更新了",
   "write-some": "写一些东西",
-  "write-journal": "写在你的日记里"
+  "write-journal": "写在你的日记里",
+  "async-data": "同步您的数据"
 }

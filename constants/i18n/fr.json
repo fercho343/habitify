@@ -96,5 +96,6 @@
   "download-data": "Téléchargez vos informations",
   "new-update": "Il y a une nouvelle mise à jour",
   "write-some": "Écris quelque chose",
-  "write-journal": "Écrivez dans votre journal"
+  "write-journal": "Écrivez dans votre journal",
+  "async-data": "Synchronisez vos données"
 }

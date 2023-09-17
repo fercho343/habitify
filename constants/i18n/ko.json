@@ -96,5 +96,6 @@
   "download-data": "귀하의 정보를 다운로드하세요",
   "new-update": "새로운 업데이트가 있습니다",
   "write-some": "뭔가 쓰기",
-  "write-journal": "일기에 쓰세요"
+  "write-journal": "일기에 쓰세요",
+  "async-data": "데이터 동기화"
 }

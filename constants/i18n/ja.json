@@ -96,5 +96,6 @@
   "download-data": "自分の情報をダウンロードする",
   "new-update": "新しいアップデートがあります",
   "write-some": "何かを書く",
-  "write-journal": "日記に書いてください"
+  "write-journal": "日記に書いてください",
+  "async-data": "データを同期する"
 }
