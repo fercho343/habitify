@@ -1,9 +1,0 @@
-{
-  "faq.title": "常见问题",
-  "faq.question1": "如何开始使用 Habitify？",
-  "faq.answer1": "入门很简单！只需从 App Store 下载 Habitify 应用并创建帐户。您可以立即开始添加习惯并跟踪您的进展。",
-  "faq.question2": "我能在多个设备之间同步我的数据吗？",
-  "faq.answer2": "目前，Habitify 不支持在多个设备之间同步数据。所有数据都存储在您的设备上，以保护您的隐私和安全。",
-  "faq.question3": "如何联系支持？",
-  "faq.answer3": "如果您有任何问题或需要帮助，请随时发送电子邮件至 {{email}}。"
-}

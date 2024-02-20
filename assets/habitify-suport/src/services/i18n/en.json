@@ -1,9 +1,0 @@
-{
-  "faq.title": "Frequently Asked Questions",
-  "faq.question1": "How can I get started with Habitify?",
-  "faq.answer1": "Getting started is easy! Simply download the Habitify app from the App Store and create an account. You can start adding habits and tracking your progress right away.",
-  "faq.question2": "Can I sync my data across multiple devices?",
-  "faq.answer2": "Currently, Habitify does not support data synchronization across devices. All your data is stored locally on your device for your privacy and security.",
-  "faq.question3": "How can I contact support?",
-  "faq.answer3": "If you have any questions or need assistance, please feel free to email us at {{email}}."
-}
