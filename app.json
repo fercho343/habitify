@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "habitity",
-    "slug": "habitity",
+    "name": "habitify",
+    "slug": "habitify",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -31,8 +31,8 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font",
-      "expo-localization"
+      "expo-localization",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

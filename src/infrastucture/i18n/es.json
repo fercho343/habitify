@@ -1,0 +1,25 @@
+{
+  "add": "Anadir",
+  "color": "Color",
+  "description": "Descripcion",
+  "error": {
+    "name": "Se requiere el nombre"
+  },
+  "friday": "Viernes",
+  "hasReminder": "Activar recordatorio",
+  "icon": "Icono",
+  "monday": "Lunes",
+  "name": "Nombre",
+  "placeholder": {
+    "habitDescription": "Por que deseas desarollar este habito",
+    "habitName": "Ej. Leer un libro"
+  },
+  "requiresGoal": "Necesitas establecer una meta?",
+  "saturday": "Sábado",
+  "sunday": "Domingo",
+  "thursday": "Jueves",
+  "today": "Hoy",
+  "tuesday": "Martes",
+  "wednesday": "Miércoles",
+  "welcome": "Bienvenid@"
+}
