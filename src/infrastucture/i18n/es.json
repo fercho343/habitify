@@ -1,6 +1,7 @@
 {
   "add": "Anadir",
   "color": "Color",
+  "definedHour": "Definir hora",
   "description": "Descripcion",
   "error": {
     "name": "Se requiere el nombre"

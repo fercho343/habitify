@@ -2,6 +2,7 @@ import { ColorButton } from "@/src/components/color-button";
 import { IconButton } from "@/src/components/icon-button";
 import { Switch } from "@/src/components/switch";
 import { TextInput } from "@/src/components/text-input";
+import { TimeImput } from "@/src/components/time-input";
 import {
 	Button,
 	ButtonText,
@@ -18,7 +19,7 @@ import { useForm } from "react-hook-form";
 
 export const FormHabit = () => {
 	const toast = useToast();
-	const { control, handleSubmit } = useForm({
+	const { control, watch, handleSubmit } = useForm({
 		defaultValues: {
 			name: "",
 			description: "",
@@ -39,11 +40,14 @@ export const FormHabit = () => {
 			render: ({ id }) => {
 				const toastId = `toast-${id}`;
 				return (
-					<Toast  nativeID={toastId} action="success" variant="solid" rounded='$full'>
+					<Toast
+						nativeID={toastId}
+						action="success"
+						variant="solid"
+						rounded="$full"
+					>
 						<VStack space="xs">
-							<ToastDescription>
-								Su habito se anadio con exito
-							</ToastDescription>
+							<ToastDescription>Su habito se anadio con exito</ToastDescription>
 						</VStack>
 					</Toast>
 				);
@@ -77,11 +81,19 @@ export const FormHabit = () => {
 				<ColorButton control={control} />
 			</HStack>
 
-			<Switch label={t("requiresGoal")} />
+			<Divider mt={15} mb={15} />
+
+			<Switch
+				control={control}
+				name={"requiresGoal"}
+				label={t("requiresGoal")}
+			/>
 
 			<Divider mb={15} />
 
-			<Switch label={t("hasReminder")} />
+			<Switch control={control} name={"hasReminder"} label={t("hasReminder")} />
+
+			{watch("hasReminder") && <TimeImput />}
 
 			<Button borderRadius="$full" onPress={handleSubmit(onSubmit)}>
 				<ButtonText color="$background">{t("add")}</ButtonText>
