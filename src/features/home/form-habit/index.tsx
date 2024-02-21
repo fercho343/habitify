@@ -56,7 +56,7 @@ export const FormHabit = () => {
 	};
 
 	return (
-		<ScrollView px={16} mt={10}>
+		<ScrollView mt={10}>
 			<TextInput
 				control={control}
 				name="name"
