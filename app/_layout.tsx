@@ -5,6 +5,7 @@ import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { useFonts } from "expo-font";
 import { Tabs } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { SQLiteProvider } from "expo-sqlite/next";
 import { useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
 
@@ -56,18 +57,20 @@ function RootLayoutNav() {
 	return (
 		<I18nextProvider i18n={i18n}>
 			<GluestackUIProvider config={config} colorMode="dark">
-				<NotificationProvider>
-					<Tabs
-						screenOptions={{
-							headerShown: false,
-							tabBarStyle: { display: "none" },
-						}}
-					>
-						<Tabs.Screen name="(habits)" />
-						<Tabs.Screen name="(progress)" />
-						<Tabs.Screen name="(profile)" />
-					</Tabs>
-				</NotificationProvider>
+				<SQLiteProvider databaseName="habitDevelop.db">
+					<NotificationProvider>
+						<Tabs
+							screenOptions={{
+								headerShown: false,
+								tabBarStyle: { display: "none" },
+							}}
+						>
+							<Tabs.Screen name="(habits)" />
+							<Tabs.Screen name="(progress)" />
+							<Tabs.Screen name="(profile)" />
+						</Tabs>
+					</NotificationProvider>
+				</SQLiteProvider>
 			</GluestackUIProvider>
 		</I18nextProvider>
 	);

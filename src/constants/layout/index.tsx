@@ -1,7 +1,13 @@
 import { BottomTab } from "@/src/components/bottom-tab";
-import { ArrowLeftIcon, Center, Icon, Text, View } from "@gluestack-ui/themed";
+import {
+	ArrowLeftIcon,
+	Button,
+	Center,
+	Icon,
+	Text,
+	View,
+} from "@gluestack-ui/themed";
 import { useRouter } from "expo-router";
-import { TouchableOpacity } from "react-native";
 import { Bar, Body } from "./styled";
 
 export const Layout: React.FC<Props> = ({
@@ -18,13 +24,11 @@ export const Layout: React.FC<Props> = ({
 			{useAppBar && (
 				<Bar>
 					{useBack && (
-						<View w="2%">
-							<TouchableOpacity onPress={() => router.back()}>
-								<Icon as={ArrowLeftIcon} size="xl" color="#fff" />
-							</TouchableOpacity>
-						</View>
+						<Button w={30} h={30} bg='$background' onPress={() => router.back()}>
+							<Icon as={ArrowLeftIcon} size="xl" color="#fff" />
+						</Button>
 					)}
-					<View w={useBack ? "97%" : "100%"}>
+					<View w={useBack ? "80%" : "100%"}>
 						<Center>
 							<Text fontFamily="MacPawBold" size="lg">
 								{label}

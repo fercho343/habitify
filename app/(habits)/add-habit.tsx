@@ -4,7 +4,7 @@ import { t } from "i18next";
 
 export default function AddHabitScreen(){
     return (
-        <Layout label={t('addHabit')}>
+        <Layout label={t('addHabit')} useBack>
             <FormHabit />
         </Layout>
     )

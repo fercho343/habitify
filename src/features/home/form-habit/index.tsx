@@ -14,8 +14,11 @@ import {
 	VStack,
 	useToast,
 } from "@gluestack-ui/themed";
+import { NotificationFeedbackType, notificationAsync } from "expo-haptics";
 import { t } from "i18next";
+import { toLower } from "lodash";
 import { useForm } from "react-hook-form";
+import { TouchableOpacity } from "react-native";
 
 export const FormHabit = () => {
 	const toast = useToast();
@@ -33,23 +36,26 @@ export const FormHabit = () => {
 	const onSubmit = async (data: any) => {
 		console.log(data);
 
-		// router.back();
-
 		await toast.show({
 			placement: "bottom",
 			render: ({ id }) => {
+				notificationAsync(NotificationFeedbackType.Success);
 				const toastId = `toast-${id}`;
 				return (
-					<Toast
-						nativeID={toastId}
-						action="success"
-						variant="solid"
-						rounded="$full"
-					>
-						<VStack space="xs">
-							<ToastDescription>Su habito se anadio con exito</ToastDescription>
-						</VStack>
-					</Toast>
+					<TouchableOpacity onPress={() => toast.close(id)}>
+						<Toast
+							nativeID={toastId}
+							action="success"
+							variant="solid"
+							rounded="$full"
+						>
+							<VStack space="xs">
+								<ToastDescription>
+									El habito {toLower(data.name)} se anadio con exito
+								</ToastDescription>
+							</VStack>
+						</Toast>
+					</TouchableOpacity>
 				);
 			},
 		});
