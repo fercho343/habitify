@@ -10,7 +10,6 @@ export const Box = styled(TouchableOpacity, {
 	w: 45,
 	h: 45,
 	borderColor: "$box",
-	borderWidth: "$2",
 	bg: "$box",
 	rounded: "$full",
 	justifyContent: "center",

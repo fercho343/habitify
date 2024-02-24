@@ -6,7 +6,7 @@ import { Bar, Content } from "./styled";
 
 //@ts-ignore
 export const BottomTab = () => {
-	const state = useRootNavigationState().index;
+	const state = useRootNavigationState()?.index;
 	const { bottom } = useSafeAreaInsets()
 	
 	return (

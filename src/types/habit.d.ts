@@ -1,6 +1,6 @@
 type Color = `#${string}`;
 
-export type DayOfWeek =
+export type Frequency =
 	| "monday"
 	| "tuesday"
 	| "wednesday"
@@ -17,7 +17,7 @@ export interface HabitForm {
 	requiresGoal: boolean;
 	goalAmount?: number | null;
 	measureUnit?: string;
-	daysOfWeek: Array<DayOfWeek>;
+	frequency: Array<Frequency>;
 	hasReminder: boolean;
 	startTime: string;
 }

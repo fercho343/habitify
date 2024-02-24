@@ -2,11 +2,21 @@
   "add": "Anadir",
   "addHabit": "Anadir habito",
   "color": "Color",
+  "days": {
+    "friday": "Viernes",
+    "monday": "Lunes",
+    "saturday": "Sabado",
+    "sunday": "Domingo",
+    "thursday": "Jueves",
+    "tuesday": "Martes",
+    "wednesday": "Miercoles"
+  },
   "definedHour": "Definir hora",
   "description": "Descripcion",
   "error": {
     "name": "Se requiere el nombre"
   },
+  "frequencie": "Frecuencia",
   "friday": "Viernes",
   "habits": "Habitos",
   "hasReminder": "Activar recordatorio",

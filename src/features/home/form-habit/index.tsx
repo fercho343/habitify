@@ -1,4 +1,5 @@
 import { ColorButton } from "@/src/components/color-button";
+import { FrequencieButtons } from "@/src/components/frequencie-buttons";
 import { IconButton } from "@/src/components/icon-button";
 import { Switch } from "@/src/components/switch";
 import { TextInput } from "@/src/components/text-input";
@@ -32,9 +33,21 @@ export const FormHabit = () => {
 			goalAmount: 0,
 			requiresGoal: false,
 			measureUnit: "",
+			frequency: [
+				"monday",
+				"tuesday",
+				"wednesday",
+				"thursday",
+				"friday",
+				"saturday",
+				"sunday",
+			],
 			hasReminder: true,
 		},
 	});
+
+	console.log(watch('frequency'));
+	
 
 	const onSubmit = async (data: any) => {
 		console.log(data);
@@ -99,6 +112,8 @@ export const FormHabit = () => {
 			/>
 
 			<Divider mb={15} />
+
+			<FrequencieButtons control={control} />
 
 			<Switch control={control} name={"hasReminder"} label={t("hasReminder")} />
 
