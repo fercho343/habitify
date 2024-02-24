@@ -8,6 +8,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { SQLiteProvider } from "expo-sqlite/next";
 import { useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -59,16 +60,18 @@ function RootLayoutNav() {
 			<GluestackUIProvider config={config} colorMode="dark">
 				<SQLiteProvider databaseName="habitDevelop.db">
 					<NotificationProvider>
-						<Tabs
-							screenOptions={{
-								headerShown: false,
-								tabBarStyle: { display: "none" },
-							}}
-						>
-							<Tabs.Screen name="(habits)" />
-							<Tabs.Screen name="(progress)" />
-							<Tabs.Screen name="(profile)" />
-						</Tabs>
+						<GestureHandlerRootView style={{ flex: 1 }}>
+							<Tabs
+								screenOptions={{
+									headerShown: false,
+									tabBarStyle: { display: "none" },
+								}}
+							>
+								<Tabs.Screen name="(habits)" />
+								<Tabs.Screen name="(progress)" />
+								<Tabs.Screen name="(profile)" />
+							</Tabs>
+						</GestureHandlerRootView>
 					</NotificationProvider>
 				</SQLiteProvider>
 			</GluestackUIProvider>
