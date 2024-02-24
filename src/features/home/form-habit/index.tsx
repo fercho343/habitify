@@ -3,6 +3,7 @@ import { IconButton } from "@/src/components/icon-button";
 import { Switch } from "@/src/components/switch";
 import { TextInput } from "@/src/components/text-input";
 import { TimeImput } from "@/src/components/time-input";
+import { HabitForm } from "@/src/types/habit";
 import {
 	Button,
 	ButtonText,
@@ -22,13 +23,15 @@ import { TouchableOpacity } from "react-native";
 
 export const FormHabit = () => {
 	const toast = useToast();
-	const { control, watch, handleSubmit } = useForm({
+	const { control, watch, handleSubmit } = useForm<HabitForm>({
 		defaultValues: {
 			name: "",
 			description: "",
 			icon: "",
 			color: "#ffffff",
+			goalAmount: 0,
 			requiresGoal: false,
+			measureUnit: "",
 			hasReminder: true,
 		},
 	});
