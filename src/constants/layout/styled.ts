@@ -6,6 +6,7 @@ export const Body = styled(SafeAreaView, {
 	backgroundColor: "$background",
 	flex: 1,
 	px: 16,
+	position: "relative"
 });
 
 export const Bar = styled(View, {

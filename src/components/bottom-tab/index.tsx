@@ -11,21 +11,21 @@ export const BottomTab = ({ state }) => {
 					label={"home"}
 					icon="home"
 					isActive={state.index === 0}
-					onPress={() => router.replace("/")}
+					onPress={state.index !== 0 ? () => router.replace("/") : () => {}}
 				/>
 
 				<Item
 					label={"progress"}
 					icon="bar-chart"
 					isActive={state.index === 1}
-					onPress={() => router.replace("/progress")}
+					onPress={state.index === 0 ? () => router.replace("/") : () => {}}
 				/>
 
 				<Item
 					label={"progress"}
 					icon="person"
 					isActive={state.index === 2}
-					onPress={() => router.replace("/profile")}
+					onPress={state.index === 0 ? () => router.replace("/") : () => {}}
 				/>
 			</Content>
 		</Bar>
