@@ -3,7 +3,7 @@ import { TopBar } from "@/src/features/home/top-bar";
 
 export default function HomeScreen() {
 	return (
-		<Layout useAppBar={false}>
+		<Layout useAppBar={false} useBottomBar>
 			<TopBar />
 		</Layout>
 	);

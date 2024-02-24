@@ -3,7 +3,7 @@ import i18n from "@/src/infrastucture/i18n";
 import { NotificationProvider } from "@/src/services/context/notification.context";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Tabs } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
@@ -57,9 +57,16 @@ function RootLayoutNav() {
 		<I18nextProvider i18n={i18n}>
 			<GluestackUIProvider config={config} colorMode="dark">
 				<NotificationProvider>
-					<Stack>
-						<Stack.Screen name="(habits)" options={{ headerShown: false }} />
-					</Stack>
+					<Tabs
+						screenOptions={{
+							headerShown: false,
+							tabBarStyle: { display: "none" },
+						}}
+					>
+						<Tabs.Screen name="(habits)" />
+						<Tabs.Screen name="(progress)" />
+						<Tabs.Screen name="(profile)" />
+					</Tabs>
 				</NotificationProvider>
 			</GluestackUIProvider>
 		</I18nextProvider>

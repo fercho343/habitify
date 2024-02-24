@@ -1,31 +1,36 @@
-import { router } from "expo-router";
+import { router, useRootNavigationState } from "expo-router";
+import { t } from "i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Item } from "./item";
 import { Bar, Content } from "./styled";
 
 //@ts-ignore
-export const BottomTab = ({ state }) => {
+export const BottomTab = () => {
+	const state = useRootNavigationState().index;
+	const { bottom } = useSafeAreaInsets()
+	
 	return (
-		<Bar>
+		<Bar sx={{ bottom }}>
 			<Content>
 				<Item
-					label={"home"}
+					label={t("habits")}
 					icon="home"
-					isActive={state.index === 0}
-					onPress={state.index !== 0 ? () => router.replace("/") : () => {}}
+					isActive={state === 0}
+					onPress={state !== 0 ? () => router.replace("/") : () => {}}
 				/>
 
 				<Item
-					label={"progress"}
+					label={t("progress")}
 					icon="bar-chart"
-					isActive={state.index === 1}
-					onPress={state.index === 0 ? () => router.replace("/") : () => {}}
+					isActive={state === 1}
+					onPress={state !== 1 ? () => router.replace("/(progress)") : () => {}}
 				/>
 
 				<Item
-					label={"progress"}
+					label={t("profile")}
 					icon="person"
-					isActive={state.index === 2}
-					onPress={state.index === 0 ? () => router.replace("/") : () => {}}
+					isActive={state === 2}
+					onPress={state !== 2 ? () => router.replace("/(profile)") : () => {}}
 				/>
 			</Content>
 		</Bar>

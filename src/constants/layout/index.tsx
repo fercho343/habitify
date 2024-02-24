@@ -1,6 +1,6 @@
 import { BottomTab } from "@/src/components/bottom-tab";
 import { ArrowLeftIcon, Center, Icon, Text, View } from "@gluestack-ui/themed";
-import { useNavigation, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { TouchableOpacity } from "react-native";
 import { Bar, Body } from "./styled";
 
@@ -12,7 +12,6 @@ export const Layout: React.FC<Props> = ({
 	label = "",
 }) => {
 	const router = useRouter();
-	const state = useNavigation().getState();
 
 	return (
 		<Body>
@@ -25,16 +24,18 @@ export const Layout: React.FC<Props> = ({
 							</TouchableOpacity>
 						</View>
 					)}
-					<View w="97%">
+					<View w={useBack ? "97%" : "100%"}>
 						<Center>
-							<Text size="lg">{label}</Text>
+							<Text fontFamily="MacPawBold" size="lg">
+								{label}
+							</Text>
 						</Center>
 					</View>
 				</Bar>
 			)}
 			{children}
 
-			<BottomTab state={state} />
+			{useBottomBar && <BottomTab />}
 		</Body>
 	);
 };

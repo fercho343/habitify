@@ -4,10 +4,9 @@ import { BlurView } from "expo-blur";
 import { Text, TouchableOpacity } from "react-native";
 
 export const Bar = styled(View, {
-	width: "90%",
+	width: "95%",
 	height: 60,
 	position: "absolute",
-	bottom: 25,
 	alignSelf: "center",
 	borderRadius: 50,
 });
@@ -49,7 +48,7 @@ export const ItemBody = styled(TouchableOpacity, {
 });
 
 export const Label = styled(Text, {
-	display:'none',
+	display: "none",
 	ml: 5,
 	variants: {
 		isActive: {

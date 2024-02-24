@@ -8,6 +8,7 @@
     "name": "Se requiere el nombre"
   },
   "friday": "Viernes",
+  "habits": "Habitos",
   "hasReminder": "Activar recordatorio",
   "icon": "Icono",
   "monday": "Lunes",
@@ -16,6 +17,8 @@
     "habitDescription": "Por que deseas desarollar este habito",
     "habitName": "Ej. Leer un libro"
   },
+  "profile": "Perfil",
+  "progress": "Progreso",
   "requiresGoal": "Necesitas establecer una meta?",
   "saturday": "Sábado",
   "sunday": "Domingo",
