@@ -1,13 +1,13 @@
 import { Frequency } from "@/src/types/habit";
 import { useStyled } from "@gluestack-ui/themed";
 import { t } from "i18next";
-import { Moment } from "moment";
+import moment, { Moment } from "moment";
 import { useEffect, useState } from "react";
 import Animated, {
-    Easing,
-    useAnimatedProps,
-    useSharedValue,
-    withTiming,
+	Easing,
+	useAnimatedProps,
+	useSharedValue,
+	withTiming,
 } from "react-native-reanimated";
 import { Circle, Svg, Text } from "react-native-svg";
 import { Body } from "./styled";
@@ -17,6 +17,9 @@ const STROKE_WIDTH = 2;
 
 export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 	const colors = useStyled().config.tokens.colors;
+	const today = moment().startOf("day");
+	console.log(dayWeek === today);
+
 	const [circumference, setCircumference] = useState<number>(0);
 
 	useEffect(() => {
@@ -26,7 +29,7 @@ export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 
 	const totalHabits = 10;
 	const totalHabitsComplete = Math.floor(Math.random() * 10) + 1;
-    
+
 	const progress = totalHabitsComplete / totalHabits;
 	const progressOffset = (1 - progress) * circumference;
 
@@ -60,7 +63,11 @@ export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 					cx={RADIUS}
 					cy={RADIUS}
 					r={RADIUS - STROKE_WIDTH / 2}
-					stroke={colors.primary400}
+					stroke={
+						dayWeek.format("DD") === today.format("DD")
+							? colors.secondary200
+							: colors.primary400
+					}
 					strokeWidth={STROKE_WIDTH}
 					strokeDasharray={circumference}
 					strokeDashoffset={progressOffset}
