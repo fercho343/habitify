@@ -2918,6 +2918,11 @@
   dependencies:
     invariant "^2.2.4"
 
+"@react-native-community/hooks@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/hooks/-/hooks-3.0.0.tgz#af5f2ca32eea59b792ce9e3d9a4cf0354f9b195f"
+  integrity sha512-g2OyxXHfwIytXUJitBR6Z/ISoOfp0WKx5FOv+NqJ/CrWjRDcTw6zXE5I1C9axfuh30kJqzWchVfCDrkzZYTxqg==
+
 "@react-native/assets-registry@0.73.1", "@react-native/assets-registry@~0.73.1":
   version "0.73.1"
   resolved "https://registry.yarnpkg.com/@react-native/assets-registry/-/assets-registry-0.73.1.tgz#e2a6b73b16c183a270f338dc69c36039b3946e85"
@@ -5345,12 +5350,19 @@ expo-camera@~14.0.5:
   dependencies:
     invariant "^2.2.4"
 
-expo-constants@~15.4.0, expo-constants@~15.4.3:
+expo-constants@~15.4.0, expo-constants@~15.4.3, expo-constants@~15.4.5:
   version "15.4.5"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-15.4.5.tgz#81756a4c4e1c020f840a419cd86a124a6d1fb35b"
   integrity sha512-1pVVjwk733hbbIjtQcvUFCme540v4gFemdNlaxM2UXKbfRCOh2hzgKN5joHMOysoXQe736TTUrRj7UaZI5Yyhg==
   dependencies:
     "@expo/config" "~8.5.0"
+
+expo-device@~5.9.3:
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/expo-device/-/expo-device-5.9.3.tgz#0ad61da681424aa682fa03001d0344394c01f8a1"
+  integrity sha512-azH5rz8krDZUJb/arqkcA6oZGaX2T5s4aaXIMFsDDzvq8TW0CttZZy2HFp6itmFdiKGdRpFX3/Gj0n6ZmPoJ/w==
+  dependencies:
+    ua-parser-js "^0.7.33"
 
 expo-eas-client@~0.11.0:
   version "0.11.2"
@@ -9528,6 +9540,11 @@ typescript@^5.1.3:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.3.3.tgz#b3ce6ba258e72e6305ba66f5c9b452aaee3ffe37"
   integrity sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==
+
+ua-parser-js@^0.7.33:
+  version "0.7.37"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.37.tgz#e464e66dac2d33a7a1251d7d7a99d6157ec27832"
+  integrity sha512-xV8kqRKM+jhMvcHWUKthV9fNebIzrNy//2O9ZwWcfiBFR5f25XVZPLlEajk/sf3Ra15V92isyQqnIEXRDaZWEA==
 
 ua-parser-js@^1.0.35:
   version "1.0.37"

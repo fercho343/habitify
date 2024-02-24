@@ -7,6 +7,9 @@
                 "noBannedTypes": "off",
                 "noUselessFragments": "off"
             },
+            "correctness": {
+                "useExhaustiveDependencies": "off"
+            },
             "recommended": true,
             "security": {
                 "noDangerouslySetInnerHtml": "off"

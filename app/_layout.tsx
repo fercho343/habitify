@@ -1,5 +1,6 @@
 import { config } from "@/config";
 import i18n from "@/src/infrastucture/i18n";
+import { NotificationProvider } from "@/src/services/context/notification.context";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -55,9 +56,11 @@ function RootLayoutNav() {
 	return (
 		<I18nextProvider i18n={i18n}>
 			<GluestackUIProvider config={config} colorMode="dark">
-				<Stack>
-					<Stack.Screen name="(habits)" options={{ headerShown: false }} />
-				</Stack>
+				<NotificationProvider>
+					<Stack>
+						<Stack.Screen name="(habits)" options={{ headerShown: false }} />
+					</Stack>
+				</NotificationProvider>
 			</GluestackUIProvider>
 		</I18nextProvider>
 	);
