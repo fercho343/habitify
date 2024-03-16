@@ -1,12 +1,13 @@
 import {
-    Box,
-    CheckIcon,
-    Checkbox,
-    CheckboxIcon,
-    CheckboxIndicator,
-    HStack,
-    Text,
+	Box,
+	CheckIcon,
+	Checkbox,
+	CheckboxIcon,
+	CheckboxIndicator,
+	HStack,
+	Text,
 } from "@gluestack-ui/themed";
+import { router } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
 export const Item = () => {
@@ -18,9 +19,13 @@ export const Item = () => {
 				w="100%"
 				h="100%"
 				position="absolute"
-				// sx={{ borderBottomRightRadius: 25, borderTopRightRadius: 25 }}
 			/>
-			<TouchableOpacity onPress={() => console.log("Go habit details")}>
+			<TouchableOpacity
+				onPress={
+					//@ts-ignore
+					() => router.navigate("/1")
+				}
+			>
 				<HStack
 					py={15}
 					px={10}

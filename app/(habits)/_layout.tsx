@@ -10,6 +10,7 @@ export default function HabitsLayout() {
 					name="add-habit"
 					options={{ animation: "fade_from_bottom" }}
 				/>
+				<Stack.Screen name="[id]" options={{ presentation: "formSheet" }} />
 			</Stack>
 		</HabitProvider>
 	);

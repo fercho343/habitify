@@ -22,6 +22,20 @@
   "hasReminder": "Activar recordatorio",
   "icon": "Icono",
   "monday": "Lunes",
+  "months": {
+    "april": "Abril",
+    "august": "Agosto",
+    "december": "Diciembre",
+    "february": "Febrero",
+    "january": "Enero",
+    "july": "Julio",
+    "june": "Junio",
+    "march": "Marzo",
+    "may": "Mayo",
+    "november": "Noviembre",
+    "october": "Octubre",
+    "september": "Septiembre"
+  },
   "name": "Nombre",
   "placeholder": {
     "habitDescription": "Por que deseas desarollar este habito",

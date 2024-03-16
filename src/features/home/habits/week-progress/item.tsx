@@ -18,7 +18,6 @@ const STROKE_WIDTH = 2;
 export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 	const colors = useStyled().config.tokens.colors;
 	const today = moment().startOf("day");
-	console.log(dayWeek === today);
 
 	const [circumference, setCircumference] = useState<number>(0);
 
