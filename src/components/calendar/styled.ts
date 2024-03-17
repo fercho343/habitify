@@ -2,7 +2,7 @@ import { styled } from "@gluestack-style/react";
 import { Text, View } from "@gluestack-ui/themed";
 
 export const Body = styled(View, {
-	w: "100%",
+	w: "100%"
 });
 
 export const Header = styled(View, {
@@ -14,7 +14,6 @@ export const Header = styled(View, {
 
 export const Box = styled(View, {
 	w: "100%",
-	flex: 1,
 	flexDirection: "row",
 	justifyContent: "space-between",
 	rowGap: 5,
@@ -36,10 +35,10 @@ export const Item = styled(View, {
 	},
 });
 
-export const Day = styled(Text,{
+export const Day = styled(Text, {
 	variants: {
 		isActive: {
-            true: { color: "$background" },
-        },
-	}
-})
+			true: { color: "$background" },
+		},
+	},
+});

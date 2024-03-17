@@ -1,11 +1,11 @@
 import {
-    Button,
-    ButtonIcon,
-    ChevronLeftIcon,
-    ChevronRightIcon,
-    HStack,
-    Text,
-    View,
+	Button,
+	ButtonIcon,
+	ChevronLeftIcon,
+	ChevronRightIcon,
+	HStack,
+	Text,
+	View,
 } from "@gluestack-ui/themed";
 import { t } from "i18next";
 import { upperCase } from "lodash";

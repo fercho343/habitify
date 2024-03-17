@@ -2,6 +2,7 @@
   "add": "Anadir",
   "addHabit": "Anadir habito",
   "color": "Color",
+  "completedHabits": "Habitos completados",
   "days": {
     "friday": "Viernes",
     "monday": "Lunes",

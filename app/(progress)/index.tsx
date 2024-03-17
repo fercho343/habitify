@@ -1,7 +1,7 @@
 import { Calendar } from "@/src/components/calendar";
 import { Layout } from "@/src/constants/layout";
 import { DayItem } from "@/src/features/progress/day-item";
-import { View } from "@gluestack-ui/themed";
+import { Text, View } from "@gluestack-ui/themed";
 import { t } from "i18next";
 
 export default function ProgressScreen() {
@@ -12,6 +12,8 @@ export default function ProgressScreen() {
 					renderItem={({ day, key }) => <DayItem key={key} day={day} />}
 				/>
 			</View>
+
+			<Text>{t("completedHabits")}</Text>
 		</Layout>
 	);
 }
