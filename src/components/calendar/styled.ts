@@ -15,21 +15,14 @@ export const Header = styled(View, {
 export const Box = styled(View, {
 	w: "100%",
 	flexDirection: "row",
-	justifyContent: "space-between",
 	rowGap: 5,
 	flexWrap: "wrap",
 });
 
 export const Item = styled(View, {
-	w: "13%",
+	w: "14.28%",
 	pb: 10,
 	pt: 10,
 });
 
-export const Day = styled(Text, {
-	variants: {
-		isActive: {
-			true: { color: "$background" },
-		},
-	},
-});
+export const Day = styled(Text, {});
