@@ -1,21 +1,23 @@
-import { Frequency } from "@/src/types/habit";
-import { useStyled } from "@gluestack-ui/themed";
-import { t } from "i18next";
-import moment, { Moment } from "moment";
+import { useStyled } from "@gluestack-style/react";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import Animated, {
-	Easing,
-	useAnimatedProps,
-	useSharedValue,
-	withTiming,
+    Easing,
+    useAnimatedProps,
+    useSharedValue,
+    withTiming,
 } from "react-native-reanimated";
 import { Circle, Svg, Text } from "react-native-svg";
-import { Body } from "./styled";
+import { Item } from "./day-item.styled";
 
-const RADIUS = 22;
+interface Props {
+	day: number;
+}
+
+const RADIUS = 16;
 const STROKE_WIDTH = 2;
 
-export const Item: React.FC<Props> = ({ day, dayWeek }) => {
+export const DayItem: React.FC<Props> = ({ day }) => {
 	const colors = useStyled().config.tokens.colors;
 	const today = moment().startOf("day");
 
@@ -45,9 +47,8 @@ export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 			strokeDashoffset: progressOffsetValue,
 		};
 	});
-
 	return (
-		<Body>
+		<Item>
 			<Svg width={RADIUS * 2} height={RADIUS * 2}>
 				<Circle
 					cx={RADIUS}
@@ -60,11 +61,7 @@ export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 					cx={RADIUS}
 					cy={RADIUS}
 					r={RADIUS - STROKE_WIDTH / 2}
-					stroke={
-						dayWeek.format("DD") === today.format("DD")
-							? colors.secondary200
-							: colors.primary400
-					}
+					stroke={colors.primary400}
 					strokeWidth={STROKE_WIDTH}
 					strokeDasharray={circumference}
 					strokeDashoffset={progressOffset}
@@ -74,31 +71,16 @@ export const Item: React.FC<Props> = ({ day, dayWeek }) => {
 
 				<Text
 					x={RADIUS}
-					y={RADIUS - 3}
+					y={RADIUS + 5}
 					textAnchor="middle"
 					fontSize={12}
 					fill="#ffffff"
 				>
-					{t(`days.${day}`).substring(0, 3)}
-				</Text>
-
-				<Text
-					x={RADIUS}
-					y={RADIUS + 10}
-					textAnchor="middle"
-					fontSize={12}
-					fill="#ffffff"
-				>
-					{dayWeek.format("DD")}
+					{day}
 				</Text>
 			</Svg>
-		</Body>
+		</Item>
 	);
 };
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-
-interface Props {
-	day: Frequency;
-	dayWeek: Moment;
-}

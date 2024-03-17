@@ -1,18 +1,25 @@
 import {
-	Button,
-	ButtonIcon,
-	ChevronLeftIcon,
-	ChevronRightIcon,
-	HStack,
-	Text,
-	View,
+    Button,
+    ButtonIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    HStack,
+    Text,
+    View,
 } from "@gluestack-ui/themed";
 import { t } from "i18next";
 import { upperCase } from "lodash";
 import { useState } from "react";
-import { Body, Box, Day, Header, Item } from "./calendar.styled";
+import { Body, Box, Header, Item } from "./styled";
 
-export const Calendar = () => {
+interface Props {
+	renderItem: (props: {
+		day: number;
+		key: number;
+	}) => JSX.Element;
+}
+
+export const Calendar: React.FC<Props> = ({ renderItem }) => {
 	const today = new Date();
 	const [currentMonth, setCurrentMonth] = useState(today.getMonth());
 	const [currentYear, setCurrentYear] = useState(today.getFullYear());
@@ -109,13 +116,8 @@ export const Calendar = () => {
 					<Item key={`empty-${i}`} />
 				))}
 
-				{days.map((day) => {
-					const isActive = Math.floor(Math.random() * 2) > 0 ? true : false;
-					return (
-						<Item key={day} isActive={isActive}>
-							<Day isActive={isActive}>{day}</Day>
-						</Item>
-					);
+				{days.map((day, index) => {
+					return renderItem({ day, key: index });
 				})}
 			</Box>
 		</Body>

@@ -3,12 +3,6 @@ import { Text, View } from "@gluestack-ui/themed";
 
 export const Body = styled(View, {
 	w: "100%",
-	flex: 1,
-	backgroundColor: "$background",
-	mt: -40,
-	borderTopLeftRadius: 30,
-	borderTopRightRadius: 30,
-	padding: 16,
 });
 
 export const Header = styled(View, {
