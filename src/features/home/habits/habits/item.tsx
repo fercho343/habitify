@@ -12,9 +12,9 @@ import { TouchableOpacity } from "react-native";
 
 export const Item = () => {
 	return (
-		<Box mt={10} rounded="$md" backgroundColor="$box" position="relative">
+		<Box mt={10} rounded="$full" backgroundColor="$box" position="relative">
 			<Box
-				rounded="$md"
+				rounded="$full"
 				backgroundColor="#6db3dc"
 				w="100%"
 				h="100%"

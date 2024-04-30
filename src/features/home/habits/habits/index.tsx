@@ -3,7 +3,7 @@ import { Item } from "./item";
 
 export const Habits = () => {
 	return (
-		<ScrollView>
+		<ScrollView mt="$2">
 			<Item />
 			<Item />
 			<Item />
