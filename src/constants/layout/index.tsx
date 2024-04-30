@@ -34,18 +34,22 @@ export const Layout: React.FC<Props> = ({
 	return (
 		<Body pt={useTop ? top : 20}>
 			{useAppBar && (
-				<Bar mb="$2">
+				<Bar mb="$2" position="relative">
 					{useBack && (
 						<Button
 							w={30}
 							h={30}
 							bg="$background"
 							onPress={() => router.back()}
+							position="absolute"
+							top={0}
+							left={0}
+							zIndex={1}
 						>
 							<Icon as={ArrowLeftIcon} size="xl" color="#fff" />
 						</Button>
 					)}
-					<View w={useBack ? "80%" : "100%"}>
+					<View w="100%">
 						<Center>
 							<Heading fontFamily="MacPawBold" size="lg">
 								{label}

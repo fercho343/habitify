@@ -1,21 +1,22 @@
 import {
-    Actionsheet,
-    ActionsheetBackdrop,
-    ActionsheetContent,
-    ActionsheetDragIndicator,
-    ActionsheetDragIndicatorWrapper,
-    ActionsheetItem,
-    ActionsheetItemText,
-    Avatar,
-    AvatarFallbackText,
-    AvatarImage,
-    Icon,
-    Pressable,
+	Actionsheet,
+	ActionsheetBackdrop,
+	ActionsheetContent,
+	ActionsheetDragIndicator,
+	ActionsheetDragIndicatorWrapper,
+	ActionsheetItem,
+	ActionsheetItemText,
+	Avatar,
+	AvatarFallbackText,
+	AvatarImage,
+	Icon,
+	Pressable,
 } from "@gluestack-ui/themed";
 import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
 import { t } from "i18next";
 import { CameraIcon, ImageIcon } from "lucide-react-native";
 import { useState } from "react";
+import { CameraModal } from "./camera-modal";
 
 export const Picture = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -38,6 +39,8 @@ export const Picture = () => {
 			// saveProfile({ picture: result.assets[0].uri, name: "" });
 		}
 	};
+
+    const [isVisible, setIsVisible] = useState<boolean>(false)
 
 	return (
 		<>
@@ -63,12 +66,17 @@ export const Picture = () => {
 						<ActionsheetItemText>{t("imageGalery")}</ActionsheetItemText>
 					</ActionsheetItem>
 
-					<ActionsheetItem onPress={handleClose}>
+					<ActionsheetItem onPress={() => {
+                        handleClose()
+                        setIsVisible(true)
+                    }} >
 						<Icon as={CameraIcon} color="$textDark900" size="lg" />
 						<ActionsheetItemText>{t("camera")}</ActionsheetItemText>
 					</ActionsheetItem>
 				</ActionsheetContent>
 			</Actionsheet>
+
+            <CameraModal isVisible={isVisible} setIsVisible={setIsVisible} setPicture={setPicture} />
 		</>
 	);
 };

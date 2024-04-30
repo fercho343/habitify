@@ -45,6 +45,10 @@
     "september": "Septiembre"
   },
   "name": "Nombre",
+  "permissions": {
+    "camera": "Permitir el uso de la cámara",
+    "info": "Necesitamos su permiso para mostrar la cámara."
+  },
   "placeholder": {
     "habitDescription": "Por que deseas desarollar este habito",
     "habitName": "Ej. Leer un libro"
@@ -55,6 +59,7 @@
   "saturday": "Sábado",
   "schedule": "Horarios",
   "sunday": "Domingo",
+  "takePicture": "Tomar foto",
   "thursday": "Jueves",
   "today": "Hoy",
   "tuesday": "Martes",
