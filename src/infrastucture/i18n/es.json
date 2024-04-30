@@ -1,8 +1,10 @@
 {
   "add": "Anadir",
   "addHabit": "Anadir habito",
+  "code": "Codigo",
   "color": "Color",
   "completedHabits": "Habitos completados",
+  "contactUs": "Contactanos",
   "days": {
     "friday": "Viernes",
     "monday": "Lunes",
@@ -14,6 +16,8 @@
   },
   "definedHour": "Definir hora",
   "description": "Descripcion",
+  "diary": "Diario",
+  "donations": "Donaciones",
   "error": {
     "name": "Se requiere el nombre"
   },
@@ -22,6 +26,7 @@
   "habits": "Habitos",
   "hasReminder": "Activar recordatorio",
   "icon": "Icono",
+  "information": "Informacion",
   "monday": "Lunes",
   "months": {
     "april": "Abril",
@@ -46,6 +51,7 @@
   "progress": "Progreso",
   "requiresGoal": "Necesitas establecer una meta?",
   "saturday": "Sábado",
+  "schedule": "Horarios",
   "sunday": "Domingo",
   "thursday": "Jueves",
   "today": "Hoy",
