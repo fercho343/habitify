@@ -51,7 +51,8 @@
   },
   "placeholder": {
     "habitDescription": "Por que deseas desarollar este habito",
-    "habitName": "Ej. Leer un libro"
+    "habitName": "Ej. Leer un libro",
+    "name": "Ingresa tu nombre"
   },
   "profile": "Perfil",
   "progress": "Progreso",
