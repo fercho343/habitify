@@ -1,12 +1,18 @@
-import { Box, Text } from "@gluestack-ui/themed";
+import { HStack, Text } from "@gluestack-ui/themed";
 
 export const Habit = () => {
 	return (
-		<Box bg="purple" p={10} rounded="$lg" flexDirection="row">
-			<Text fontSize="$md" mr={10}>
-				📚
+		<HStack
+			bg="purple"
+			p={10}
+			rounded="$full"
+			flexDirection="row"
+			alignItems="center"
+		>
+			<Text fontSize="$xl" mr={10}>
+				📚     
 			</Text>
 			<Text fontSize="$md">Leer un libro</Text>
-		</Box>
+		</HStack>
 	);
 };

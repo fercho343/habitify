@@ -39,15 +39,10 @@ export const IconButton: FC<Props> = ({ control }) => {
 							isOpen={showActionsheet}
 							onClose={handleClose}
 							zIndex={999}
+							snapPoints={[93]}
 						>
 							<ActionsheetBackdrop />
-							<ActionsheetContent
-								h="$96"
-								zIndex={999}
-								bg="$card"
-								px={16}
-								pb={bottom}
-							>
+							<ActionsheetContent zIndex={999} bg="$card" px={16} pb={bottom}>
 								<ActionsheetDragIndicatorWrapper>
 									<ActionsheetDragIndicator bg="$textDark100" />
 								</ActionsheetDragIndicatorWrapper>
@@ -63,10 +58,13 @@ export const IconButton: FC<Props> = ({ control }) => {
 									}}
 								>
 									{emojis.map((emoji, index) => (
-										<Box key={index} onPress={() => {
-											onChange(emoji.text);
-											handleClose();
-										}}>
+										<Box
+											key={index}
+											onPress={() => {
+												onChange(emoji.text);
+												handleClose();
+											}}
+										>
 											<Text size="2xl">{emoji.text}</Text>
 										</Box>
 									))}

@@ -46,9 +46,6 @@ export const FormHabit = () => {
 		},
 	});
 
-	console.log(watch('frequency'));
-	
-
 	const onSubmit = async (data: any) => {
 		console.log(data);
 

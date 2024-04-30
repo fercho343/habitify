@@ -33,15 +33,10 @@ export const ColorButton: React.FC<Props> = ({ control }) => {
 							isOpen={showActionsheet}
 							onClose={handleClose}
 							zIndex={999}
+							snapPoints={[40]}
 						>
 							<ActionsheetBackdrop />
-							<ActionsheetContent
-								h="$96"
-								zIndex={999}
-								bg="$card"
-								pb="$10"
-								px={16}
-							>
+							<ActionsheetContent zIndex={999} bg="$card" pb="$10" px={16}>
 								<ActionsheetDragIndicatorWrapper>
 									<ActionsheetDragIndicator bg="$textDark100" />
 								</ActionsheetDragIndicatorWrapper>

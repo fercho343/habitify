@@ -32,8 +32,8 @@ export const Item = () => {
 					alignItems="center"
 					justifyContent="space-between"
 				>
-					<HStack>
-						<Text fontSize="$md" mr={10}>
+					<HStack alignItems="center">
+						<Text fontSize="$xl" mr={10}>
 							📚
 						</Text>
 						<Text fontSize="$md">Leer un libro</Text>
