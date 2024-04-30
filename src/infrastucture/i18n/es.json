@@ -1,6 +1,7 @@
 {
   "add": "Anadir",
   "addHabit": "Anadir habito",
+  "camera": "Camara",
   "code": "Codigo",
   "color": "Color",
   "completedHabits": "Habitos completados",
@@ -26,6 +27,7 @@
   "habits": "Habitos",
   "hasReminder": "Activar recordatorio",
   "icon": "Icono",
+  "imageGalery": "Galeria de imagenes",
   "information": "Informacion",
   "monday": "Lunes",
   "months": {
