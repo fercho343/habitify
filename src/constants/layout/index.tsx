@@ -3,12 +3,22 @@ import {
 	ArrowLeftIcon,
 	Button,
 	Center,
+	Heading,
 	Icon,
-	Text,
 	View,
 } from "@gluestack-ui/themed";
 import { useRouter } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Bar, Body } from "./styled";
+
+interface Props {
+	children: React.ReactNode;
+	useAppBar?: boolean;
+	useBack?: boolean;
+	useBottomBar?: boolean;
+	label?: string;
+	useTop?: boolean;
+}
 
 export const Layout: React.FC<Props> = ({
 	children,
@@ -16,23 +26,30 @@ export const Layout: React.FC<Props> = ({
 	useBack,
 	useBottomBar,
 	label = "",
+	useTop = true,
 }) => {
+	const { top } = useSafeAreaInsets();
 	const router = useRouter();
 
 	return (
-		<Body>
+		<Body pt={useTop ? top : 20}>
 			{useAppBar && (
-				<Bar>
+				<Bar mb="$2">
 					{useBack && (
-						<Button w={30} h={30} bg='$background' onPress={() => router.back()}>
+						<Button
+							w={30}
+							h={30}
+							bg="$background"
+							onPress={() => router.back()}
+						>
 							<Icon as={ArrowLeftIcon} size="xl" color="#fff" />
 						</Button>
 					)}
 					<View w={useBack ? "80%" : "100%"}>
 						<Center>
-							<Text fontFamily="MacPawBold" size="lg">
+							<Heading fontFamily="MacPawBold" size="lg">
 								{label}
-							</Text>
+							</Heading>
 						</Center>
 					</View>
 				</Bar>
@@ -43,11 +60,3 @@ export const Layout: React.FC<Props> = ({
 		</Body>
 	);
 };
-
-interface Props {
-	children: React.ReactNode;
-	useAppBar?: boolean;
-	useBack?: boolean;
-	useBottomBar?: boolean;
-	label?: string;
-}

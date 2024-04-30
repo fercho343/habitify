@@ -1,8 +1,7 @@
 import { styled } from "@gluestack-style/react";
 import { View } from "@gluestack-ui/themed";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-export const Body = styled(SafeAreaView, {
+export const Body = styled(View, {
 	backgroundColor: "$background",
 	flex: 1,
 	px: 16,

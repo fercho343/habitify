@@ -6,12 +6,12 @@ import { Item } from "./item";
 export const Menu = () => {
 	return (
 		<View mt="$2">
-			<Item icon={BookMarked} text={t("diary")} />
-			<Item icon={ClockIcon} text={t("schedule")} />
-			<Item icon={InfoIcon} text={t("information")} />
-			<Item icon={Heart} text={t("donations")} />
-			<Item icon={GithubIcon} text={t("code")} />
-            <Item icon={MailIcon} text={t('contactUs')} />
+			<Item icon={BookMarked} text={t("diary")} to="journal" />
+			<Item icon={ClockIcon} text={t("schedule")} to="schedules" />
+			<Item icon={InfoIcon} text={t("information")} to='information' />
+			<Item icon={Heart} text={t("donations")} to='donations' />
+			<Item icon={GithubIcon} text={t("code")} to='code' />
+			<Item icon={MailIcon} text={t("contactUs")}  />
 		</View>
 	);
 };
