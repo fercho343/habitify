@@ -1,9 +1,11 @@
 import {
-    Button,
-    ButtonIcon,
-    EditIcon,
-    Heading,
-    Text,
+	Button,
+	ButtonIcon,
+	EditIcon,
+	HStack,
+	Heading,
+	Text,
+	TrashIcon,
 } from "@gluestack-ui/themed";
 import { t } from "i18next";
 import { Bar, Circle, Head } from "./header.styled";
@@ -16,20 +18,37 @@ export const Header = () => {
 					<Text>📚</Text>
 				</Circle>
 
-				<Button
-					w={45}
-					h={45}
-					rounded="$full"
-					variant="solid"
-					bg="$background"
-					sx={{
-						":active": {
-							opacity: 0.6,
-						},
-					}}
-				>
-					<ButtonIcon as={EditIcon} />
-				</Button>
+				<HStack>
+					<Button
+						w={45}
+						h={45}
+						rounded="$full"
+						variant="solid"
+						bg="$background"
+						sx={{
+							":active": {
+								opacity: 0.6,
+							},
+						}}
+						mr="$2"
+					>
+						<ButtonIcon as={EditIcon} />
+					</Button>
+					<Button
+						w={45}
+						h={45}
+						rounded="$full"
+						variant="solid"
+						bg="$background"
+						sx={{
+							":active": {
+								opacity: 0.6,
+							},
+						}}
+					>
+						<ButtonIcon as={TrashIcon} color="$error400" />
+					</Button>
+				</HStack>
 			</Bar>
 
 			<Heading size="2xl" mt={16}>
