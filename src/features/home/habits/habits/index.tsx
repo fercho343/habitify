@@ -1,17 +1,21 @@
 import { useHabit } from "@/src/services/context/habit.context";
-import { ScrollView } from "@gluestack-ui/themed";
+import { FlatList } from "react-native";
+import { Empty } from "./empty";
 import { Item } from "./item";
 
 export const Habits = () => {
 	const { habits } = useHabit();
 	return (
-		<ScrollView mt="$2">
-			{
-				habits.map((habit) => (
-                    <Item key={habit.id} habit={habit} />
-                ))
-			}
-			
-		</ScrollView>
+		<FlatList
+			data={habits}
+			renderItem={({ item }) => <Item key={item.id} habit={item} />}
+			keyExtractor={(item) => item.id}
+			showsVerticalScrollIndicator={false}
+			ListEmptyComponent={<Empty />}
+			style={{ marginTop: 16 }}
+			contentContainerStyle={{
+				flexGrow: 1,
+			}}
+		/>
 	);
 };
