@@ -4,24 +4,25 @@ import { IconButton } from "@/src/components/icon-button";
 import { Switch } from "@/src/components/switch";
 import { TextInput } from "@/src/components/text-input";
 import { TimeImput } from "@/src/components/time-input";
-import { createHabit } from "@/src/services/db/habits";
+import { useHabit } from "@/src/services/context/habit.context";
 import { HabitForm } from "@/src/types/habit";
 import {
 	Button,
 	ButtonText,
 	Divider,
 	HStack,
-	ScrollView, useToast
+	ScrollView,
+	useToast,
 } from "@gluestack-ui/themed";
-import { useSQLiteContext } from "expo-sqlite/next";
+import { randomUUID } from "expo-crypto";
 import { t } from "i18next";
 import { useForm } from "react-hook-form";
 
 export const FormHabit = () => {
-	const db = useSQLiteContext();
+	const { addHabit } = useHabit();
 	const toast = useToast();
 
-	const { control, watch, handleSubmit } = useForm<HabitForm>({
+	const { control, watch, handleSubmit, reset } = useForm<HabitForm>({
 		defaultValues: {
 			name: "",
 			description: "",
@@ -40,37 +41,14 @@ export const FormHabit = () => {
 				"sunday",
 			],
 			hasReminder: true,
-			startTime: "00:00"
+			startTime: "00:00",
 		},
 	});
 
 	const onSubmit = async (data: HabitForm) => {
-
-		await createHabit(db, data)
-
-		// toast.show({
-		// 	placement: "bottom",
-		// 	render: ({ id }) => {
-		// 		notificationAsync(NotificationFeedbackType.Success);
-		// 		const toastId = `toast-${id}`;
-		// 		return (
-		// 			<TouchableOpacity onPress={() => toast.close(id)}>
-		// 				<Toast
-		// 					nativeID={toastId}
-		// 					action="success"
-		// 					variant="solid"
-		// 					rounded="$full"
-		// 				>
-		// 					<VStack space="xs">
-		// 						<ToastDescription>
-		// 							El habito {toLower(data.name)} se anadio con exito
-		// 						</ToastDescription>
-		// 					</VStack>
-		// 				</Toast>
-		// 			</TouchableOpacity>
-		// 		);
-		// 	},
-		// });
+		const id = randomUUID();
+		const habit = { ...data, id };
+		addHabit(habit, reset);
 	};
 
 	return (

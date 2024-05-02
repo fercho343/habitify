@@ -1,14 +1,26 @@
-import { Habit } from "@/src/types/habit";
+import { Habit, HabitForm } from "@/src/types/habit";
+import {
+	Toast,
+	ToastDescription,
+	VStack,
+	useToast,
+} from "@gluestack-ui/themed";
+import { NotificationFeedbackType, notificationAsync } from "expo-haptics";
 import { useSQLiteContext } from "expo-sqlite/next";
+import { toLower } from "lodash";
 import { createContext, useContext, useEffect, useState } from "react";
-import { createHabitTable } from "../db/habits";
+import { UseFormReset } from "react-hook-form";
+import { TouchableOpacity } from "react-native";
+import { createHabit, createHabitTable } from "../db/habits";
 
 interface HabitContextType {
 	habits: Habit[];
+	addHabit: (newHabit: Habit, reset: UseFormReset<HabitForm>) => Promise<void>;
 }
 
 export const HabitContext = createContext<HabitContextType>({
 	habits: [],
+	addHabit: async () => {},
 });
 
 export const useHabit = () => {
@@ -16,6 +28,8 @@ export const useHabit = () => {
 };
 
 export const HabitProvider: React.FC<Props> = ({ children }) => {
+	const toast = useToast();
+
 	const [habits, setHabits] = useState<Habit[]>([]);
 	const db = useSQLiteContext();
 
@@ -36,8 +50,42 @@ export const HabitProvider: React.FC<Props> = ({ children }) => {
 		})();
 	}, []);
 
+	const addHabit = async (newHabit: Habit, reset: UseFormReset<HabitForm>) => {
+		const result = await createHabit(db, newHabit);
+
+		if (result) {
+			setHabits([...habits, newHabit]);
+			reset()
+			toast.show({
+				placement: "bottom",
+				render: ({ id }) => {
+					notificationAsync(NotificationFeedbackType.Success);
+					const toastId = `toast-${id}`;
+					return (
+						<TouchableOpacity onPress={() => toast.close(id)}>
+							<Toast
+								nativeID={toastId}
+								action="success"
+								variant="solid"
+								rounded="$full"
+							>
+								<VStack space="xs">
+									<ToastDescription>
+										El habito {toLower(newHabit.name)} se anadio con exito
+									</ToastDescription>
+								</VStack>
+							</Toast>
+						</TouchableOpacity>
+					);
+				},
+			});
+		}
+	};
+
 	return (
-		<HabitContext.Provider value={{ habits }}>{children}</HabitContext.Provider>
+		<HabitContext.Provider value={{ habits, addHabit }}>
+			{children}
+		</HabitContext.Provider>
 	);
 };
 

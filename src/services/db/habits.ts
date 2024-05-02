@@ -1,5 +1,4 @@
-import { HabitForm } from "@/src/types/habit";
-import { randomUUID } from "expo-crypto";
+import { Habit } from "@/src/types/habit";
 import { type SQLiteDatabase } from "expo-sqlite/next";
 
 export const createHabitTable = (db: SQLiteDatabase): void => {
@@ -22,22 +21,19 @@ export const createHabitTable = (db: SQLiteDatabase): void => {
 
 export const createHabit = async (
 	db: SQLiteDatabase,
-	habit: HabitForm,
-): Promise<void> => {
-	// console.log();
-
+	habit: Habit,
+): Promise<boolean> => {
 	const statement = await db.prepareAsync(
 		`
             INSERT INTO habits (id, name, description, icon, color, requiresGoal, goalAmount, measureUnit, frequency, hasReminder, startTime)
             VALUES ($id, $name, $description, $icon, $color, $requiresGoal, $goalAmount, $measureUnit, $frequency, $hasReminder, $startTime)
         `,
 	);
-	const id = randomUUID();
 
 	try {
-		const result = await statement.executeAsync<HabitForm>({
+		const result = await statement.executeAsync<Habit>({
 			//@ts-ignore
-			$id: id,
+			$id: habit.id,
 			$name: habit.name,
 			$description: habit.description,
 			$icon: habit.icon,
@@ -49,9 +45,12 @@ export const createHabit = async (
 			$hasReminder: habit.hasReminder ? 1 : 0,
 			$startTime: habit.startTime,
 		});
-		console.log(result);
+		if (result) {
+			return true;
+		}
+		return false;
 	} catch (error) {
-		console.log(error);
+		return false;
 	} finally {
 		statement.finalizeAsync();
 	}
