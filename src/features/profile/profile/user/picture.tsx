@@ -40,7 +40,7 @@ export const Picture = () => {
 		}
 	};
 
-    const [isVisible, setIsVisible] = useState<boolean>(false)
+	const [isVisible, setIsVisible] = useState<boolean>(false);
 
 	return (
 		<>
@@ -54,29 +54,36 @@ export const Picture = () => {
 				</Avatar>
 			</Pressable>
 
-			<Actionsheet isOpen={isOpen} onClose={handleClose} snapPoints={[18]}>
+			<Actionsheet isOpen={isOpen} onClose={handleClose} snapPoints={[20]}>
 				<ActionsheetBackdrop />
 				<ActionsheetContent bg="$backgroundLight950">
 					<ActionsheetDragIndicatorWrapper>
 						<ActionsheetDragIndicator bg="$textDark900" />
 					</ActionsheetDragIndicatorWrapper>
 
-					<ActionsheetItem onPress={pickImage}>
+					<ActionsheetItem onPress={pickImage} bg="$backgroundLight900" mb="$3">
 						<Icon as={ImageIcon} color="$textDark900" size="lg" />
 						<ActionsheetItemText>{t("imageGalery")}</ActionsheetItemText>
 					</ActionsheetItem>
 
-					<ActionsheetItem onPress={() => {
-                        handleClose()
-                        setIsVisible(true)
-                    }} >
+					<ActionsheetItem
+						onPress={() => {
+							handleClose();
+							setIsVisible(true);
+						}}
+						bg="$backgroundLight900"
+					>
 						<Icon as={CameraIcon} color="$textDark900" size="lg" />
 						<ActionsheetItemText>{t("camera")}</ActionsheetItemText>
 					</ActionsheetItem>
 				</ActionsheetContent>
 			</Actionsheet>
 
-            <CameraModal isVisible={isVisible} setIsVisible={setIsVisible} setPicture={setPicture} />
+			<CameraModal
+				isVisible={isVisible}
+				setIsVisible={setIsVisible}
+				setPicture={setPicture}
+			/>
 		</>
 	);
 };
