@@ -1,14 +1,22 @@
+import { Habit } from "@/src/types/habit";
 import { useSQLiteContext } from "expo-sqlite/next";
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { createHabitTable } from "../db/habits";
 
-export const HabitContext = createContext<null>(null);
+interface HabitContextType {
+	habits: Habit[];
+}
+
+export const HabitContext = createContext<HabitContextType>({
+	habits: [],
+});
 
 export const useHabit = () => {
 	return useContext(HabitContext);
 };
 
 export const HabitProvider: React.FC<Props> = ({ children }) => {
+	const [habits, setHabits] = useState<Habit[]>([]);
 	const db = useSQLiteContext();
 
 	useEffect(() => {
@@ -16,7 +24,7 @@ export const HabitProvider: React.FC<Props> = ({ children }) => {
 
 		(async () => {
 			const result = await db.getAllAsync("SELECT * FROM habits");
-			console.log(
+			setHabits(
 				result.map((habit: any) => ({
 					//@ts-ignore
 					...habit,
@@ -26,11 +34,11 @@ export const HabitProvider: React.FC<Props> = ({ children }) => {
 				})),
 			);
 		})();
-	});
+	}, []);
 
-	const addHabit = async () => {};
-
-	return <HabitContext.Provider value={null}>{children}</HabitContext.Provider>;
+	return (
+		<HabitContext.Provider value={{ habits }}>{children}</HabitContext.Provider>
+	);
 };
 
 interface Props {

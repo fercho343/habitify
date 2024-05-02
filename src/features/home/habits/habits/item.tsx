@@ -1,3 +1,4 @@
+import { Habit } from "@/src/types/habit";
 import {
 	Box,
 	CheckIcon,
@@ -8,14 +9,22 @@ import {
 	Text,
 } from "@gluestack-ui/themed";
 import { router } from "expo-router";
+import { FC } from "react";
 import { TouchableOpacity } from "react-native";
 
-export const Item = () => {
+interface Props {
+	habit: Habit;
+}
+
+export const Item: FC<Props> = ({ habit }) => {
+	const { color, name } = habit;
+	const colorMode = getContrastYIQ(color);
+
 	return (
 		<Box mt={10} rounded="$full" backgroundColor="$box" position="relative">
 			<Box
 				rounded="$full"
-				backgroundColor="#6db3dc"
+				backgroundColor={color}
 				w="100%"
 				h="100%"
 				position="absolute"
@@ -36,7 +45,12 @@ export const Item = () => {
 						<Text fontSize="$xl" mr={10}>
 							📚
 						</Text>
-						<Text fontSize="$md">Leer un libro</Text>
+						<Text
+							fontSize="$md"
+							color={colorMode === "dark" ? "#000" : "$textDark400"}
+						>
+							{name}
+						</Text>
 					</HStack>
 
 					<Checkbox
@@ -56,3 +70,14 @@ export const Item = () => {
 		</Box>
 	);
 };
+
+type ColorMode = "light" | "dark";
+
+function getContrastYIQ(hexcolor: string): ColorMode {
+	hexcolor = hexcolor.replace("#", "");
+	const r = parseInt(hexcolor.substr(0, 2), 16);
+	const g = parseInt(hexcolor.substr(2, 2), 16);
+	const b = parseInt(hexcolor.substr(4, 2), 16);
+	const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+	return yiq >= 128 ? "dark" : "light";
+}

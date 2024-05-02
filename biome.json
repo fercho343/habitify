@@ -17,6 +17,9 @@
             "suspicious": {
                 "noArrayIndexKey": "off",
                 "noExplicitAny": "off"
+            },
+            "style": {
+                "noParameterAssign": "off"
             }
         }
     },
