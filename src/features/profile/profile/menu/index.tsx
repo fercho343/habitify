@@ -8,7 +8,11 @@ export const Menu = () => {
 		<View>
 			<Item icon={BookMarked} text={t("diary")} to="journal" />
 			<Item icon={ClockIcon} text={t("schedule")} to="schedules" />
-			<Item icon={InfoIcon} text={t("information.information")} to="information" />
+			<Item
+				icon={InfoIcon}
+				text={t("information.information")}
+				to="information"
+			/>
 			<Item icon={Heart} text={t("donations")} to="donations" />
 			<Item icon={MailIcon} text={t("contactUs")} />
 		</View>
