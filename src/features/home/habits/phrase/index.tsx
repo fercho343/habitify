@@ -39,7 +39,7 @@ export const Phrase = () => {
 	}, []);
 
 	return (
-		<View w="100%" aspectRatio={16 / 8} mt="$3" rounded="$md" overflow="hidden">
+		<View w="100%" aspectRatio={16 / 7} mt="$3" rounded="$md" overflow="hidden">
 			<Background
 				source={
 					isWhatMoment === "morning"

@@ -50,7 +50,7 @@ export const TopBar = () => {
 					<Text>
 						{t("welcome")}, {name}!
 					</Text>
-					<Text style={{ marginTop: 1 }}>{`${t("today")}  ${t(
+					<Text style={{ marginTop: 1 }} size="xs">{`${t("today")}  ${t(
 						toLower(today.format("dddd")),
 					)}`}</Text>
 				</View>
