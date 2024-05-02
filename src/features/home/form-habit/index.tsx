@@ -4,26 +4,23 @@ import { IconButton } from "@/src/components/icon-button";
 import { Switch } from "@/src/components/switch";
 import { TextInput } from "@/src/components/text-input";
 import { TimeImput } from "@/src/components/time-input";
+import { createHabit } from "@/src/services/db/habits";
 import { HabitForm } from "@/src/types/habit";
 import {
 	Button,
 	ButtonText,
 	Divider,
 	HStack,
-	ScrollView,
-	Toast,
-	ToastDescription,
-	VStack,
-	useToast,
+	ScrollView, useToast
 } from "@gluestack-ui/themed";
-import { NotificationFeedbackType, notificationAsync } from "expo-haptics";
+import { useSQLiteContext } from "expo-sqlite/next";
 import { t } from "i18next";
-import { toLower } from "lodash";
 import { useForm } from "react-hook-form";
-import { TouchableOpacity } from "react-native";
 
 export const FormHabit = () => {
+	const db = useSQLiteContext();
 	const toast = useToast();
+
 	const { control, watch, handleSubmit } = useForm<HabitForm>({
 		defaultValues: {
 			name: "",
@@ -43,35 +40,37 @@ export const FormHabit = () => {
 				"sunday",
 			],
 			hasReminder: true,
+			startTime: "00:00"
 		},
 	});
 
-	const onSubmit = async (data: any) => {
-		console.log(data);
+	const onSubmit = async (data: HabitForm) => {
 
-		await toast.show({
-			placement: "bottom",
-			render: ({ id }) => {
-				notificationAsync(NotificationFeedbackType.Success);
-				const toastId = `toast-${id}`;
-				return (
-					<TouchableOpacity onPress={() => toast.close(id)}>
-						<Toast
-							nativeID={toastId}
-							action="success"
-							variant="solid"
-							rounded="$full"
-						>
-							<VStack space="xs">
-								<ToastDescription>
-									El habito {toLower(data.name)} se anadio con exito
-								</ToastDescription>
-							</VStack>
-						</Toast>
-					</TouchableOpacity>
-				);
-			},
-		});
+		await createHabit(db, data)
+
+		// toast.show({
+		// 	placement: "bottom",
+		// 	render: ({ id }) => {
+		// 		notificationAsync(NotificationFeedbackType.Success);
+		// 		const toastId = `toast-${id}`;
+		// 		return (
+		// 			<TouchableOpacity onPress={() => toast.close(id)}>
+		// 				<Toast
+		// 					nativeID={toastId}
+		// 					action="success"
+		// 					variant="solid"
+		// 					rounded="$full"
+		// 				>
+		// 					<VStack space="xs">
+		// 						<ToastDescription>
+		// 							El habito {toLower(data.name)} se anadio con exito
+		// 						</ToastDescription>
+		// 					</VStack>
+		// 				</Toast>
+		// 			</TouchableOpacity>
+		// 		);
+		// 	},
+		// });
 	};
 
 	return (
@@ -114,7 +113,7 @@ export const FormHabit = () => {
 
 			<Switch control={control} name={"hasReminder"} label={t("hasReminder")} />
 
-			{watch("hasReminder") && <TimeImput />}
+			{watch("hasReminder") && <TimeImput control={control} />}
 
 			<Button borderRadius="$full" onPress={handleSubmit(onSubmit)}>
 				<ButtonText color="$background">{t("add")}</ButtonText>

@@ -16,7 +16,15 @@ export const HabitProvider: React.FC<Props> = ({ children }) => {
 
 		(async () => {
 			const result = await db.getAllAsync("SELECT * FROM habits");
-			console.log(result);
+			console.log(
+				result.map((habit: any) => ({
+					//@ts-ignore
+					...habit,
+					frequency: JSON.parse(habit.frequency),
+					requiresGoal: habit.requiresGoal === 1,
+					hasReminder: habit.hasReminder === 1,
+				})),
+			);
 		})();
 	});
 

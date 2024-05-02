@@ -1,9 +1,8 @@
-import { HabitProvider } from "@/src/services/context/habit.context";
 import { Stack } from "expo-router";
 
 export default function HabitsLayout() {
 	return (
-		<HabitProvider>
+		<>
 			<Stack screenOptions={{ headerShown: false }}>
 				<Stack.Screen name="index" />
 				<Stack.Screen
@@ -12,6 +11,6 @@ export default function HabitsLayout() {
 				/>
 				<Stack.Screen name="[id]" options={{ presentation: "formSheet" }} />
 			</Stack>
-		</HabitProvider>
+		</>
 	);
 }

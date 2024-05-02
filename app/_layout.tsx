@@ -1,5 +1,6 @@
 import { config } from "@/config";
 import i18n from "@/src/infrastucture/i18n";
+import { HabitProvider } from "@/src/services/context/habit.context";
 import { NotificationProvider } from "@/src/services/context/notification.context";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { useFonts } from "expo-font";
@@ -60,18 +61,20 @@ function RootLayoutNav() {
 			<GluestackUIProvider config={config} colorMode="dark">
 				<SQLiteProvider databaseName="habitDevelop.db">
 					<NotificationProvider>
-						<GestureHandlerRootView style={{ flex: 1 }}>
-							<Tabs
-								screenOptions={{
-									headerShown: false,
-									tabBarStyle: { display: "none" },
-								}}
-							>
-								<Tabs.Screen name="(habits)" />
-								<Tabs.Screen name="(progress)" />
-								<Tabs.Screen name="(profile)" />
-							</Tabs>
-						</GestureHandlerRootView>
+						<HabitProvider>
+							<GestureHandlerRootView style={{ flex: 1 }}>
+								<Tabs
+									screenOptions={{
+										headerShown: false,
+										tabBarStyle: { display: "none" },
+									}}
+								>
+									<Tabs.Screen name="(habits)" />
+									<Tabs.Screen name="(progress)" />
+									<Tabs.Screen name="(profile)" />
+								</Tabs>
+							</GestureHandlerRootView>
+						</HabitProvider>
 					</NotificationProvider>
 				</SQLiteProvider>
 			</GluestackUIProvider>
