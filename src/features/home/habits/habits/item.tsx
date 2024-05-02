@@ -8,6 +8,7 @@ import {
 	CheckboxIndicator,
 	HStack,
 	Text,
+	View,
 } from "@gluestack-ui/themed";
 import { router } from "expo-router";
 import { FC } from "react";
@@ -18,7 +19,7 @@ interface Props {
 }
 
 export const Item: FC<Props> = ({ habit }) => {
-	const { id, color, name, icon } = habit;
+	const { id, color, name, icon, startTime } = habit;
 	const colorMode = getContrastYIQ(color);
 
 	return (
@@ -41,21 +42,38 @@ export const Item: FC<Props> = ({ habit }) => {
 				}
 			>
 				<HStack
-					py={15}
-					px={10}
+					py="$2"
+					px="$2"
 					alignItems="center"
 					justifyContent="space-between"
 				>
 					<HStack alignItems="center">
-						<Text fontSize="$xl" mr={10}>
-							{icon}
-						</Text>
-						<Text
-							fontSize="$md"
-							color={colorMode === "dark" ? "#000" : "$textDark400"}
+						<View
+							w={40}
+							h={40}
+							rounded="$full"
+							bg="$background"
+							alignItems="center"
+							justifyContent="center"
+							mr="$3"
 						>
-							{name}
-						</Text>
+							<Text fontSize="$xl">{icon}</Text>
+						</View>
+
+						<View>
+							<Text
+								fontSize="$md"
+								color={colorMode === "dark" ? "#000" : "$textDark400"}
+							>
+								{name}
+							</Text>
+							<Text
+								size="xs"
+								color={colorMode === "dark" ? "#000" : "$textDark400"}
+							>
+								{startTime}
+							</Text>
+						</View>
 					</HStack>
 
 					<Checkbox
@@ -75,4 +93,3 @@ export const Item: FC<Props> = ({ habit }) => {
 		</Box>
 	);
 };
-

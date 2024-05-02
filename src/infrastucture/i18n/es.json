@@ -1,6 +1,7 @@
 {
   "add": "Anadir",
   "addHabit": "Anadir habito",
+  "afternoon": "Tarde",
   "camera": "Camara",
   "code": "Codigo",
   "codeDescription": "En vista que no hemos recivido el apoyo deseado hemos decidido ocultar el codigo fuente, seguiremos dando mantenimiento y queremos informarles que no descartamos la posibilidad de cobrar subscripciones en un futuro",
@@ -65,7 +66,9 @@
     "october": "Octubre",
     "september": "Septiembre"
   },
+  "morning": "Manana",
   "name": "Nombre",
+  "night": "Noche",
   "permissions": {
     "camera": "Permitir el uso de la cámara",
     "info": "Necesitamos su permiso para mostrar la cámara."
