@@ -19,6 +19,9 @@
   "definedHour": "Definir hora",
   "description": "Descripcion",
   "diary": "Diario",
+  "donateCashapp": "Donar a travez de Cash App",
+  "donatePaypal": "Donar a travez de PayPal",
+  "donationMessage": "Apoya el Desarrollo de Nuestra Aplicación\n\nEn Habitify, nuestra misión es proporcionarte una herramienta poderosa para alcanzar tus metas y construir hábitos positivos en tu vida diaria. Para continuar mejorando y brindándote una experiencia excepcional, te invitamos a considerar hacer una donación.\n\nTú tienes el poder de contribuir directamente al futuro desarrollo de la aplicación y permitirnos seguir innovando y expandiendo nuestras capacidades. Tu apoyo nos permite mantener nuestra dedicación a la excelencia y continuar entregando valor a nuestra comunidad de usuarios.\n\nSi deseas apoyarnos, tienes la opción de hacer una donación a través de PayPal o Cash App. Cada contribución, independientemente de su tamaño, tiene un impacto significativo en nuestra capacidad para crecer y mejorar.",
   "donations": "Donaciones",
   "error": {
     "name": "Se requiere el nombre"
