@@ -4,7 +4,7 @@ import { Picture } from "./picture";
 
 export const User = () => {
 	return (
-		<View mb="$10" alignItems="center">
+		<View mb="$5" alignItems="center">
 			<Picture />
             <NameInput />
 		</View>
