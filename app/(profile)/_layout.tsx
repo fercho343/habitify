@@ -11,7 +11,6 @@ export default function ProfileLayout() {
 				options={{ presentation: "formSheet" }}
 			/>
 			<Stack.Screen name="donations" options={{ presentation: "formSheet" }} />
-			<Stack.Screen name="code" options={{ presentation: "formSheet" }} />
 		</Stack>
 	);
 }
