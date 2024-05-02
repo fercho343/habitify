@@ -1,4 +1,5 @@
 import { Habit } from "@/src/types/habit";
+import { getContrastYIQ } from "@/src/utils/getContsastYIQ";
 import {
 	Box,
 	CheckIcon,
@@ -17,7 +18,7 @@ interface Props {
 }
 
 export const Item: FC<Props> = ({ habit }) => {
-	const { color, name } = habit;
+	const { id, color, name, icon } = habit;
 	const colorMode = getContrastYIQ(color);
 
 	return (
@@ -32,7 +33,11 @@ export const Item: FC<Props> = ({ habit }) => {
 			<TouchableOpacity
 				onPress={
 					//@ts-ignore
-					() => router.navigate("/1")
+					() =>
+						router.navigate({
+							pathname: `/${id}`,
+							params: { habit: JSON.stringify(habit) },
+						})
 				}
 			>
 				<HStack
@@ -43,7 +48,7 @@ export const Item: FC<Props> = ({ habit }) => {
 				>
 					<HStack alignItems="center">
 						<Text fontSize="$xl" mr={10}>
-							📚
+							{icon}
 						</Text>
 						<Text
 							fontSize="$md"
@@ -71,13 +76,3 @@ export const Item: FC<Props> = ({ habit }) => {
 	);
 };
 
-type ColorMode = "light" | "dark";
-
-function getContrastYIQ(hexcolor: string): ColorMode {
-	hexcolor = hexcolor.replace("#", "");
-	const r = parseInt(hexcolor.substr(0, 2), 16);
-	const g = parseInt(hexcolor.substr(2, 2), 16);
-	const b = parseInt(hexcolor.substr(4, 2), 16);
-	const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-	return yiq >= 128 ? "dark" : "light";
-}

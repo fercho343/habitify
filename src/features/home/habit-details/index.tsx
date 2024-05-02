@@ -1,12 +1,19 @@
 import { Calendar } from "@/src/components/calendar";
+import { Habit } from "@/src/types/habit";
 import { Box } from "@gluestack-ui/themed";
+import { FC } from "react";
 import { Header } from "./header";
 import { ItemCalendar } from "./item-calendar";
 
-export const HabitDetails = () => {
+interface Props {
+	habit: Habit;
+}
+
+export const HabitDetails: FC<Props> = ({ habit }) => {
+
 	return (
 		<>
-			<Header />
+			<Header habit={habit} />
 			<Box
 				sx={{
 					mt: -40,
