@@ -77,6 +77,11 @@
   "requiresGoal": "Necesitas establecer una meta?",
   "saturday": "Sábado",
   "schedule": "Horarios",
+  "success": {
+    "delete": {
+      "habit": "Se elimino con exito el habito"
+    }
+  },
   "sunday": "Domingo",
   "takePicture": "Tomar foto",
   "thursday": "Jueves",

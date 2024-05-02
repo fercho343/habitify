@@ -1,3 +1,4 @@
+import { useHabit } from "@/src/services/context/habit.context";
 import { Habit } from "@/src/types/habit";
 import { getContrastYIQ } from "@/src/utils/getContsastYIQ";
 import {
@@ -18,7 +19,9 @@ interface Props {
 }
 
 export const Header: FC<Props> = ({ habit }) => {
-	const { icon, name, color, frequency, description } = habit;
+	const { id, icon, name, color, frequency, description } = habit;
+	const { deleteHabit } = useHabit();
+
 	const colorMode = getContrastYIQ(color);
 
 	function isActive(dayText: string): boolean {
@@ -39,11 +42,7 @@ export const Header: FC<Props> = ({ habit }) => {
 						rounded="$full"
 						variant="solid"
 						bg="$background"
-						sx={{
-							":active": {
-								opacity: 0.6,
-							},
-						}}
+						$active-opacity="$50"
 						mr="$2"
 					>
 						<ButtonIcon as={EditIcon} />
@@ -54,11 +53,8 @@ export const Header: FC<Props> = ({ habit }) => {
 						rounded="$full"
 						variant="solid"
 						bg="$background"
-						sx={{
-							":active": {
-								opacity: 0.6,
-							},
-						}}
+						$active-opacity="$50"
+						onPress={() => deleteHabit(id)}
 					>
 						<ButtonIcon as={TrashIcon} color="$error400" />
 					</Button>
