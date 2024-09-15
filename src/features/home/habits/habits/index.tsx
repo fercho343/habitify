@@ -15,7 +15,7 @@ export const Habits = () => {
 	});
 
 	return (
-		<View mt="$3">
+		<View mt="$3" flex={1}>
 			<FlatList
 				data={sortedHabits}
 				renderItem={({ item }) => <Item key={item.id} habit={item} />}
